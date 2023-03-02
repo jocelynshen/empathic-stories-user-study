@@ -1,0 +1,841 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<!-- I'm also including the script here, in case you wish to use it with your own URL/database. If you go that route, you'll need to set up a web interface to your DB that takes a worker ID and returns "1" if the worker is allowed to work on the HIT and "0" otherwise. Then you'll just replace "YOUR_URL" below to point to that web interface: -->
+
+
+
+<div class="container">
+  <div class="card">
+    <h5 class="card-header bg-primary text-white">Data collection & sharing</h5>
+    <div class="card-body">
+      <p class="card-text">
+        <p>
+        </p>
+        <small>
+          <p><i>This is part of a MIT scientific research project. Your decision to complete this task is
+              voluntary. The results of the research may be
+              presented at scientific meetings or published in scientific journals. Clicking on the ‘SUBMIT’ button on
+              the bottom of this page indicates that you are at least 18 years of age and agree to this task
+              voluntarily.</i></p>
+
+        </small>
+      </p>
+      </p>
+    </div>
+  </div>
+
+  <div class="p-3">
+    <p id="didalready"></p>
+    <div class="p-3" id="all-content">
+
+      <!-- <div class="row justify-content-center" id="consent-div">
+        <div class="col-12 mt-4">
+          <h5>Agree to the task</h5>
+          <div class="form-check">
+            <label class="form-check-label" for="consent">
+              <input class="form-check-input" type="checkbox" id="consent" name="consent"
+                onclick="toggleConsent(this.checked)" required>
+              I certify that I have <strong>carefully read</strong> the instructions and <strong>agree</strong> with the
+              terms of this study.
+            </label>
+          </div>
+          <br>
+          <div class="alert alert-warning" id="consent-message" style="max-width: 400px;margin: auto;">
+            You must check the box to continue the task!
+          </div>
+        </div>
+      </div> -->
+      <div id="main-task" >
+
+        <div class="row justify-content-center">
+          <div class="col-11 section" id="reflection-section">
+            <h4 class="mt-4"><label for="story">Part 1: Reflect on your emotions right now</label></h4>
+            <h6 class="mt-4">Valence (how pleasant or unpleasant you are feeling)</h6>
+            <div class="form-check form-check-inline ml-3 lickert">
+              <label class="form-check-label" for="val1">Unpleasant &nbsp;</label>
+              <input class="form-check-input right" type="radio" name="val" id="val1" value="1" required>
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="val2">&nbsp;</label>
+              <input class="form-check-input right" type="radio" name="val" id="val2" value="2">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="val3">&nbsp;</label>
+              <input class="form-check-input right" type="radio" name="val" id="val3" value="3">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="val4">&nbsp;</label>
+              <input class="form-check-input right" type="radio" name="val" id="val4" value="4">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="val5">&nbsp;</label>
+              <input class="form-check-input" type="radio" name="val" id="val5" value="5">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="val6">&nbsp; </label>
+
+              <input class="form-check-input" type="radio" name="val" id="val6" value="6">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="val7">&nbsp; </label>
+
+              <input class="form-check-input" type="radio" name="val" id="val7" value="7">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="val8">&nbsp; </label>
+
+              <input class="form-check-input" type="radio" name="val" id="val8" value="8">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="val9">&nbsp;</label>
+              <input class="form-check-input" type="radio" name="val" id="val9" value="9">
+              <label class="form-check-label" for="val9">&nbsp; Extremely happy</label>
+            </div>
+
+            <h6 class="mt-4">Arousal (how strong your feelings are)</h6>
+            <div class="form-check form-check-inline ml-3 lickert">
+              <label class="form-check-label" for="arousal1">Sleepy/tired &nbsp;</label>
+              <input class="form-check-input right" type="radio" name="arousal" id="arousal1" value="1" required>
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="arousal2">&nbsp;</label>
+              <input class="form-check-input right" type="radio" name="arousal" id="arousal2" value="2">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="arousal3">&nbsp;</label>
+              <input class="form-check-input right" type="radio" name="arousal" id="arousal3" value="3">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="arousal4">&nbsp;</label>
+              <input class="form-check-input right" type="radio" name="arousal" id="arousal4" value="4">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="arousal5">&nbsp;</label>
+              <input class="form-check-input" type="radio" name="arousal" id="arousal5" value="5">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="arousal6">&nbsp; </label>
+
+              <input class="form-check-input" type="radio" name="arousal" id="arousal6" value="6">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="arousal7">&nbsp; </label>
+
+              <input class="form-check-input" type="radio" name="arousal" id="arousal7" value="7">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="arousal8">&nbsp; </label>
+
+              <input class="form-check-input" type="radio" name="arousal" id="arousal8" value="8">
+            </div>
+            <div class="form-check form-check-inline lickert">
+              <label class="form-check-label" for="arousal9">&nbsp;</label>
+              <input class="form-check-input" type="radio" name="arousal" id="arousal9" value="9">
+              <label class="form-check-label" for="arousal9">&nbsp; Energetic/Aroused</label>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+
+          <div class="col-11 section" id="storywriting-section">
+            <h4><label for="summary">Part 2: Write your story</label></h4>
+            <h5 style="margin-top:.5rem">
+              1. Please tell us a story about ${prompt1}
+
+            </h5>
+
+            <div class="row">
+              <div class="col-8">
+
+                <div class="form-group">
+                  <textarea class="form-control" name="mainevent" id="mainevent" rows="5"
+                    oninput="updateCounter(this,1,100,50,1000);" required></textarea>
+                  <span id="mainevent-sentence-counter">0 sentences (0 characters) detected</span>
+
+                </div>
+                <div id="mainevent-length-warning" class="col-6 alert alert-danger" style="display: none;">
+                  Response must be at least 1 sentence, between 50 and 1000 characters (including spaces).
+                </div>
+              </div>
+
+            </div>
+            <!-- <p style="color:red; font-weight: bold;">Copying/pasting or using automatic tools (e.g. ChatGPT, GPT-3) to
+          answer this question will result in
+          rejection
+          of the HIT by our checkers. Please answer honestly and to the best of your ability.</p> -->
+            <p class="mt-3">
+              <small>Response must be <em>at least 10 sentences</em> and <em>1000 - 10,000 characters</em> including
+                spaces.</small>
+              <br>
+
+            </p>
+          </div>
+        </div>
+
+        <div id="rest-task">
+          <div class="row justify-content-center">
+            <div class="col-11 section" id="storyreading-section">
+              <h4><label for="story">Part 3: Read the following 3 stories carefully and answer questions about
+                  them</label></h4>
+              <p style="color:blue">${story1_formatted}</p>
+
+              <h5 class="card-header" style="background: #e9ecef;">
+                Survey on story 1
+                <a data-toggle="collapse" href="#fullInstructions" role="button" aria-expanded="false"
+                  aria-controls="fullInstructions">[expand/collapse]</a>
+              </h5>
+
+              <div class="card-body collapse show bg-light" id="fullInstructions">
+                <p class="card-text">
+                  <div class="row">
+                    <div class="col-12">
+                      <p style="color:blue;font-weight:bold;">Rate the extent to which you agree with the statements</p>
+                      <h5 class="mt-4">
+                        1. [insert survey questions]
+                      </h5>
+        
+                      <div class="form-check  lickert">
+                        <input class="form-check-input right" type="radio" name="likert3" id="strongly-disagree-3" value="1"
+                          required> <label class="form-check-label" for="strongly-disagree-2">&nbsp; Strongly disagree </label>
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="likert3" id="somewhat-disagree-3" value="2">
+                        <label class="form-check-label" for="somewhat-disagree-3">&nbsp; Disagree</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="likert3" id="neutral-3" value="3">
+                        <label class="form-check-label" for="neutral-3">&nbsp; Neutral</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="likert3" id="somewhat-agree-3" value="4">
+                        <label class="form-check-label" for="somewhat-agree-3">&nbsp; Agree</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input" type="radio" name="likert3" id="strongly-agree-3" value="5">
+                        <label class="form-check-label" for="strongly-agree-3">&nbsp; Strongly agree</label>
+                      </div>
+                    </div>
+                  </div>
+                </p>
+              </div>
+              <p style="color:blue">${story2_formatted}</p>
+              <p style="color:blue">${story3_formatted}</p>
+
+              
+
+            </div>
+            <div class="col-11 section">
+              <h4><label for="summary">Part 4: Answer questions about the story you wrote</label></h4>
+              <h5 style="margin-top:.5rem">
+                1. What is the <b style="color: orange">main event</b> being described in the story?
+
+              </h5>
+              <p class="mt-3">
+                <small>Response must be <em>at least 1 sentence</em> and <em>50-1000 characters</em> including
+                  spaces.</small>
+                <br>
+
+              </p>
+              <div class="row">
+                <div class="col-8">
+
+                  <div class="form-group">
+                    <textarea class="form-control" name="mainevent" id="mainevent" rows="5"
+                      oninput="updateCounter(this,1,100,50,1000);" required></textarea>
+                    <span id="mainevent-sentence-counter">0 sentences (0 characters) detected</span>
+
+                  </div>
+                  <div id="mainevent-length-warning" class="col-6 alert alert-danger" style="display: none;">
+                    Response must be at least 1 sentence, between 50 and 1000 characters (including spaces).
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+
+              <h5 class="mt-4">
+                2. Describe the emotions the <b style="color: purple">narrator</b> feels <b>before and after</b> the
+                main
+                event and <b>why</b>
+                they feel
+                this way. <br> Answer as
+                though you were
+                explaining how the narrator felt to someone who knew nothing about the situation. <br>
+
+              </h5>
+              <!-- <p style="color:red; font-weight: bold;">Copying/pasting or using automatic tools (e.g. ChatGPT, GPT-3) to
+              answer this question will result in
+              rejection
+              of the HIT by our checkers. Please answer honestly and to the best of your ability.</p> -->
+              <p class="mt-3">
+                <small>Response must be <em>at least 2 sentences</em> and <em>150-1000 characters</em> including
+                  spaces.</small>
+                <br>
+
+              </p>
+              <div class="row">
+                <div class="col-8">
+
+                  <div class="form-group">
+                    <textarea class="form-control" name="emotion1" id="emotion1"
+                      oninput="updateCounter(this,2,100,150,1000);" rows="5" required></textarea>
+                    <span id="emotion1-sentence-counter">0 sentences (0 characters) detected</span>
+
+                  </div>
+                  <div id="emotion1-length-warning" class="col-6 alert alert-danger" style="display: none;">
+                    Response must be at least 2 sentences, between 150 and 1000 characters (including spaces).
+                  </div>
+
+                </div>
+
+              </div>
+
+              <h5 class="mt-4">
+                3. What is the <b style="color: green">high-level lesson</b> or takeaway (ie. moral) of the story?<br>
+
+              </h5>
+              <!-- <p style="color:red; font-weight: bold;">Copying/pasting or using automatic tools (e.g. ChatGPT, GPT-3) to
+              answer this question will result in
+              rejection
+              of the HIT by our checkers. Please answer honestly and to the best of your ability.</p> -->
+              <p class="mt-3">
+                <small>Response must be <em>at least 1 sentence</em> and <em>100-1000 characters</em> including
+                  spaces.</small>
+              </p>
+              <div class="row">
+                <div class="col-8">
+
+                  <div class="form-group">
+                    <textarea class="form-control" name="moral" id="moral" rows="5"
+                      oninput="updateCounter(this,1,100,100,1000);" required></textarea>
+                    <span id="moral-sentence-counter">0 sentences (0 characters) detected</span>
+
+                  </div>
+                  <div id="moral-length-warning" class="col-6 alert alert-danger" style="display: none;">
+                    Response must be at least 1 sentence, between 100 and 1000 characters (including spaces).
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="form-group col-11 section">
+
+
+
+
+
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="form-group col-11 section">
+              <h4><label for="summary">Part 5: Tell us about yourself and this writing task</label></h4>
+
+
+              <h5 class="mt-4">2. How do you identify?<br><small>Select "prefer not to answer" if needed.</small></h5>
+              <div class="form-group row mt-3">
+                <label for="gender" class="col-sm-2 col-form-label">Gender identity</label>
+                <div class="col-sm-4">
+                  <select id="annotatorGender" name="annotatorGender" class="form-control" style="font-size: .85rem;"
+                    required>
+                    <option disabled selected value="">-- please select --</option>
+                    <option value="man">Man/Male</option>
+                    <option value="woman">Woman/Female</option>
+                    <option value="transman">Trans man</option>
+                    <option value="transwoman">Trans woman</option>
+                    <option value="nonBinary">Non-binary</option>
+                    <option value="other">Other</option>
+                    <option value="na">- prefer not to disclose -</option>
+                  </select>
+                </div>
+                <div class="col-sm-4"><small>Please select the gender identity you most identify with
+                    currently.</small>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="annotatorAge" class="col-sm-2 col-form-label">Age (years)</label>
+                <div class="col-sm-4">
+                  <!-- <select id="annotatorAge" name="annotatorAge" class="form-control" style="font-size: .85rem;" required>
+                  <option disabled selected value="">-- please select --</option>
+                  <option value="18">18-24</option>
+                  <option value="25">25-29</option>
+                  <option value="30">30-34</option>
+                  <option value="35">35-39</option>
+                  <option value="40">40-44</option>
+                  <option value="45">45-49</option>
+                  <option value="50">50-54</option>
+                  <option value="55">55+</option>
+                  <option value="na">- prefer not to disclose -</option>
+                </select> -->
+                  <!-- <input type="text" class="form-control" name="age" id="age" placeholder="" style="width: 30%;" maxlength="3" required> -->
+                  <input type="number" id="age" name="age" placeholder="-" class="form-control" min="18" max="100">
+
+                </div>
+                <div class="col-sm-4"><small>Leave blank if you do not wish to disclose</small></div>
+
+              </div>
+              <div class="form-group row">
+                <label for="race" class="col-sm-2 col-form-label">Race/ethnicity</label>
+                <div class="col-sm-4">
+                  <select id="annotatorRace" name="annotatorRace" class="form-control" style="font-size: .85rem;"
+                    required>
+                    <option disabled selected value="">-- please select --</option>
+                    <option value="asian">Asian/Asian American</option>
+                    <option value="indian">South Asian/Indian American</option>
+                    <option value="black">Black/African American</option>
+                    <option value="hisp">Hispanic/Latinx</option>
+                    <option value="white">White/Caucasian</option>
+                    <option value="middleEastern">Middle Eastern</option>
+                    <option value="islander">Native Hawaiian/Pacific Islander</option>
+                    <option value="native">Native American/First Nations</option>
+                    <option value="other">Mixed/other</option>
+                    <option value="na">- prefer not to disclose -</option>
+                  </select>
+                </div>
+                <div class="col-sm-4"><small>Please select the racial/ethnic identity you most identify with
+                    currently.</small></div>
+              </div>
+
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="certify-no-pii-story" name="certify-no-pii-story"
+                    required>
+                  <label class="form-check-label" for="certify-no-pii-story">
+                    I certify that my responses contain no personally identifiable information (name, address, SSN,
+                    etc)
+                    about
+                    myself or anyone else.
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mb-4">
+            <div class="col-11 section"></div>
+            <div class="col-8 text-center" style="font-size: 10pt;">
+              <p>
+                Optional Feedback: Thanks for filling out hit above!
+                If something about the hit was unclear, please either leave a comment in the box below!
+                We would like to make this HIT easier for future workers, so we really appreciate feedback though it
+                is
+                optional.
+              </p>
+              <textarea id="commentbox" name="commentbox" class="form-control" style="width: 100%;"></textarea><br>
+              <input type="submit" id="submitButton" class="btn btn-primary" value="Submit Hit!">
+            </div>
+            <div class="col-6 mt-2 alert alert-danger" id="cantSubmit" style="display: none;">
+              You're missing some questions! Please verify that you've filled out all the questions with the appropriate
+              lengths.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var e;
+    var condition;
+    var ipAddress = "";
+
+    $(document).ready(function () {
+
+      $(".debug").show();
+      if ($("#consent")[0].checked) {
+        $("#main-task").show();
+        $("#consent-message").hide();
+      }
+
+    });
+
+    var workerId = turkGetParam("workerId", "");
+
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", "https://api.ipify.org", false); // false for synchronous request
+    xmlHttp.send();
+    if (xmlHttp.status == 200) {
+      ipAddress = xmlHttp.responseText;
+      if (ipAddress) {
+        var url = 'https://wall-e.media.mit.edu:5192/getIp/';
+        var request = new XMLHttpRequest();
+        request.open('POST', url, false);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.send("ipaddress=" + ipAddress + "&dbsource=mturk1" + "&workerId=" + workerId);
+
+        if (request.status == 200) {
+          var donehit = JSON.parse(request.responseText)["donehit"];
+          if (donehit) {
+
+            document.getElementById("didalready").innerHTML +=
+              "You have already completed this task the maximum number of times. Please return."
+            $("#all-content").hide();
+            $("#instructions").hide();
+          } else {
+            console.log("done hit <= 10")
+            $("#all-content").show();
+            $("#instructions").show();
+          }
+        }
+
+
+      }
+    } else {
+      var url = 'https://wall-e.media.mit.edu:5192/getIp/';
+      var request = new XMLHttpRequest();
+      request.open('POST', url, false);
+      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      request.send("workerId=" + workerId + "&dbsource=mturk1");
+
+      if (request.status == 200) {
+        var donehit = JSON.parse(request.responseText)["donehit"];
+        if (donehit) {
+          document.getElementById("didalready").innerHTML +=
+            "You have already completed this task the maximum number of times. Please return."
+          $("#all-content").hide();
+          $("#instructions").hide();
+        } else {
+          console.log("done hit <= 10")
+          $("#all-content").show();
+          $("#instructions").show();
+        }
+
+      }
+
+    }
+
+
+
+
+    /**
+     * Gets a URL parameter from the query string
+     */
+    function turkGetParam(name, defaultValue) {
+      var regexS = "[\?&]" + name + "=([^&#]*)";
+      var regex = new RegExp(regexS);
+      var tmpURL = window.location.href;
+      var results = regex.exec(tmpURL);
+      if (results == null) {
+        return defaultValue;
+      } else {
+        return results[1];
+      }
+    }
+
+
+
+
+    // window.onload = () => {
+    //   const a = document.getElementById('moral');
+    //   a.onpaste = e => e.preventDefault();
+
+    //   const b = document.getElementById('emotion1');
+    //   b.onpaste = e => e.preventDefault();
+
+    //   const c = document.getElementById('mainevent');
+    //   c.onpaste = e => e.preventDefault();
+
+    //   const d = document.getElementById('empathy-1-yes');
+    //   d.onpaste = e => e.preventDefault();
+
+    //   const e = document.getElementById('empathy-2-yes');
+    //   e.onpaste = e => e.preventDefault();
+
+    //   const f = document.getElementById('empathy-3-yes');
+    //   f.onpaste = e => e.preventDefault();
+
+    //   const g = document.getElementById('empathy-4-yes');
+    //   g.onpaste = e => e.preventDefault();
+
+    //   const h = document.getElementById('empathy-5-yes');
+    //   h.onpaste = e => e.preventDefault();
+    // }
+
+    function toggleConsent(checked) {
+      if (checked) {
+        $("#main-task").show();
+        $("#consent-message").hide();
+      } else {
+        $("#main-task").hide();
+        $("#consent-message").show();
+      }
+    }
+
+    function countSentences(text) {
+      var match = text.match(/[\w\)"][.?!](?:\s|$)/gm);
+      return match === null ? 0 : match.length;
+    }
+
+    function updateCounter(el, minS, maxS, minC, maxC) {
+      var name = el.id;
+      var counter = $("#" + name + "-sentence-counter");
+      var text = $(el).prop("value");
+      var nSents = countSentences(text);
+      var nChars = text.length;
+      var warnText = "";
+      counter.css('color', 'black');
+
+      if (nSents >= minS && nChars < maxC && nChars > minC)
+        warnText = " ✓";
+
+      if (nSents > maxS || nChars > maxC) {
+        warnText = " (try shortening it)";
+        counter.css('color', '#721c24');
+      }
+      counter.html(nSents + " sentences (" + nChars + " characters) detected" + warnText);
+    }
+
+    function checkSummary() {
+      var summary = $("#mainevent").prop("value");
+      var nSents = countSentences(summary);
+      if (summary.length > 50 && summary.length < 1000 && nSents >= 1) {
+        $("#mainevent").attr("data-state", "open");
+        $("#mainevent-length-warning").hide();
+        return true;
+      } else {
+        $("#mainevent").attr("data-state", "invalid");
+        $("#mainevent-length-warning").show();
+        return false;
+      }
+    }
+
+    function checkEmotion1() {
+      var summary = $("#emotion1").prop("value");
+      var nSents = countSentences(summary);
+      if (summary.length > 150 && summary.length < 1000 && nSents >= 2) {
+        $("#emotion1").attr("data-state", "open");
+        $("#emotion1-length-warning").hide();
+        return true;
+      } else {
+        $("#emotion1").attr("data-state", "invalid");
+        $("#emotion1-length-warning").show();
+        return false;
+      }
+    }
+
+    function checkMoral() {
+      var summary = $("#moral").prop("value");
+      var nSents = countSentences(summary);
+      if (summary.length > 100 && summary.length < 1000 && nSents >= 1) {
+        $("#moral").attr("data-state", "open");
+        $("#moral-length-warning").hide();
+        return true;
+      } else {
+        $("#moral").attr("data-state", "invalid");
+        $("#moral-length-warning").show();
+        return false;
+      }
+    }
+
+    function checkEmpathyResponses2() {
+      var empathy1 = $("#empathy-1-yes").prop("value");
+      var empathy2 = $("#empathy-2-yes").prop("value");
+      var empathy3 = $("#empathy-3-yes").prop("value");
+      var empathy4 = $("#empathy-4-yes").prop("value");
+      var empathy5 = $("#empathy-5-yes").prop("value");
+      var nSents1 = countSentences(empathy1);
+      var nSents2 = countSentences(empathy2);
+      var nSents3 = countSentences(empathy3);
+      var nSents4 = countSentences(empathy4);
+      var nSents5 = countSentences(empathy5);
+      var empathy1valid = empathy1.length > 40 && empathy1.length < 1000 && nSents1 >= 1;
+      var empathy2valid = empathy2.length > 40 && empathy2.length < 1000 && nSents2 >= 1;
+      var empathy3valid = (empathy3.length > 50 && empathy3.length < 1000 && nSents3 >= 1) || empathy3.length == 0;
+      var empathy4valid = (empathy4.length > 50 && empathy4.length < 1000 && nSents4 >= 1) || empathy4.length == 0;
+      var empathy5valid = (empathy5.length > 50 && empathy5.length < 1000 && nSents5 >= 1) || empathy5.length == 0;
+
+      if (empathy1valid && empathy2valid && empathy3valid && empathy4valid && empathy5valid) {
+        $("#empathy-1-yes").attr("data-state", "open");
+        $("#empathy-2-yes").attr("data-state", "open");
+        $("#empathy-3-yes").attr("data-state", "open");
+        $("#empathy-4-yes").attr("data-state", "open");
+        $("#empathy-5-yes").attr("data-state", "open");
+        $("#empathy-length-warning").hide();
+        console.log("EVERYTHING VALID")
+        return true;
+      } else {
+        if (!empathy1valid) {
+          $("#empathy-1-yes").attr("data-state", "invalid");
+          console.log("1")
+        } else {
+          $("#empathy-1-yes").attr("data-state", "open");
+
+        }
+        if (!empathy2valid) {
+          $("#empathy-2-yes").attr("data-state", "invalid");
+        } else {
+          $("#empathy-2-yes").attr("data-state", "open");
+
+        }
+        if (!empathy3valid) {
+          $("#empathy-3-yes").attr("data-state", "invalid");
+        } else {
+          $("#empathy-3-yes").attr("data-state", "open");
+
+        }
+        if (!empathy4valid) {
+          $("#empathy-4-yes").attr("data-state", "invalid");
+        } else {
+          $("#empathy-4-yes").attr("data-state", "open");
+
+        }
+        if (!empathy5valid) {
+          $("#empathy-5-yes").attr("data-state", "invalid");
+        } else {
+          $("#empathy-5-yes").attr("data-state", "open");
+
+        }
+        $("#empathy-length-warning").show();
+        return false;
+      }
+    }
+
+    $("#submitButton").on("click", function (e) {
+
+      var ok = checkSummary();
+      console.log("main event ok? " + ok);
+
+      ok = checkEmotion1() && ok;
+      console.log("main emotion ok? " + ok);
+
+      ok = checkMoral() && ok;
+      console.log("moral ok? " + ok);
+
+      ok = checkEmpathyResponses2() && ok;
+      console.log("empathy ok? " + ok);
+
+      ok = ($(":invalid").length == 0) && ok;
+      console.log("All fields valid? " + ok);
+      $(":valid").removeClass("invalid");
+      $(".lickert>input:valid").parents().removeClass("invalid");
+      $(".form-check>input:valid").parents().removeClass("invalid");
+      if (!ok) {
+        $("#cantSubmit").show();
+        $(":invalid").addClass("invalid");
+        $(".lickert>input:invalid").parents().addClass("invalid");
+        $(".form-check>input:invalid").parents().addClass("invalid");
+        e.preventDefault();
+      } else {
+        var url = 'https://wall-e.media.mit.edu:5192/uploadIp/';
+        var request = new XMLHttpRequest();
+        request.open('POST', url, false);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.send("ipaddress=" + ipAddress + "&dbsource=mturk1" + "&workerId=" + workerId);
+        if (request.status == 200) {
+          var success = JSON.parse(request.responseText)["success"];
+          console.log("SUCCESS", success)
+          if (success) {
+            $("#cantSubmit").hide();
+          } else {
+            $("#cantSubmit").show();
+            $(":invalid").addClass("invalid");
+            $(".lickert>input:invalid").parents().addClass("invalid");
+            $(".form-check>input:invalid").parents().addClass("invalid");
+            e.preventDefault();
+          }
+        } else {
+          $("#cantSubmit").show();
+          $(":invalid").addClass("invalid");
+          $(".lickert>input:invalid").parents().addClass("invalid");
+          $(".form-check>input:invalid").parents().addClass("invalid");
+          e.preventDefault();
+        }
+      }
+    });
+  </script>
+
+  <style type="text/css">
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 400;
+    }
+
+    #high-cog-instructions {
+      border-radius: .5em;
+      border: .75px solid black;
+      padding: .5em;
+      background-color: white;
+    }
+
+    .section {
+      border-top: solid darkgrey .75px;
+      padding-top: 15px;
+    }
+
+    .lickert>label {
+      font-size: smaller;
+    }
+
+    textarea[data-state="open"] {
+      background-color: white;
+      border-color: #ced4da;
+      color: #495057;
+    }
+
+    textarea[data-state="invalid"],
+    textarea[data-state="invalid"]:active,
+    textarea[data-state="invalid"]:focus,
+    textarea[data-state="invalid"]:focus-within {
+      background-color: #f5c6cb;
+      border-color: #D22437;
+      color: #721c24;
+    }
+
+    input.form-check-input {
+      padding-right: 10px;
+    }
+
+    ul>li:before {
+      margin-left: -1em;
+      margin-right: .25em;
+    }
+
+    .corr {
+      font-weight: bold;
+    }
+
+    ul>li.corr:before {
+      content: "\2713";
+    }
+
+    ul>li.inco:before {
+      content: "\2717";
+    }
+
+    input.form-check-input.right:after {
+      /*
+    position: absolute;
+    bottom: 0;
+    left: .5em;
+    right: 0;
+    content: "";
+    height: 0.75em;
+    border-top: 1px solid black;*/
+    }
+
+    .form-check.invalid,
+    .lickert.invalid,
+    input.invalid,
+    select.invalid {
+      border: .1em solid #D22437;
+      border-radius: .1em;
+      background-color: #f5c6cb;
+      padding: .1em;
+    }
+  </style>
