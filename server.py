@@ -23,11 +23,16 @@ logging.getLogger('flask_cors').level = logging.DEBUG
 import firebase_admin
 from firebase_admin import credentials, firestore, initialize_app, db
 
+#my import
+from firebase_admin import firestore
+
 c = firebase_admin.credentials.Certificate("./credentials.json")
 default_app = firebase_admin.initialize_app(c, {
-    'databaseURL':"https://storytelling-6c0a3-default-rtdb.firebaseio.com/"
+    'databaseURL':"https://empathic-stories-default-rtdb.firebaseio.com/"
     })
 
+
+#db = firestore.client()
 num_hits_per_worker = 15
 
 @app.route('/')
@@ -41,17 +46,25 @@ def get_session_number():
     pass
 
 
+
+# deem this is the test
+@app.route('/index/', methods=["GET", "POST"])
+def test():
+    ref = db.reference('p001/s002')
+    current_ids = ref.get()
+    # ref.update({ip:ip_count})
+    print(current_ids)
+    return {"current_ids":current_ids}
+# deem this is the test
+
+
+
+
 @app.route('/getPrompt/', methods=["GET", "POST"])
-def get_prompt():
-    """Get initial writing prompt for user + save to firebase"""
+def get_prompt_and_stories():
+    """Get initial writing prompt for user + retrieve 3 stories from 3 models + save to firebase"""
     # randomly select story FROM stories that haven't been seen before (store it in firebase)
     pass
-
-@app.route('/getStories/', methods=["GET", "POST"])
-def get_stories():
-    """Get 3 stories from the model + save to firebase"""
-    
-    return json.dumps(dict(story1, "my story is great"))
 
 @app.route('/submit/', methods=["GET", "POST"])
 def submit():
@@ -130,5 +143,5 @@ if __name__ == '__main__':
     host = sys.argv[1]
     port = sys.argv[2]
     debug = sys.argv[3]
-    # app.run(host='0.0.0.0', port=5000, debug=True)
-    app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))
+    app.run(host='0.0.0.0', port=5000, debug=True)
+    #app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))

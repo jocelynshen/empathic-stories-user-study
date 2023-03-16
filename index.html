@@ -45,7 +45,10 @@
   <div class="card">
     <h5 class="card-header bg-primary text-white">INSERT study name here</h5>
     <div class="card-body">
-      <h5 class="card-text">Pleast enter your participant ID</h5><input size="35">
+      <h5 class="card-text">Pleast enter your participant ID (e.g. p001)</h5><input size="35">
+
+      <h5>{{current_ids}}</h5>
+      
       
     </div>
   </div>
@@ -1604,61 +1607,25 @@
 
     });
 
+
+
     var workerId = turkGetParam("workerId", "");
 
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "https://api.ipify.org", false); // false for synchronous request
-    xmlHttp.send();
-    if (xmlHttp.status == 200) {
-      ipAddress = xmlHttp.responseText;
-      if (ipAddress) {
-        var url = 'https://wall-e.media.mit.edu:5192/getIp/';
-        var request = new XMLHttpRequest();
-        request.open('POST', url, false);
-        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.send("ipaddress=" + ipAddress + "&dbsource=mturk1" + "&workerId=" + workerId);
+    // deem this is the test
 
-        if (request.status == 200) {
-          var donehit = JSON.parse(request.responseText)["donehit"];
-          if (donehit) {
-
-            document.getElementById("didalready").innerHTML +=
-              "You have already completed this task the maximum number of times. Please return."
-            $("#all-content").hide();
-            $("#instructions").hide();
-          } else {
-            console.log("done hit <= 10")
-            $("#all-content").show();
-            $("#instructions").show();
-          }
-        }
-
-
-      }
-    } else {
-      var url = 'https://wall-e.media.mit.edu:5192/getIp/';
+      var xmlHttp = new XMLHttpRequest();
+      var url = 'http://127.0.0.1:5000/index/';
       var request = new XMLHttpRequest();
       request.open('POST', url, false);
       request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      request.send("workerId=" + workerId + "&dbsource=mturk1");
+      request.send("participantID"); 
 
       if (request.status == 200) {
-        var donehit = JSON.parse(request.responseText)["donehit"];
-        if (donehit) {
-          document.getElementById("didalready").innerHTML +=
-            "You have already completed this task the maximum number of times. Please return."
-          $("#all-content").hide();
-          $("#instructions").hide();
-        } else {
-          console.log("done hit <= 10")
-          $("#all-content").show();
-          $("#instructions").show();
+        var response = JSON.parse(request.responseText);
+        document.getElementById("didalready").innerHTML += JSON.stringify(response)
         }
-
-      }
-
-    }
-
+ 
+    // deem this is the test
 
 
 
