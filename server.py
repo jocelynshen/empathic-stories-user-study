@@ -139,6 +139,8 @@ def submit():
 
 
 ################################### START SERVER ###################################
+# to run the server run the following command:
+# python server.py '0.0.0.0' 5192 1 
 if __name__ == '__main__':
     host = sys.argv[1]
     port = sys.argv[2]
