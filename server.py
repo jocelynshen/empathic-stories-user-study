@@ -47,22 +47,21 @@ def get_session_number():
 
 
 
-# deem this is the test
-@app.route('/index/', methods=["GET", "POST"])
-def test():
-    ref = db.reference('p001/s001/demographic')
-    info = ref.get()
-    # ref.update({ip:ip_count})
-    print('----test results-----')
-    print(info)
-    # x = json.dumps(info)
-    # print(x)
-    # y = json.loads(x)
-    # print(y)
-    print('----end test results----')
-    return json.dumps(info)
-    
-# deem this is the test
+# test
+# @app.route('/index/', methods=["GET", "POST"])
+# def test():
+#     ref = db.reference('p001/s001/demographic')
+#     info = ref.get()
+#     # ref.update({ip:ip_count})
+#     print('----test results-----')
+#     print(info)
+#     # x = json.dumps(info)
+#     # print(x)
+#     # y = json.loads(x)
+#     # print(y)
+#     print('----end test results----')
+#     return json.dumps(info['gender'])
+# test
 
 
 
