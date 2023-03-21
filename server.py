@@ -24,7 +24,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore, initialize_app, db
 
 #my import
-from firebase_admin import firestore
+#from firebase_admin import firestore
 
 c = firebase_admin.credentials.Certificate("./credentials.json")
 default_app = firebase_admin.initialize_app(c, {
@@ -50,11 +50,18 @@ def get_session_number():
 # deem this is the test
 @app.route('/index/', methods=["GET", "POST"])
 def test():
-    ref = db.reference('p001/s002')
-    current_ids = ref.get()
+    ref = db.reference('p001/s001/demographic')
+    info = ref.get()
     # ref.update({ip:ip_count})
-    print(current_ids)
-    return {"current_ids":current_ids}
+    print('----test results-----')
+    print(info)
+    # x = json.dumps(info)
+    # print(x)
+    # y = json.loads(x)
+    # print(y)
+    print('----end test results----')
+    return json.dumps(info)
+    
 # deem this is the test
 
 

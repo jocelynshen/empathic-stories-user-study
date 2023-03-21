@@ -50,11 +50,13 @@
       <!--<h5>{{current_ids}}</h5>-->
       
       
+      
     </div>
   </div>
 
   <div>
-    <p id="didalready"></p>
+    
+    <h5 id="didalready"></h5>
     <div class="p-3" id="all-content">
 
       <!-- <div class="row justify-content-center" id="consent-div">
@@ -597,6 +599,62 @@
                         <input class="form-check-input" type="radio" name="empathize-more" id="empathize-more" value="5">
                         <label class="form-check-label" for="empathize-more">&nbsp; Empathize more</label>
                       </div>
+
+                      <h5 class="mt-4">9. How different from your written story is this story?</h5>
+
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="very-different" id="very-different" value="1"
+                          required> <label class="form-check-label" for="very-different">&nbsp; Very different </label>
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="different" id="different" value="2">
+                        <label class="form-check-label" for="different">&nbsp; Different</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="neutral" id="neutral" value="3">
+                        <label class="form-check-label" for="neutral">&nbsp; Neutral</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="similar" id="similar" value="4">
+                        <label class="form-check-label" for="similar">&nbsp; Similar</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input" type="radio" name="very-similar" id="very-similar" value="5">
+                        <label class="form-check-label" for="very-similar">&nbsp; Very similar</label>
+                      </div>
+                      
+                      <h5 class="mt-4">10. What made you empathize with this story?</h5>
+
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="checkbox" name="situation" id="situation" value="situation"
+                          required> <label class="form-check-label" for="situation">&nbsp; The situation the narrator goes through </label>
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="checkbox" name="feelings" id="feelings" value="feelings">
+                        <label class="form-check-label" for="feelings">&nbsp; The feelings the narrator has</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="checkbox" name="takeaway&reflection" id="takeaway&reflection" value="takeaway&reflection">
+                        <label class="form-check-label" for="takeaway&reflection">&nbsp; The overall takeaway and reflection of the story</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="checkbox" name="otherReason" id="otherReason">
+                        <label class="form-check-label" for="otherReason">&nbsp; Other</label> 
+                        <input type="text" style="height:20px;" id="otherInput">
+                        
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input" type="checkbox" name="nothing" id="nothing" onclick="didNotEmpathize()">
+                        <label class="form-check-label" for="very-similar">&nbsp; I didn’t empathize with anything</label>
+                        <br><br><span id="viewQuestion"></span>
+                        
+                      </div>
                       <!--End-->
                     </div>
                   </div>
@@ -825,6 +883,32 @@
                       <div class="form-check lickert">
                         <input class="form-check-input" type="radio" name="empathize-more" id="empathize-more" value="5">
                         <label class="form-check-label" for="empathize-more">&nbsp; Empathize more</label>
+                      </div>
+
+                      <h5 class="mt-4">9. How different from your written story is this story?</h5>
+
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="very-different" id="very-different" value="1"
+                          required> <label class="form-check-label" for="very-different">&nbsp; Very different </label>
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="different" id="different" value="2">
+                        <label class="form-check-label" for="different">&nbsp; Different</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="neutral" id="neutral" value="3">
+                        <label class="form-check-label" for="neutral">&nbsp; Neutral</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="similar" id="similar" value="4">
+                        <label class="form-check-label" for="similar">&nbsp; Similar</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input" type="radio" name="very-similar" id="very-similar" value="5">
+                        <label class="form-check-label" for="very-similar">&nbsp; Very similar</label>
                       </div>
                       <!--End-->
                     </div>
@@ -1056,6 +1140,32 @@
                         <input class="form-check-input" type="radio" name="empathize-more" id="empathize-more" value="5">
                         <label class="form-check-label" for="empathize-more">&nbsp; Empathize more</label>
                       </div>
+
+                      <h5 class="mt-4">9. How different from your written story is this story?</h5>
+
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="very-different" id="very-different" value="1"
+                          required> <label class="form-check-label" for="very-different">&nbsp; Very different </label>
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="different" id="different" value="2">
+                        <label class="form-check-label" for="different">&nbsp; Different</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="neutral" id="neutral" value="3">
+                        <label class="form-check-label" for="neutral">&nbsp; Neutral</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="similar" id="similar" value="4">
+                        <label class="form-check-label" for="similar">&nbsp; Similar</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input" type="radio" name="very-similar" id="very-similar" value="5">
+                        <label class="form-check-label" for="very-similar">&nbsp; Very similar</label>
+                      </div>
                       <!--End-->
                     </div>
                   </div>
@@ -1286,6 +1396,32 @@
                       <div class="form-check lickert">
                         <input class="form-check-input" type="radio" name="empathize-more" id="empathize-more" value="5">
                         <label class="form-check-label" for="empathize-more">&nbsp; Empathize more</label>
+                      </div>
+
+                      <h5 class="mt-4">9. How different from your written story is this story?</h5>
+
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="very-different" id="very-different" value="1"
+                          required> <label class="form-check-label" for="very-different">&nbsp; Very different </label>
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="different" id="different" value="2">
+                        <label class="form-check-label" for="different">&nbsp; Different</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="neutral" id="neutral" value="3">
+                        <label class="form-check-label" for="neutral">&nbsp; Neutral</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input right" type="radio" name="similar" id="similar" value="4">
+                        <label class="form-check-label" for="similar">&nbsp; Similar</label>
+        
+                      </div>
+                      <div class="form-check lickert">
+                        <input class="form-check-input" type="radio" name="very-similar" id="very-similar" value="5">
+                        <label class="form-check-label" for="very-similar">&nbsp; Very similar</label>
                       </div>
                       <!--End-->
                     </div>
@@ -1604,6 +1740,20 @@
     var condition;
     var ipAddress = "";
 
+    
+
+    function didNotEmpathize(){
+      question='<p style="font-size:16px;">What made you not empathize with the story? Please specify.</p><textarea id="noEmpathyReason" cols="40"></textarea>'
+      document.getElementById('viewQuestion').innerHTML = question
+      document.getElementById("nothing").value = document.getElementById("noEmpathyReason").value
+      
+    }
+
+    function getOtherValue(){
+      document.getElementById("otherReason").value = document.getElementById("otherInput").value
+      //document.getElementById("testid").innerHTML = document.getElementById("similar").value
+    }
+
     $(document).ready(function () {
 
       $(".debug").show();
@@ -1625,11 +1775,11 @@
       var request = new XMLHttpRequest();
       request.open('POST', url, false);
       request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      request.send("participantID"); 
+      request.send(); 
 
       if (request.status == 200) {
         var response = JSON.parse(request.responseText);
-        document.getElementById("didalready").innerHTML += JSON.stringify(response)
+        document.getElementById("didalready").innerHTML += response.gender
         }
  
     // deem this is the test
