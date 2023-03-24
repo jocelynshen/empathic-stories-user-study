@@ -27,7 +27,7 @@
     <h5 class="card-header bg-primary text-white">INSERT study name here</h5>
     <div class="card-body">
       <h5 class="card-text">Pleast enter your participant ID: </h5>
-      <input size="35" placeholder="e.g. p001" name="participantID" id="participantID">
+      <input size="35" placeholder="e.g. p001" name="participantID" id="participantID" required>
       
     </div>
   </div>
@@ -178,10 +178,10 @@
                   <textarea class="form-control" name="userstory" id="userstory" style="width: 900px;
                   height: 200px;"
                     oninput="updateCounter(this,1,100,50,1000);" required></textarea>
-                  <span id="mainevent-sentence-counter">0 sentences (0 characters) detected</span>
+                  <span id="userstory-sentence-counter">0 sentences (0 characters) detected</span>
 
                 </div>
-                <div id="mainevent-length-warning" class="col-6 alert alert-danger" style="display: none;">
+                <div id="userstory-length-warning" class="col-6 alert alert-danger" style="display: none;">
                   Response must be at least 1 sentence, between 50 and 1000 characters (including spaces).
                 </div>
               </div>
@@ -615,7 +615,6 @@
                         <input type="text" style="height:20px; margin:10px;" id="nothingInput-1-10" hidden>
                         
                       </div>
-                      <p id="testButton"></p>
                       
                       <!--End-->
                     </div>
@@ -1510,8 +1509,6 @@
                         <li id="item3" draggable="true">Third story</li>
                         <li id="item4" draggable="true">Fourth story</li>
                       </ul> 
-                      
-                                         
 
                       <!--End-->
                     </div>
@@ -1646,7 +1643,7 @@
               <h4><label for="summary">Part 5: Tell us about yourself and this writing task</label></h4>
 
 
-              <h5 class="mt-4">2. How do you identify?<br><small>Select "prefer not to answer" if needed.</small></h5>
+              <h5 class="mt-4">1. How do you identify?<br><small>Select "prefer not to answer" if needed.</small></h5>
               <div class="form-group row mt-3">
                 <label for="gender" class="col-sm-2 col-form-label">Gender identity</label>
                 <div class="col-sm-4">
@@ -1697,32 +1694,33 @@
                     currently.</small></div>
               </div>
               <div class="mb-3">
-                <h5 class="mt-4">3. To what extent does the following statement describe you:</h5>
+                <h5 class="mt-4">2. To what extent does the following statement describe you:</h5>
                 <label for="empathy" class="form-label">
                   <h5>“I am an empathetic person.” </h5></label>
                   <div class="form-check lickert">
-                    <input class="form-check-input right" type="radio" name="notVeryTrue" id="notVeryTrue" value="1"
+                    <input class="form-check-input right" type="radio" name="empathylevel" id="notTrueAtAll" value="1"
                       required> <label class="form-check-label" for="notVeryTrue">&nbsp; Not very true of me </label>
                   </div>
                   <div class="form-check lickert">
-                    <input class="form-check-input right" type="radio" name="notTrue" id="notTrue" value="2">
+                    <input class="form-check-input right" type="radio" name="empathylevel" id="notTrue" value="2">
                     <label class="form-check-label" for="notTrue">&nbsp; Not true</label>
     
                   </div>
                   <div class="form-check lickert">
-                    <input class="form-check-input right" type="radio" name="iamneutral" id="iamneutral" value="3">
+                    <input class="form-check-input right" type="radio" name="empathylevel" id="iamneutral" value="3">
                     <label class="form-check-label" for="iamneutral">&nbsp; Neutral</label>
     
                   </div>
                   <div class="form-check lickert">
-                    <input class="form-check-input right" type="radio" name="true" id="true" value="4">
+                    <input class="form-check-input right" type="radio" name="empathylevel" id="true" value="4">
                     <label class="form-check-label" for="true">&nbsp; True</label>
     
                   </div>
                   <div class="form-check lickert">
-                    <input class="form-check-input" type="radio" name="veryTrue" id="veryTrue" value="5">
+                    <input class="form-check-input" type="radio" name="empathylevel" id="veryTrue" value="5">
                     <label class="form-check-label" for="veryTrue">&nbsp; Very true of me</label>
                   </div>
+
               </div>
 
               <div class="form-group">
@@ -1808,12 +1806,10 @@
       });
                             
 
-      // Get the sorted list 
-                                
+      // Get the sorted list              
       listItems.forEach(function(item) {
         sortedList.push(item.innerHTML);
       });
-      
       
       // var xhr = new XMLHttpRequest();
       // xhr.open('POST', '/sort', true);
@@ -1935,7 +1931,7 @@
 
       nothingInput3.addEventListener("input", function() {
         otherCheckbox3.value = this.value;
-        document.getElementById("testButton").innerHTML = otherCheckbox3.value;
+        //document.getElementById("testButton").innerHTML = otherCheckbox3.value;
       });
       
     }
@@ -1953,7 +1949,7 @@
       }                   
       otherInput3.addEventListener("input", function() {
         otherCheckbox3.value = this.value;
-        document.getElementById("testButton").innerHTML = otherCheckbox3.value;
+        //document.getElementById("testButton").innerHTML = otherCheckbox3.value;
       });
     }
 
@@ -1975,7 +1971,7 @@
 
       nothingInput4.addEventListener("input", function() {
         otherCheckbox4.value = this.value;
-        document.getElementById("testButton").innerHTML = otherCheckbox4.value;
+        //document.getElementById("testButton").innerHTML = otherCheckbox4.value;
       });
       
     }
@@ -1993,21 +1989,21 @@
       }                   
       otherInput4.addEventListener("input", function() {
         otherCheckbox4.value = this.value;
-        document.getElementById("testButton").innerHTML = otherCheckbox4.value;
+        //document.getElementById("testButton").innerHTML = otherCheckbox4.value;
       });
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
 
-    $(document).ready(function () {
+    // $(document).ready(function () {
 
-      $(".debug").show();
-      if ($("#consent")[0].checked) {
-        $("#main-task").show();
-        $("#consent-message").hide();
-      }
+    //   $(".debug").show();
+    //   if ($("#consent")[0].checked) {
+    //     $("#main-task").show();
+    //     $("#consent-message").hide();
+    //   }
 
-    });
+    // });
 
     var workerId = turkGetParam("workerId", "");
 
@@ -2042,47 +2038,174 @@
       //get user story
       var mystory = document.getElementById("userstory").value;
       //survey1 answers
-      const survey1_9answers = new Array(9);
-      
-      function survey1(){
-        // Outer loop to go through all 10 questions
-        for (var i = 1; i <= 9; i++) {
-          var question_id = "s1q" + i;
-
-          // Inner loop to check the selected option of the 5 radio buttons per question
-          for (var j = 1; j <= 5; j++) {
-            var option_id = question_id + "_option" + j;
-            var option = document.querySelector('#' + option_id);
-
+        const selectedValues1 = [];
+        survey1_answers = [];
+        for (let i = 1; i <= 9; i++) {
+          const options1 = document.getElementsByName(`survey1-${i}`);
+          let selectedOption1;
+          for (const option of options1) {
             if (option.checked) {
-              var answer = option.value;
-              survey1_9answers[i-1] = answer;//storing in an array 
-              break; // Exit the inner loop once an option is checked
+              selectedOption1 = option.value;
+              break;
             }
           }
+          selectedValues1.push(selectedOption1);
         }
-        //document.getElementById("test").innerHTML = survey1_answers.join(", ");
-
+        const q10checkboxes1 = document.getElementsByName(`survey1-10`);
+        let checked1;
+        const checkedArray1 = [];
+        for (const checkbox of q10checkboxes1) {
+          if (checkbox.checked) {
+            checked1 = checkbox.value;
+            checkedArray1.push(checked1);
+          }
         }
+        survey1_answers = [selectedValues1,' [' + checkedArray1 +']'];
+        //document.getElementById("testButton").innerHTML = survey1_answers;
+        //to test add a button with onclick and call the function
       
-
-
-
-
+      //survey2 answers
+        const selectedValues2 = [];
+        var survey2_answers = [];
+        for (let i = 1; i <= 9; i++) {
+          const options2 = document.getElementsByName(`survey2-${i}`);
+          let selectedOption2;
+          for (const option of options2) {
+            if (option.checked) {
+              selectedOption2 = option.value;
+              break;
+            }
+          }
+          selectedValues2.push(selectedOption2);
+        }
+        const q10checkboxes2 = document.getElementsByName(`survey2-10`);
+        let checked2;
+        const checkedArray2 = [];
+        for (const checkbox of q10checkboxes2) {
+            if (checkbox.checked) {
+              checked2 = checkbox.value;
+              checkedArray2.push(checked2);
+            }
+          }
+        survey2_answers = [selectedValues2,' [' + checkedArray2 +']'];
+        //document.getElementById("testButton").innerHTML = survey2_answers;
+      
+      //survey3 answers
+        const selectedValues3 = [];
+        survey3_answers = [];
+        for (let i = 1; i <= 9; i++) {
+          const options3 = document.getElementsByName(`survey3-${i}`);
+          let selectedOption3;
+          for (const option of options3) {
+            if (option.checked) {
+              selectedOption3 = option.value;
+              break;
+            }
+          }
+          selectedValues3.push(selectedOption3);
+        }
+        const q10checkboxes3 = document.getElementsByName(`survey3-10`);
+        let checked3;
+        const checkedArray3 = [];
+        for (const checkbox of q10checkboxes3) {
+            if (checkbox.checked) {
+              checked3 = checkbox.value;
+              checkedArray3.push(checked3);
+            }
+          }
+        survey3_answers = [selectedValues3,' [' + checkedArray3 +']'];
+        //document.getElementById("testButton3").innerHTML = survey3_answers;
+      
+      //survey4 answers
+     
+        const selectedValues4 = [];
+        survey4_answers = [];
+        for (let i = 1; i <= 9; i++) {
+          const options4 = document.getElementsByName(`survey4-${i}`);
+          let selectedOption4;
+          for (const option of options4) {
+            if (option.checked) {
+              selectedOption4 = option.value;
+              break;
+            }
+          }
+          selectedValues4.push(selectedOption4);
+        }
+        const q10checkboxes4 = document.getElementsByName(`survey4-10`);
+        let checked4;
+        const checkedArray4 = [];
+        for (const checkbox of q10checkboxes4) {
+            if (checkbox.checked) {
+              checked4 = checkbox.value;
+              checkedArray4.push(checked4);
+            }
+          }
+        survey4_answers = [selectedValues4,' [' + checkedArray4 +']'];
+        //document.getElementById("testButton3").innerHTML = survey4_answers;
+      
+      //get the sortedList defined above (the order from part 3-B)
+      var mostEmpathizedOrder = sortedList;
+      //main event
+      var mainEvent = document.getElementById("mainevent").value;
+      //narrator emotions
+      var narratorEmotions = document.getElementById("emotion1").value;
+      //high level lesson (moral)
+      var moral = document.getElementById("moral").value;
+      //story date
+      var storyDate = document.getElementById("date").value;
+      //demographic 
+      var gender = document.getElementById("annotatorGender").value;
+      var age = document.getElementById("age").value;
+      var race = document.getElementById("annotatorRace").value;
+      let empathyLevel;
+      const empathyOptions = document.getElementsByName(`empathylevel`);
+      for (const option of empathyOptions) {
+        if (option.checked) {
+          empathyLevel = option.value;
+          break;
+        }
+      }
+      //feedback
+      var feedback = document.getElementById("commentbox").value;
+      
+      //send POST request
+      var obj = {
+        participantID: participantID,
+        valence: valence,
+        arousal: arousal,
+        mystoryTopic: mystoryTopic,
+        mystory: mystory,
+        survey1_answers: survey1_answers,
+        survey2_answers: survey2_answers,
+        survey3_answers: survey3_answers,
+        survey4_answers: survey4_answers,
+        mostEmpathizedOrder: mostEmpathizedOrder,
+        mainEvent: mainEvent,
+        narratorEmotions: narratorEmotions,
+        moral: moral,
+        storyDate: storyDate,
+        gender: gender,
+        age: age,
+        race: race,
+        empathyLevel: empathyLevel,
+        feedback: feedback
+      };
       var xmlHttp = new XMLHttpRequest();
-      var url = 'http://127.0.0.1:5000/index/';
+      var url = 'http://127.0.0.1:5000/submit/';
       var request = new XMLHttpRequest();
       request.open('POST', url, false);
       request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      request.send(); 
+      request.send(JSON.stringify(obj));
 
-      if (request.status == 200) {
-        var response = JSON.parse(request.responseText);
-        document.getElementById("didalready").innerHTML += response
-      }
+      request.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              alert("Data submitted successfully!");
+          }
+      };
+
     });
- 
-    // submit test
+
+    // submit test ends here
 
 
 
@@ -2156,11 +2279,11 @@
       var nSents = countSentences(summary);
       if (summary.length > 50 && summary.length < 1000 && nSents >= 1) {
         $("#userstory").attr("data-state", "open");
-        $("#mainevent-length-warning").hide();
+        $("#userstory-length-warning").hide();
         return true;
       } else {
         $("#userstory").attr("data-state", "invalid");
-        $("#mainevent-length-warning").show();
+        $("#userstory-length-warning").show();
         return false;
       }
     }

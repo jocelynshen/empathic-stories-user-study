@@ -23,16 +23,12 @@ logging.getLogger('flask_cors').level = logging.DEBUG
 import firebase_admin
 from firebase_admin import credentials, firestore, initialize_app, db
 
-#my import
-#from firebase_admin import firestore
 
 c = firebase_admin.credentials.Certificate("./credentials.json")
 default_app = firebase_admin.initialize_app(c, {
     'databaseURL':"https://empathic-stories-default-rtdb.firebaseio.com/"
     })
 
-
-#db = firestore.client()
 num_hits_per_worker = 15
 
 @app.route('/')
@@ -74,8 +70,85 @@ def get_prompt_and_stories():
 
 @app.route('/submit/', methods=["GET", "POST"])
 def submit():
-    """User submitted survey/demographic information + save their data to firebase"""
-    pass
+
+    participantID = request.json['participantID']
+    valence = request.json['valence']
+    arousal = request.json['arousal']
+    mystoryTopic = request.json['mystoryTopic']
+    mystory = request.json['mystory']
+    survey1_answers = request.json['survey1_answers']
+    survey2_answers = request.json['survey2_answers']
+    survey3_answers = request.json['survey3_answers']
+    survey4_answers = request.json['survey4_answers']
+    mostEmpathizedOrder = request.json['mostEmpathizedOrder']
+    mainEvent = request.json['mainEvent']
+    narratorEmotions = request.json['narratorEmotions']
+    moral = request.json['moral']
+    storyDate = request.json['storyDate']
+    gender = request.json['gender']
+    age = request.json['age']
+    race = request.json['race']
+    empathyLevel = request.json['empathyLevel']
+    feedback = request.json['feedback']
+
+    demographic = {"gender": gender, "age": age, "race": race, "empathyLevel":empathyLevel}
+    mystoryQuestions = {"mainEvent": mainEvent, "narratorEmotions":narratorEmotions, "moral":moral, "storyDate":storyDate}
+    reflection = {"valence": valence, "arousal": arousal}
+    story1 = {"condition": "condition1", "story": "this is story1", "survey1questions": survey1_answers}
+    story2 = {"condition": "condition2", "story": "this is story2", "survey2questions": survey2_answers}
+    story3 = {"condition": "condition3", "story": "this is story3", "survey3questions": survey3_answers}
+    story4 = {"condition": "condition4", "story": "this is story4", "survey4questions": survey4_answers}
+    ref = db.reference(participantID)
+    currentSession = db.reference(participantID + "/currentSession").get()
+    if currentSession is None:
+        session1 = db.reference(participantID +'/s001')
+        session1.child("prompt").set("here store prompt1")
+        session1.child("demographic").set(demographic)
+        session1.child("feedback").set(feedback)
+        session1.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
+        session1.child("mystory").set(mystory)
+        session1.child("mystoryTopic").set(mystoryTopic)
+        session1.child("mystoryQuestions").set(mystoryQuestions)
+        session1.child("reflection").set(reflection)
+        session1.child("story1").set(story1)
+        session1.child("story2").set(story2)
+        session1.child("story3").set(story3)
+        session1.child("story4").set(story4)
+        db.reference(participantID + "/currentSession").set(2)
+
+    elif currentSession == 2:
+        session2 = db.reference(participantID +'/s002')
+        session2.child("prompt").set("here store prompt2")
+        session2.child("demographic").set(demographic)
+        session2.child("feedback").set(feedback)
+        session2.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
+        session2.child("mystory").set(mystory)
+        session2.child("mystoryTopic").set(mystoryTopic)
+        session2.child("mystoryQuestions").set(mystoryQuestions)
+        session2.child("reflection").set(reflection)
+        session2.child("story1").set(story1)
+        session2.child("story2").set(story2)
+        session2.child("story3").set(story3)
+        session2.child("story4").set(story4)
+        db.reference(participantID + "/currentSession").set(3)
+
+    elif currentSession == 3:
+        session3 = db.reference(participantID +'/s003')
+        session3.child("prompt").set("here store prompt3")
+        session3.child("demographic").set(demographic)
+        session3.child("feedback").set(feedback)
+        session3.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
+        session3.child("mystory").set(mystory)
+        session3.child("mystoryTopic").set(mystoryTopic)
+        session3.child("mystoryQuestions").set(mystoryQuestions)
+        session3.child("reflection").set(reflection)
+        session3.child("story1").set(story1)
+        session3.child("story2").set(story2)
+        session3.child("story3").set(story3)
+        session3.child("story4").set(story4)
+
+    return 'Data submitted successfully!'
+    # pass
 
 
 
