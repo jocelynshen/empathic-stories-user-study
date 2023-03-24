@@ -24,6 +24,11 @@ import firebase_admin
 from firebase_admin import credentials, firestore, initialize_app, db
 
 
+storyModel1 = "Hi, I'm having a great day 1"
+storyModel2 = "Hi, I'm having a great day 2"
+storyModel3 = "Hi, I'm having a great day 3"
+storyModel4 = "Hi, I'm having a great day 4"
+
 c = firebase_admin.credentials.Certificate("./credentials.json")
 default_app = firebase_admin.initialize_app(c, {
     'databaseURL':"https://empathic-stories-default-rtdb.firebaseio.com/"
@@ -60,17 +65,19 @@ def get_session_number():
 # test
 
 
+prompt1 = """
+"""
 
 
 @app.route('/getPrompt/', methods=["GET", "POST"])
 def get_prompt_and_stories():
     """Get initial writing prompt for user + retrieve 3 stories from 3 models + save to firebase"""
     # randomly select story FROM stories that haven't been seen before (store it in firebase)
+    
     pass
 
 @app.route('/submit/', methods=["GET", "POST"])
 def submit():
-
     participantID = request.json['participantID']
     valence = request.json['valence']
     arousal = request.json['arousal']
@@ -221,8 +228,8 @@ def submit():
 # to run the server run the following command:
 # python server.py '0.0.0.0' 5192 1 
 if __name__ == '__main__':
-    host = sys.argv[1]
-    port = sys.argv[2]
-    debug = sys.argv[3]
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # host = sys.argv[1]
+    # port = sys.argv[2]
+    # debug = sys.argv[3]
+    app.run(host='0.0.0.0', port=5192, debug=True)
     #app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))

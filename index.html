@@ -1770,6 +1770,7 @@
     var dragSrcEl = null;
     var sortedList = [];
 
+
     function handleDragStart(e) {
       dragSrcEl = this;
       e.dataTransfer.effectAllowed = 'move';
@@ -1825,6 +1826,8 @@
       item.addEventListener('drop', handleDrop, false);
       item.addEventListener('dragend', handleDragEnd, false);
       });
+
+      // GET PROMPT + SESSION NUMBER (if this doesn't work, ie. the server returns 400 error; status != 200, block the page from loading: refresh)
     }
 
     window.onload = addEventListeners;
@@ -2004,8 +2007,6 @@
     //   }
 
     // });
-
-    var workerId = turkGetParam("workerId", "");
 
     // submit test
 
@@ -2191,10 +2192,11 @@
         feedback: feedback
       };
       var xmlHttp = new XMLHttpRequest();
-      var url = 'http://127.0.0.1:5000/submit/';
+      var url = 'http://localhost:5192/submit/';
       var request = new XMLHttpRequest();
       request.open('POST', url, false);
-      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      request.setRequestHeader("Content-Type", "application/json");
+      console.log(obj)
       request.send(JSON.stringify(obj));
 
       request.onreadystatechange = function() {
@@ -2378,62 +2380,6 @@
         return false;
       }
     }
-
-    // $("#submitButton").on("click", function (e) {
-
-    //   var ok = checkSummary();
-    //   console.log("main event ok? " + ok);
-
-    //   ok = checkEmotion1() && ok;
-    //   console.log("main emotion ok? " + ok);
-
-    //   ok = checkUserStory() && ok;
-    //   console.log("main emotion ok? " + ok);
-
-    //   ok = checkMoral() && ok;
-    //   console.log("moral ok? " + ok);
-
-    //   ok = checkEmpathyResponses2() && ok;
-    //   console.log("empathy ok? " + ok);
-
-    //   ok = ($(":invalid").length == 0) && ok;
-    //   console.log("All fields valid? " + ok);
-    //   $(":valid").removeClass("invalid");
-    //   $(".lickert>input:valid").parents().removeClass("invalid");
-    //   $(".form-check>input:valid").parents().removeClass("invalid");
-    //   if (!ok) {
-    //     $("#cantSubmit").show();
-    //     $(":invalid").addClass("invalid");
-    //     $(".lickert>input:invalid").parents().addClass("invalid");
-    //     $(".form-check>input:invalid").parents().addClass("invalid");
-    //     e.preventDefault();
-    //   } else {
-    //     var url = 'https://wall-e.media.mit.edu:5192/submit/';
-    //     var request = new XMLHttpRequest();
-    //     request.open('POST', url, false);
-    //     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    //     request.send("ipaddress=" + ipAddress + "&dbsource=mturk1" + "&workerId=" + workerId);
-    //     if (request.status == 200) {
-    //       var success = JSON.parse(request.responseText)["success"];
-    //       console.log("SUCCESS", success)
-    //       if (success) {
-    //         $("#cantSubmit").hide();
-    //       } else {
-    //         $("#cantSubmit").show();
-    //         $(":invalid").addClass("invalid");
-    //         $(".lickert>input:invalid").parents().addClass("invalid");
-    //         $(".form-check>input:invalid").parents().addClass("invalid");
-    //         e.preventDefault();
-    //       }
-    //     } else {
-    //       $("#cantSubmit").show();
-    //       $(":invalid").addClass("invalid");
-    //       $(".lickert>input:invalid").parents().addClass("invalid");
-    //       $(".form-check>input:invalid").parents().addClass("invalid");
-    //       e.preventDefault();
-    //     }
-    //   }
-    // });
   </script>
 
   <style type="text/css">
