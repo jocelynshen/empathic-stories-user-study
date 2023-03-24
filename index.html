@@ -2379,61 +2379,61 @@
       }
     }
 
-    $("#submitButton").on("click", function (e) {
+    // $("#submitButton").on("click", function (e) {
 
-      var ok = checkSummary();
-      console.log("main event ok? " + ok);
+    //   var ok = checkSummary();
+    //   console.log("main event ok? " + ok);
 
-      ok = checkEmotion1() && ok;
-      console.log("main emotion ok? " + ok);
+    //   ok = checkEmotion1() && ok;
+    //   console.log("main emotion ok? " + ok);
 
-      ok = checkUserStory() && ok;
-      console.log("main emotion ok? " + ok);
+    //   ok = checkUserStory() && ok;
+    //   console.log("main emotion ok? " + ok);
 
-      ok = checkMoral() && ok;
-      console.log("moral ok? " + ok);
+    //   ok = checkMoral() && ok;
+    //   console.log("moral ok? " + ok);
 
-      ok = checkEmpathyResponses2() && ok;
-      console.log("empathy ok? " + ok);
+    //   ok = checkEmpathyResponses2() && ok;
+    //   console.log("empathy ok? " + ok);
 
-      ok = ($(":invalid").length == 0) && ok;
-      console.log("All fields valid? " + ok);
-      $(":valid").removeClass("invalid");
-      $(".lickert>input:valid").parents().removeClass("invalid");
-      $(".form-check>input:valid").parents().removeClass("invalid");
-      if (!ok) {
-        $("#cantSubmit").show();
-        $(":invalid").addClass("invalid");
-        $(".lickert>input:invalid").parents().addClass("invalid");
-        $(".form-check>input:invalid").parents().addClass("invalid");
-        e.preventDefault();
-      } else {
-        var url = 'https://wall-e.media.mit.edu:5192/uploadIp/';
-        var request = new XMLHttpRequest();
-        request.open('POST', url, false);
-        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.send("ipaddress=" + ipAddress + "&dbsource=mturk1" + "&workerId=" + workerId);
-        if (request.status == 200) {
-          var success = JSON.parse(request.responseText)["success"];
-          console.log("SUCCESS", success)
-          if (success) {
-            $("#cantSubmit").hide();
-          } else {
-            $("#cantSubmit").show();
-            $(":invalid").addClass("invalid");
-            $(".lickert>input:invalid").parents().addClass("invalid");
-            $(".form-check>input:invalid").parents().addClass("invalid");
-            e.preventDefault();
-          }
-        } else {
-          $("#cantSubmit").show();
-          $(":invalid").addClass("invalid");
-          $(".lickert>input:invalid").parents().addClass("invalid");
-          $(".form-check>input:invalid").parents().addClass("invalid");
-          e.preventDefault();
-        }
-      }
-    });
+    //   ok = ($(":invalid").length == 0) && ok;
+    //   console.log("All fields valid? " + ok);
+    //   $(":valid").removeClass("invalid");
+    //   $(".lickert>input:valid").parents().removeClass("invalid");
+    //   $(".form-check>input:valid").parents().removeClass("invalid");
+    //   if (!ok) {
+    //     $("#cantSubmit").show();
+    //     $(":invalid").addClass("invalid");
+    //     $(".lickert>input:invalid").parents().addClass("invalid");
+    //     $(".form-check>input:invalid").parents().addClass("invalid");
+    //     e.preventDefault();
+    //   } else {
+    //     var url = 'https://wall-e.media.mit.edu:5192/submit/';
+    //     var request = new XMLHttpRequest();
+    //     request.open('POST', url, false);
+    //     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    //     request.send("ipaddress=" + ipAddress + "&dbsource=mturk1" + "&workerId=" + workerId);
+    //     if (request.status == 200) {
+    //       var success = JSON.parse(request.responseText)["success"];
+    //       console.log("SUCCESS", success)
+    //       if (success) {
+    //         $("#cantSubmit").hide();
+    //       } else {
+    //         $("#cantSubmit").show();
+    //         $(":invalid").addClass("invalid");
+    //         $(".lickert>input:invalid").parents().addClass("invalid");
+    //         $(".form-check>input:invalid").parents().addClass("invalid");
+    //         e.preventDefault();
+    //       }
+    //     } else {
+    //       $("#cantSubmit").show();
+    //       $(":invalid").addClass("invalid");
+    //       $(".lickert>input:invalid").parents().addClass("invalid");
+    //       $(".form-check>input:invalid").parents().addClass("invalid");
+    //       e.preventDefault();
+    //     }
+    //   }
+    // });
   </script>
 
   <style type="text/css">
