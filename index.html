@@ -14,7 +14,7 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 
 
-
+<title>Empathic stories</title>
 
 <!-- I'm also including the script here, in case you wish to use it with your own URL/database. If you go that route, you'll need to set up a web interface to your DB that takes a worker ID and returns "1" if the worker is allowed to work on the HIT and "0" otherwise. Then you'll just replace "YOUR_URL" below to point to that web interface: -->
 
@@ -23,14 +23,14 @@
 <div class="container">
 
 
-  <div class="card">
+  <!-- <div class="card">
     <h5 class="card-header bg-primary text-white">INSERT study name here</h5>
     <div class="card-body">
       <h5 class="card-text">Pleast enter your participant ID: </h5>
       <input size="35" placeholder="e.g. p001" name="participantID" id="participantID" required>
 
     </div>
-  </div>
+  </div> -->
 
   <div>
 
@@ -130,9 +130,9 @@
         <br>
 
         <!--Prompt of day 1-->
-        <div class="row justify-content-center">
+        <div id = "promptPlace" class="row justify-content-center">
 
-          <div class="col-11 section" id="storywriting-section">
+          <!-- <div class="col-11 section" id="storywriting-section">
             <h4><label for="summary">Part 2: Write your story "prompt 1"</label></h4>
             <h5 class="text-justify" style="margin-top:.5rem">
               1. Look back over your life, and tell us an emotional moment or experience you have had in the past.
@@ -151,7 +151,7 @@
               <li>Happiness and Fulfillment</li>
               <li>Passion & Youth</li>
             </ul>
-            <h5 class="text-justify">Reflect on your emotions during the experience, describe how you felt accross
+            <h5 class="text-justify">Reflect on your emotions during the experience, describe how you felt across
               different events in the story, and explain its impact. What happened, when and where, who
               was involved, and what were you thinking and feeling?</h5>
             <label for="sel1" class="form-label">Choose the most relevant topic that desribes your story:</label>
@@ -190,23 +190,19 @@
               </div>
 
             </div>
-            <!-- <p style="color:red; font-weight: bold;">Copying/pasting or using automatic tools (e.g. ChatGPT, GPT-3) to
-          answer this question will result in
-          rejection
-          of the HIT by our checkers. Please answer honestly and to the best of your ability.</p> -->
             <p class="mt-3">
               <small>Response must be <em>at least 10 sentences</em> and <em>1000 - 10,000 characters</em> including
                 spaces.</small>
               <br>
 
             </p>
-          </div>
+          </div> -->
         </div>
         <!--End of Prompt of day 1-->
 
         <!--Prompt of day 2-->
 
-        <!-- <div class="row justify-content-center">
+        <!-- <div id = "prompt2place" class="row justify-content-center">
 
           <div class="col-11 section" id="storywriting-section">
             <h4><label for="summary">Part 2: Write your story "prompt 2"</label></h4>
@@ -273,7 +269,7 @@
         <!--End of Prompt of day 2-->
 
         <!--Prompt of day 3-->
-        <!-- <div class="row justify-content-center">
+        <!-- <div id = "prompt3place" class="row justify-content-center">
 
           <div class="col-11 section" id="storywriting-section">
             <h4><label for="summary">Part 2: Write your story "prompt 3"</label></h4>
@@ -339,7 +335,8 @@
               <h4><label for="story">Part 3-A: Read the following 3 stories carefully and answer questions about
                   them</label></h4>
 
-              <p style="color:blue">${story1_formatted}</p>
+              <!-- <p style="color:blue">${story1_formatted}</p> -->
+              <p id="story1_formatted" style="color:blue"></p>
               <!--Survey on story 1-->
               <h5 class="card-header" style="background: #e9ecef;">
                 Survey on story 1
@@ -594,12 +591,12 @@
 
                       <div class="form-check lickert">
                         <input class="form-check-input right" type="checkbox" name="survey1-10" id="s1q10_option1"
-                          value="situation" required> <label class="form-check-label" for="s1q10_option1">&nbsp; The
+                          value="the-narrator-situation" required> <label class="form-check-label" for="s1q10_option1">&nbsp; The
                           situation the narrator goes through </label>
                       </div>
                       <div class="form-check lickert">
                         <input class="form-check-input right" type="checkbox" name="survey1-10" id="s1q10_option2"
-                          value="feelings">
+                          value="the-narraor-feelings">
                         <label class="form-check-label" for="s1q10_option2">&nbsp; The feelings the narrator has</label>
 
                       </div>
@@ -617,16 +614,9 @@
                         <input type="text" style="height:20px;" id="otherInput-1-10" disabled>
 
                       </div>
-                      <div class="form-check lickert">
-                        <input class="form-check-input" type="checkbox" name="survey1-10" id="s1q10_option5"
-                          onchange="didNotEmpathize1()" value="nothing">
-                        <label class="form-check-label" for="s1q10_option5">&nbsp; I didn’t empathize with
-                          anything</label><br>
-                        <small id="smallText1" style="margin:10px;" hidden>What made you NOT empathize with the story?
-                          Please specify.</small><br>
-                        <input type="text" style="height:20px; margin:10px;" id="nothingInput-1-10" hidden>
-
-                      </div>
+                      <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? Please specify.</h5>
+                      <small>Type "nothing" if your answer is nothing</small><br>
+                      <textarea class = 'mx-0' type="text" cols = '32' style="height:30px; margin:10px;" id="s1q11" value="nothing"></textarea>
 
                       <!--End-->
                     </div>
@@ -636,7 +626,8 @@
               <!--Survey on story 1 ends here-->
 
               <!--Survey on story 2-->
-              <p style="color:blue">${story2_formatted}</p>
+              <!-- <p style="color:blue">${story2_formatted}</p> -->
+              <p id="story2_formatted" style="color:blue"></p>
               <h5 class="card-header" style="background: #e9ecef;">
                 Survey on story 2
                 <a data-toggle="collapse" href="#fullInstructions" role="button" aria-expanded="false"
@@ -913,16 +904,10 @@
 
 
                       </div>
-                      <div class="form-check lickert">
-                        <input class="form-check-input" type="checkbox" name="survey2-10" id="s2q10_option5"
-                          onclick="didNotEmpathize2()" value="nothing">
-                        <label class="form-check-label" for="s2q10_option5">&nbsp; I didn’t empathize with
-                          anything</label><br>
-                        <small id="smallText2" style="margin:10px;" hidden>What made you NOT empathize with the story?
-                          Please specify.</small><br>
-                        <input type="text" style="height:20px; margin:10px;" id="nothingInput-2-10" hidden>
-
-                      </div>
+                      <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? Please specify.</h5>
+                      <small>Type "nothing" if your answer is nothing</small><br>
+                      <textarea class = 'mx-0' type="text" cols = '32' style="height:30px; margin:10px;" id="s2q11" value="nothing"></textarea>
+                    
 
                       <!--End-->
                     </div>
@@ -933,7 +918,8 @@
 
               <!--Survey on story 3-->
 
-              <p style="color:blue">${story3_formatted}</p>
+              <!-- <p style="color:blue">${story3_formatted}</p> -->
+              <p id = "story3_formatted" style="color:blue"></p>
               <h5 class="card-header" style="background: #e9ecef;">
                 Survey on story 3
                 <a data-toggle="collapse" href="#fullInstructions" role="button" aria-expanded="false"
@@ -1210,16 +1196,10 @@
 
 
                       </div>
-                      <div class="form-check lickert">
-                        <input class="form-check-input" type="checkbox" name="survey3-10" id="s3q10_option5"
-                          onclick="didNotEmpathize3()" value="nothing">
-                        <label class="form-check-label" for="s3q10_option5">&nbsp; I didn’t empathize with
-                          anything</label><br>
-                        <small id="smallText3" style="margin:10px;" hidden>What made you NOT empathize with the story?
-                          Please specify.</small><br>
-                        <input type="text" style="height:20px; margin:10px;" id="nothingInput-3-10" hidden>
-
-                      </div>
+                      <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? Please specify.</h5>
+                      <small>Type "nothing" if your answer is nothing</small><br>
+                      <textarea class = 'mx-0' type="text" cols = '32' style="height:30px; margin:10px;" id="s3q11" value="nothing"></textarea>
+                      
 
                     </div>
 
@@ -1227,13 +1207,14 @@
                   </div>
               </div>
               </p>
-            </div>
+            
 
             <!--Survey on story 3 ends here-->
 
             <!--Survey on story 4-->
 
-            <p style="color:blue">${story4_formatted}</p>
+            <!-- <p style="color:blue">${story4_formatted}</p> -->
+            <p id = "story4_formatted" style="color:blue"></p>
             <h5 class="card-header" style="background: #e9ecef;">
               Survey on story 4
               <a data-toggle="collapse" href="#fullInstructions" role="button" aria-expanded="false"
@@ -1510,27 +1491,23 @@
 
 
                     </div>
-                    <div class="form-check lickert">
-                      <input class="form-check-input" type="checkbox" name="survey4-10" id="s4q10_option5"
-                        onclick="didNotEmpathize4()" value="nothing">
-                      <label class="form-check-label" for="s4q10_option5">&nbsp; I didn’t empathize with
-                        anything</label><br>
-                      <small id="smallText4" style="margin:10px;" hidden>What made you NOT empathize with the story?
-                        Please specify.</small><br>
-                      <input type="text" style="height:20px; margin:10px;" id="nothingInput-4-10" hidden>
-
-                    </div>
+                    <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? Please specify.</h5>
+                    <small>Type "nothing" if your answer is nothing</small><br>
+                    <textarea class = 'mx-0' type="text" cols = '32' style="height:30px; margin:10px;" id="s4q11" value="nothing"></textarea>
+                    
 
                     <!--End-->
                   </div>
                 </div>
               </p>
             </div>
+          </div>
 
             <!--Survey on story 4 ends here-->
 
             <!--Part 3-B-->
-            <div class="section">
+            <div><p></p></div>
+            <div class=" col-11 section">
               <h5>Part 3-B: Compare the three stories you have read</h5>
 
 
@@ -1549,6 +1526,8 @@
                         <li id="item3" draggable="true">Third story</li>
                         <li id="item4" draggable="true">Fourth story</li>
                       </ul>
+                      <!-- <button  onclick="clickme()">click me</button>
+                      <p id="clickmee"></p> -->
 
                       <!--End-->
                     </div>
@@ -1560,8 +1539,8 @@
 
           </div>
 
-
-          <div class="col-11 section">
+          <div><p></p></div>
+          <div class="section">
             <h4><label for="summary">Part 4: Answer questions about the story you wrote</label></h4>
             <h5 style="margin-top:.5rem">
               1. What is the <b style="color: orange">main event</b> being described in the story?
@@ -1809,8 +1788,8 @@
 
   //my new script 
   var dragSrcEl = null;
+  var originalOrder = ['First story', 'Second story', 'Third story', 'Fourth story'];
   var sortedList = [];
-
 
   function handleDragStart(e) {
     dragSrcEl = this;
@@ -1843,20 +1822,28 @@
 
   function handleDragEnd(e) {
     var listItems = document.querySelectorAll('li[draggable]');
+
     [].forEach.call(listItems, function (item) {
       item.classList.remove('over');
     });
 
+    // Get the sorted list  
+    // if (JSON.stringify(listItems) === JSON.stringify(originalOrder)) {
+    //   sortedList = originalOrder;
+    // }
+    // else{
+      if (sortedList.length == 0){
+        listItems.forEach(function (item) {
+          sortedList.push(item.innerHTML);
+        });
+      }
+      else {
+        sortedList = [];
+        listItems.forEach(function (item) {
+          sortedList.push(item.innerHTML);
+        });
+      }
 
-    // Get the sorted list              
-    listItems.forEach(function (item) {
-      sortedList.push(item.innerHTML);
-    });
-
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', '/sort', true);
-    // xhr.setRequestHeader('Content-Type', 'application/json');
-    // xhr.send(JSON.stringify(sortedList));
   }
 
   function addEventListeners() {
@@ -1868,7 +1855,26 @@
       item.addEventListener('dragend', handleDragEnd, false);
     });
 
+    // xmlHttpRequest
     // GET PROMPT + SESSION NUMBER (if this doesn't work, ie. the server returns 400 error; status != 200, block the page from loading: refresh)
+    //var participantID = document.getElementById("participantID").value;
+
+    var xmlHttp = new XMLHttpRequest();
+    var url = 'http://127.0.0.1:5000/getPrompt/';
+    var request = new XMLHttpRequest();
+    request.open('POST', url, false);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(); 
+
+    if (request.status == 200) {
+      var response = JSON.parse(request.responseText);
+      //document.getElementById("didalready").innerHTML += JSON.stringify(response)
+      document.getElementById("promptPlace").innerHTML = response.prompt;
+      document.getElementById("story1_formatted").innerHTML = response.story1;
+      document.getElementById("story2_formatted").innerHTML = response.story2;
+      document.getElementById("story3_formatted").innerHTML = response.story3;
+      document.getElementById("story4_formatted").innerHTML = response.story4;
+      }
   }
 
   window.onload = addEventListeners;
@@ -1876,26 +1882,6 @@
 
 
   //survey1
-  function didNotEmpathize1() {
-    const otherCheckbox1 = document.getElementById("s1q10_option5");
-    const nothingInput1 = document.getElementById("nothingInput-1-10");
-    const smallText1 = document.getElementById("smallText1");
-    if (otherCheckbox1.checked) {
-      nothingInput1.hidden = false;
-      smallText1.hidden = false;
-      otherCheckbox1.value = nothingInput1.value;
-    } else {
-      nothingInput1.hidden = true;
-      smallText1.hidden = true;
-      otherCheckbox1.value = "nothing";
-    }
-
-    nothingInput1.addEventListener("input", function () {
-      otherCheckbox1.value = this.value;
-      //document.getElementById("testButton").innerHTML = otherCheckbox1.value;
-    });
-  }
-
   function getOtherValue1() {
     const otherCheckbox1 = document.getElementById("s1q10_option4");
     const otherInput1 = document.getElementById("otherInput-1-10");
@@ -1913,30 +1899,7 @@
 
   }
 
-
-
   //survey2
-  function didNotEmpathize2() {
-    const otherCheckbox2 = document.getElementById("s2q10_option5");
-    const nothingInput2 = document.getElementById("nothingInput-2-10");
-    const smallText2 = document.getElementById("smallText2");
-    if (otherCheckbox2.checked) {
-      nothingInput2.hidden = false;
-      smallText2.hidden = false;
-      otherCheckbox2.value = nothingInput2.value;
-    } else {
-      nothingInput2.hidden = true;
-      smallText2.hidden = true;
-      otherCheckbox2.value = "nothing";
-    }
-
-    nothingInput2.addEventListener("input", function () {
-      otherCheckbox2.value = this.value;
-      //document.getElementById("testButton").innerHTML = otherCheckbox2.value;
-    });
-
-  }
-
   function getOtherValue2() {
     const otherCheckbox2 = document.getElementById("s2q10_option4");
     const otherInput2 = document.getElementById("otherInput-2-10");
@@ -1954,27 +1917,6 @@
   }
 
   //survey3
-  function didNotEmpathize3() {
-    const otherCheckbox3 = document.getElementById("s3q10_option5");
-    const nothingInput3 = document.getElementById("nothingInput-3-10");
-    const smallText3 = document.getElementById("smallText3");
-    if (otherCheckbox3.checked) {
-      nothingInput3.hidden = false;
-      smallText3.hidden = false;
-      otherCheckbox3.value = nothingInput3.value;
-    } else {
-      nothingInput3.hidden = true;
-      smallText3.hidden = true;
-      otherCheckbox3.value = "nothing";
-    }
-
-    nothingInput3.addEventListener("input", function () {
-      otherCheckbox3.value = this.value;
-      //document.getElementById("testButton").innerHTML = otherCheckbox3.value;
-    });
-
-  }
-
   function getOtherValue3() {
     const otherCheckbox3 = document.getElementById("s3q10_option4");
     const otherInput3 = document.getElementById("otherInput-3-10");
@@ -1992,27 +1934,6 @@
   }
 
   //survey4
-  function didNotEmpathize4() {
-    const otherCheckbox4 = document.getElementById("s4q10_option5");
-    const nothingInput4 = document.getElementById("nothingInput-4-10");
-    const smallText4 = document.getElementById("smallText4");
-    if (otherCheckbox4.checked) {
-      nothingInput4.hidden = false;
-      smallText4.hidden = false;
-      otherCheckbox4.value = nothingInput4.value;
-    } else {
-      nothingInput4.hidden = true;
-      smallText4.hidden = true;
-      otherCheckbox4.value = "nothing";
-    }
-
-    nothingInput4.addEventListener("input", function () {
-      otherCheckbox4.value = this.value;
-      //document.getElementById("testButton").innerHTML = otherCheckbox4.value;
-    });
-
-  }
-
   function getOtherValue4() {
     const otherCheckbox4 = document.getElementById("s4q10_option4");
     const otherInput4 = document.getElementById("otherInput-4-10");
@@ -2048,26 +1969,21 @@
     event.preventDefault();
 
     //get participantID
-    var participantID = document.getElementById("participantID").value;
+    //already done above 
+
     //get Valence value
     var valence = 0;
-
-    function getValenceValue() {
-      var valenceValues = document.getElementsByName('valence');
-      for (i = 0; i < valenceValues.length; i++) {
-        if (valenceValues[i].checked)
-          valence = valenceValues[i].value;
-      }
+    var valenceValues = document.getElementsByName('valence');
+    for (i = 0; i < valenceValues.length; i++) {
+      if (valenceValues[i].checked)
+        valence = valenceValues[i].value;
     }
     //get Arousal value
     var arousal = 0;
-
-    function getArousalValue() {
-      var arousalValues = document.getElementsByName('arousal');
-      for (i = 0; i < arousalValues.length; i++) {
-        if (arousalValues[i].checked)
-          arousal = arousalValues[i].value;
-      }
+    var arousalValues = document.getElementsByName('arousal');
+    for (i = 0; i < arousalValues.length; i++) {
+      if (arousalValues[i].checked)
+        arousal = arousalValues[i].value;
     }
     //get story topic
     var mystoryTopic = document.getElementById("topics").value;
@@ -2089,14 +2005,19 @@
     }
     const q10checkboxes1 = document.getElementsByName(`survey1-10`);
     let checked1;
-    const checkedArray1 = [];
+    var checkedString1 = "[";
     for (const checkbox of q10checkboxes1) {
       if (checkbox.checked) {
         checked1 = checkbox.value;
-        checkedArray1.push(checked1);
+        checkedString1 += (checked1 + ", ");
       }
     }
-    survey1_answers = [selectedValues1, ' [' + checkedArray1 + ']'];
+    checkedString1 += "]" ;
+    var s1q11 = document.getElementById("s1q11").value;
+    survey1_answers = selectedValues1;
+    survey1_answers.push(checkedString1);
+    survey1_answers.push(s1q11);
+    //survey1_answers = [selectedValues1, ' [' + checkedString1 + ']'];
     //document.getElementById("testButton").innerHTML = survey1_answers;
     //to test add a button with onclick and call the function
 
@@ -2116,14 +2037,19 @@
     }
     const q10checkboxes2 = document.getElementsByName(`survey2-10`);
     let checked2;
-    const checkedArray2 = [];
+    var checkedString2 = "[";
     for (const checkbox of q10checkboxes2) {
       if (checkbox.checked) {
         checked2 = checkbox.value;
-        checkedArray2.push(checked2);
+        checkedString2 += (checked2 + ", ");
       }
     }
-    survey2_answers = [selectedValues2, ' [' + checkedArray2 + ']'];
+    checkedString2 += "]" ;
+    var s2q11 = document.getElementById("s2q11").value;
+    survey2_answers = selectedValues2;
+    survey2_answers.push(checkedString2);
+    survey2_answers.push(s2q11);
+    //survey2_answers = [selectedValues2, ' [' + checkedString2 + ']'];
     //document.getElementById("testButton").innerHTML = survey2_answers;
 
     //survey3 answers
@@ -2142,14 +2068,19 @@
     }
     const q10checkboxes3 = document.getElementsByName(`survey3-10`);
     let checked3;
-    const checkedArray3 = [];
+    var checkedString3 = "[";
     for (const checkbox of q10checkboxes3) {
       if (checkbox.checked) {
         checked3 = checkbox.value;
-        checkedArray3.push(checked3);
+        checkedString3 += (checked3 + ", ");
       }
     }
-    survey3_answers = [selectedValues3, ' [' + checkedArray3 + ']'];
+    checkedString3 += "]" ;
+    var s3q11 = document.getElementById("s3q11").value;
+    survey3_answers = selectedValues3;
+    survey3_answers.push(checkedString3);
+    survey3_answers.push(s3q11);
+    //survey3_answers = [selectedValues3, ' [' + checkedString3 + ']'];
     //document.getElementById("testButton3").innerHTML = survey3_answers;
 
     //survey4 answers
@@ -2169,18 +2100,31 @@
     }
     const q10checkboxes4 = document.getElementsByName(`survey4-10`);
     let checked4;
-    const checkedArray4 = [];
+    var checkedString4 = "[";
     for (const checkbox of q10checkboxes4) {
       if (checkbox.checked) {
         checked4 = checkbox.value;
-        checkedArray4.push(checked4);
+        checkedString4 += (checked4 + ", ");
       }
     }
-    survey4_answers = [selectedValues4, ' [' + checkedArray4 + ']'];
+    checkedString4 += "]" ;
+    var s4q11 = document.getElementById("s4q11").value;
+    survey4_answers = selectedValues4;
+    survey4_answers.push(checkedString4);
+    survey4_answers.push(s4q11);
+    //survey4_answers = [selectedValues4, ' [' + checkedString4 + ']'];
     //document.getElementById("testButton3").innerHTML = survey4_answers;
 
     //get the sortedList defined above (the order from part 3-B)
-    var mostEmpathizedOrder = sortedList;
+    var mostEmpathizedOrder = [];
+    if (sortedList.length == 0){
+      mostEmpathizedOrder = originalOrder;
+    }
+    else{
+      mostEmpathizedOrder = [];
+      mostEmpathizedOrder = sortedList;
+    }
+    
     //main event
     var mainEvent = document.getElementById("mainevent").value;
     //narrator emotions
@@ -2206,7 +2150,7 @@
 
     //send POST request
     var obj = {
-      participantID: participantID,
+      //participantID: participantID,
       valence: valence,
       arousal: arousal,
       mystoryTopic: mystoryTopic,
@@ -2227,18 +2171,19 @@
       feedback: feedback
     };
     var xmlHttp = new XMLHttpRequest();
-    var url = 'http://localhost:5192/submit/';
+    // var url = 'http://localhost:5192/submit/';
+    var url = 'http://127.0.0.1:5000/submit/';
     var request = new XMLHttpRequest();
     request.open('POST', url, false);
     request.setRequestHeader("Content-Type", "application/json");
     console.log(obj)
     request.send(JSON.stringify(obj));
 
-    request.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        alert("Data submitted successfully!");
-      }
-    };
+    // request.onreadystatechange = function () {
+    //   if (this.readyState == 4 && this.status == 200) {
+    //     alert("Data submitted successfully!");
+    //   }
+    // };
 
   });
 
