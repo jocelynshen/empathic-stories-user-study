@@ -26,11 +26,11 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 </div>
 
 <script>
-    console.log("i am in script")
+    //console.log("i am in script")
     var idSubmitButton = document.getElementById("idSubmitButton");
 
     idSubmitButton.addEventListener("click", function(event) {
-        console.log("i am inside submit")
+        //console.log("i am inside submit")
         event.preventDefault(); // Prevent the form from submitting normally
 
         var participantIDInput = document.getElementById("participantIDInput").value;
@@ -40,13 +40,13 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
         var request = new XMLHttpRequest();
         request.open('POST', url, false);
         request.setRequestHeader("Content-Type", "application/json");
-        console.log(participantIDInput)
-        console.log("i am before send")
+        //console.log(participantIDInput)
+        //console.log("i am before send")
         request.send(JSON.stringify({participantIDInput : participantIDInput}));
-        console.log("i am after send")
+        //console.log("i am after send")
 
         if (request.status == 200) {
-            alert("Participant ID submitted successfully!"); //comment this alert later (just for debugging)
+            //alert("Participant ID submitted successfully!"); 
             window.location.href = "index.html";
         }
 

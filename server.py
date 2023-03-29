@@ -41,6 +41,107 @@ model3 = ["model3story1", "model3story2", "model3story3", "model3story4",
 model4 = ["model4story1", "model4story2", "model4story3", "model4story4",
           "model4story5", "model4story6", "model4story7", "model4story8", "model4story9"]
 
+demographic = '''
+<div class="form-group col-11 section">
+    <h4><label for="summary">Part 5: Tell us about yourself and this writing task</label></h4>
+
+
+    <h5 class="mt-4">1. How do you identify?<br><small>Select "prefer not to answer" if needed.</small></h5>
+    <div class="form-group row mt-3">
+        <label for="gender" class="col-sm-2 col-form-label">Gender identity</label>
+        <div class="col-sm-4">
+        <select id="annotatorGender" name="annotatorGender" class="form-control" style="font-size: .85rem;"
+            required>
+            <option disabled selected value="">-- please select --</option>
+            <option value="man">Man/Male</option>
+            <option value="woman">Woman/Female</option>
+            <option value="transman">Trans man</option>
+            <option value="transwoman">Trans woman</option>
+            <option value="nonBinary">Non-binary</option>
+            <option value="other">Other</option>
+            <option value="na">- prefer not to disclose -</option>
+        </select>
+        </div>
+        <div class="col-sm-4"><small>Please select the gender identity you most identify with
+            currently.</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="annotatorAge" class="col-sm-2 col-form-label">Age (years)</label>
+        <div class="col-sm-4">
+        <input type="number" id="age" name="age" placeholder="-" class="form-control" min="18" max="100">
+
+        </div>
+        <div class="col-sm-4"><small>Leave blank if you do not wish to disclose</small></div>
+
+    </div>
+    <div class="form-group row">
+        <label for="race" class="col-sm-2 col-form-label">Race/ethnicity</label>
+        <div class="col-sm-4">
+        <select id="annotatorRace" name="annotatorRace" class="form-control" style="font-size: .85rem;"
+            required>
+            <option disabled selected value="">-- please select --</option>
+            <option value="asian">Asian/Asian American</option>
+            <option value="indian">South Asian/Indian American</option>
+            <option value="black">Black/African American</option>
+            <option value="hisp">Hispanic/Latinx</option>
+            <option value="white">White/Caucasian</option>
+            <option value="middleEastern">Middle Eastern</option>
+            <option value="islander">Native Hawaiian/Pacific Islander</option>
+            <option value="native">Native American/First Nations</option>
+            <option value="other">Mixed/other</option>
+            <option value="na">- prefer not to disclose -</option>
+        </select>
+        </div>
+        <div class="col-sm-4"><small>Please select the racial/ethnic identity you most identify with
+            currently.</small></div>
+    </div>
+    <div class="mb-3">
+        <h5 class="mt-4">2. To what extent does the following statement describe you:</h5>
+        <label for="empathy" class="form-label">
+        <h5>“I am an empathetic person.” </h5>
+        </label>
+        <div class="form-check lickert">
+        <input class="form-check-input right" type="radio" name="empathylevel" id="notTrueAtAll" value="1"
+            required> <label class="form-check-label" for="notVeryTrue">&nbsp; Not very true of me </label>
+        </div>
+        <div class="form-check lickert">
+        <input class="form-check-input right" type="radio" name="empathylevel" id="notTrue" value="2">
+        <label class="form-check-label" for="notTrue">&nbsp; Not true</label>
+
+        </div>
+        <div class="form-check lickert">
+        <input class="form-check-input right" type="radio" name="empathylevel" id="iamneutral" value="3">
+        <label class="form-check-label" for="iamneutral">&nbsp; Neutral</label>
+
+        </div>
+        <div class="form-check lickert">
+        <input class="form-check-input right" type="radio" name="empathylevel" id="true" value="4">
+        <label class="form-check-label" for="true">&nbsp; True</label>
+
+        </div>
+        <div class="form-check lickert">
+        <input class="form-check-input" type="radio" name="empathylevel" id="veryTrue" value="5">
+        <label class="form-check-label" for="veryTrue">&nbsp; Very true of me</label>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="certify-no-pii-story" name="certify-no-pii-story"
+            required>
+        <label class="form-check-label" for="certify-no-pii-story">
+            I certify that my responses contain no personally identifiable information (name, address, SSN,
+            etc)
+            about
+            myself or anyone else.
+        </label>
+        </div>
+    </div>
+    </div>
+'''
+
 prompt1 = '''
 <div class="col-11 section" id="storywriting-section">
 <h4><label for="summary">Part 2: Write your story "prompt 1"</label></h4>
@@ -155,10 +256,8 @@ prompt2 = '''
     <div class="col-8">
 
     <div class="form-group">
-        <textarea class="form-control" name="userstory" id="userstory" style="width: 900px;
-        height: 200px;"
-        oninput="updateCounter(this,1,100,50,1000);" required></textarea>
-        <span id="id="userstory-sentence-counter">0 sentences (0 characters) detected</span>
+        <textarea class="form-control" name="userstory" id="userstory" style="width: 900px; height: 200px;" oninput="updateCounter(this,1,100,50,1000);" required></textarea>
+        <span id="userstory-sentence-counter">0 sentences (0 characters) detected</span>
 
     </div>
     <div id="userstory-length-warning" class="col-6 alert alert-danger" style="display: none;">
@@ -337,21 +436,25 @@ def get_prompt_and_stories():
         story2 = story2session1random
         story3 = story3session1random
         story4 = story4session1random
+        dict = {'demographic': demographic, 'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
+                'story2': story2, 'story3': story3, 'story4': story4}
     elif currentSession == 2:
         prompt = prompt2
         story1 = story1session2random
         story2 = story2session2random
         story3 = story3session2random
         story4 = story4session2random
+        dict = {'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
+                'story2': story2, 'story3': story3, 'story4': story4}
     elif currentSession == 3:
         prompt = prompt3
         story1 = story1session3random
         story2 = story2session3random
         story3 = story3session3random
         story4 = story4session3random
+        dict = {'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
+                'story2': story2, 'story3': story3, 'story4': story4}
 
-    dict = {'prompt': prompt, 'story1': story1,
-            'story2': story2, 'story3': story3, 'story4': story4}
     return json.dumps(dict)
 
 
@@ -371,14 +474,14 @@ def submit():
     narratorEmotions = request.json['narratorEmotions']
     moral = request.json['moral']
     storyDate = request.json['storyDate']
-    gender = request.json['gender']
-    age = request.json['age']
-    race = request.json['race']
-    empathyLevel = request.json['empathyLevel']
+    # gender = request.json['gender']
+    # age = request.json['age']
+    # race = request.json['race']
+    # empathyLevel = request.json['empathyLevel']
     feedback = request.json['feedback']
 
-    demographic = {"gender": gender, "age": age,
-                   "race": race, "empathyLevel": empathyLevel}
+    # demographic = {"gender": gender, "age": age,
+    #                "race": race, "empathyLevel": empathyLevel}
     mystoryQuestions = {"mainEvent": mainEvent,
                         "narratorEmotions": narratorEmotions, "moral": moral, "storyDate": storyDate}
     reflection = {"valence": valence, "arousal": arousal}
@@ -394,6 +497,13 @@ def submit():
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
     if currentSession == 1:
+        gender = request.json['gender']
+        age = request.json['age']
+        race = request.json['race']
+        empathyLevel = request.json['empathyLevel']
+        demographic = {"gender": gender, "age": age,
+                       "race": race, "empathyLevel": empathyLevel}
+        #######################################
         session1 = db.reference(id + '/s001')
         session1.child("prompt").set("here store prompt1")
         session1.child("demographic").set(demographic)
@@ -412,7 +522,7 @@ def submit():
     elif currentSession == 2:
         session2 = db.reference(id + '/s002')
         session2.child("prompt").set("here store prompt2")
-        session2.child("demographic").set(demographic)
+        # session2.child("demographic").set(demographic)
         session2.child("feedback").set(feedback)
         session2.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
         session2.child("mystory").set(mystory)
@@ -428,7 +538,7 @@ def submit():
     elif currentSession == 3:
         session3 = db.reference(id + '/s003')
         session3.child("prompt").set("here store prompt3")
-        session3.child("demographic").set(demographic)
+        # session3.child("demographic").set(demographic)
         session3.child("feedback").set(feedback)
         session3.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
         session3.child("mystory").set(mystory)

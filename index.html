@@ -23,14 +23,16 @@
 <div class="container">
 
 
-  <!-- <div class="card">
-    <h5 class="card-header bg-primary text-white">INSERT study name here</h5>
+  <div class="card">
+    <h5 class="card-header bg-primary text-white">Empathic Stories User Study</h5>
     <div class="card-body">
-      <h5 class="card-text">Pleast enter your participant ID: </h5>
-      <input size="35" placeholder="e.g. p001" name="participantID" id="participantID" required>
-
+      <h5 style="display: inline-block;" class="card-text">Participant ID:</h5>
+      <h5 style="display: inline-block;" id = "showParticipantID"></h5>
+      <br>
+      <h5 style="display: inline-block;" class="card-text">Session Number: </h5>
+      <h5 style="display: inline-block;" id = "showSessionNum"></h5>
     </div>
-  </div> -->
+  </div>
 
   <div>
 
@@ -129,206 +131,10 @@
         </div>
         <br>
 
-        <!--Prompt of day 1-->
+        <!--Prompt-->
         <div id = "promptPlace" class="row justify-content-center">
-
-          <!-- <div class="col-11 section" id="storywriting-section">
-            <h4><label for="summary">Part 2: Write your story "prompt 1"</label></h4>
-            <h5 class="text-justify" style="margin-top:.5rem">
-              1. Look back over your life, and tell us an emotional moment or experience you have had in the past.
-              Whether it's a childhood memory, a turning point in your life, or a vivid adult experience, please
-              describe the scene in detail.
-              <br>You might have encountered challenges or memorable events that could be realted to:</h5>
-            <ul>
-              <li>Family</li>
-              <li>Relationship/Friendship</li>
-              <li>Mental Health</li>
-              <li>Physical Health</li>
-              <li>College/School</li>
-              <li>Work</li>
-              <li>Trauma</li>
-              <li>Life Milestones/Changes</li>
-              <li>Happiness and Fulfillment</li>
-              <li>Passion & Youth</li>
-            </ul>
-            <h5 class="text-justify">Reflect on your emotions during the experience, describe how you felt across
-              different events in the story, and explain its impact. What happened, when and where, who
-              was involved, and what were you thinking and feeling?</h5>
-            <label for="sel1" class="form-label">Choose the most relevant topic that desribes your story:</label>
-            <select class="form-select" id="topics" name="topics" style="width:900px;">
-              <option disabled selected value="">-- please select --</option>
-              <option value="family">Family</option>
-              <option value="relationship/friendship">Relationship/Friendship</option>
-              <option value="mental-health">Mental Health</option>
-              <option value="physical-health">Physical Health</option>
-              <option value="college/school">College/School</option>
-              <option value="work">Work</option>
-              <option value="trauma">Trauma</option>
-              <option value="lifeChange">Life Milestones/Changes</option>
-              <option value="happiness/fulfillment">Happiness and Fulfillment</option>
-              <option value="passion/youth">Passion & Youth</option>
-
-            </select>
-            <br>
-            <small>Please share as vulnerably as you feel comfortably sharing, but do not include any personal
-              identifiers (i.e. SSN, addresses,...etc).<br>
-              Your stories will be received <em>anonymously.</em></small>
-
-
-            <div class="row">
-              <div class="col-8">
-
-                <div class="form-group">
-                  <textarea class="form-control" name="userstory" id="userstory" style="width: 900px;
-                  height: 200px;" oninput="updateCounter(this,1,100,50,1000);" required></textarea>
-                  <span id="userstory-sentence-counter">0 sentences (0 characters) detected</span>
-
-                </div>
-                <div id="userstory-length-warning" class="col-6 alert alert-danger" style="display: none;">
-                  Response must be at least 1 sentence, between 50 and 1000 characters (including spaces).
-                </div>
-              </div>
-
-            </div>
-            <p class="mt-3">
-              <small>Response must be <em>at least 10 sentences</em> and <em>1000 - 10,000 characters</em> including
-                spaces.</small>
-              <br>
-
-            </p>
-          </div> -->
         </div>
-        <!--End of Prompt of day 1-->
-
-        <!--Prompt of day 2-->
-
-        <!-- <div id = "prompt2place" class="row justify-content-center">
-
-          <div class="col-11 section" id="storywriting-section">
-            <h4><label for="summary">Part 2: Write your story "prompt 2"</label></h4>
-            <h5 class="text-justify" style="margin-top:.5rem">
-              1. Immerse in your emotions and describe a past experience that you may describe as either a high point or a low point in your life.
-              <br><br>A high point scene could be one that was an especially joyous, exciting, or wonderful moment in you life.
-              The latter, however, is an unpleasant or painful experince you had to go through.
-              <br>You might have encountered challenges or memorable events that could be realted to:</h5>
-                <ul>
-                  <li>Happiness and Satisfaction</li>
-                  <li>Motivation</li>
-                  <li>Gratitude</li>
-                  <li>Grief</li>
-                  <li>Loneliness</li>
-                  <li>Depression</li>
-                  <li>Anxiety</li>
-                </ul></h5>
-              
-              <h5 class="text-justify">Thinking back over your entire life, choose a scene, that could be positive or negative, which has had its impact in residing in your memory.
-              What happened in the event, where and when, who was involved, and what were you thinking and feeling?</h5>
-              <label for="sel1" class="form-label">Choose the topic that best desribes your emotions in the story:</label>
-              <select class="form-select" id="topics" name="topics" style="width:900px;">
-                <option disabled selected value="">-- please select --</option>
-                <option value="happiness">Happiness and Satisfaction</option>
-                <option value="motivation">Motivation</option>
-                <option value="gratitude">Gratitude</option>
-                <option value="grief">Grief</option>
-                <option value="Loneliness">Loneliness</option>
-                <option value="depression">Depression</option>
-                <option value="anxiety">Anxiety</option>
-              
-              </select> 
-              
-              <br>
-              <small>Please share as vulnerably as you feel comfortably sharing, but do not include any personal identifiers (i.e. SSN, addresses,...etc).<br>
-                Your stories will be received <em>anonymously.</em></small>
-
-
-            <div class="row">
-              <div class="col-8">
-
-                <div class="form-group">
-                  <textarea class="form-control" name="userstory" id="userstory" style="width: 900px;
-                  height: 200px;"
-                    oninput="updateCounter(this,1,100,50,1000);" required></textarea>
-                  <span id="mainevent-sentence-counter">0 sentences (0 characters) detected</span>
-
-                </div>
-                <div id="mainevent-length-warning" class="col-6 alert alert-danger" style="display: none;">
-                  Response must be at least 1 sentence, between 50 and 1000 characters (including spaces).
-                </div>
-              </div>
-
-            </div>
-            <p class="mt-3">
-              <small>Response must be <em>at least 10 sentences</em> and <em>1000 - 10,000 characters</em> including
-                spaces.</small>
-              <br>
-
-            </p>
-          </div>
-        </div>  -->
-
-        <!--End of Prompt of day 2-->
-
-        <!--Prompt of day 3-->
-        <!-- <div id = "prompt3place" class="row justify-content-center">
-
-          <div class="col-11 section" id="storywriting-section">
-            <h4><label for="summary">Part 2: Write your story "prompt 3"</label></h4>
-            <h5 class="text-justify" style="margin-top:.5rem">
-              1. In reviving your memories, you must have identified key moments or milestones in your life that have changed you from within. 
-              These life changes may have taught you lessons that you still stand by even if you had to learn them the hard way.
-              <br>You might have encountered challenges or memorable events that could be realted to:</h5>
-                <ul>
-                  <li>Motivation & Encouragement</li>
-                  <li>Overcoming and Resilience</li>
-                  <li>Happiness and Fulfillment</li>
-                  <li>Social Support & Gratitude</li>
-                  <li>Hard Work & Success</li>
-                 
-                  
-                </ul></h5>
-              <h5 class="text-justify">Describe a story that may identify a turning point in your life, which may have changed your mindset and thoughts. What is the moral of your story? How has this life lesson impacted your judgement and self awareness?</h5>
-              <label for="sel1" class="form-label">Choose the topic that best desribes the moral of your story:</label>
-              <select class="form-select" id="topics" name="topics" style="width:900px;">
-                <option disabled selected value="">-- please select --</option>
-                <option value="motivation">Motivation & Encouragement</option>
-                <option value="overcoming">Overcoming and Resilience</option>
-                <option value="happiness">Happiness and Fulfillment</option>
-                <option value="support">Social Support & Gratitude</option>
-                <option value="success">Hard Work & Success</option>
-              
-              </select> 
-              <br>
-              <small>Please share as vulnerably as you feel comfortably sharing, but do not include any personal identifiers (i.e. SSN, addresses,...etc).<br>
-                Your stories will be received <em>anonymously.</em></small>
-
-
-            <div class="row">
-              <div class="col-8">
-
-                <div class="form-group">
-                  <textarea class="form-control" name="userstory" id="userstory" style="width: 900px;
-                  height: 200px;"
-                    oninput="updateCounter(this,1,100,50,1000);" required></textarea>
-                  <span id="mainevent-sentence-counter">0 sentences (0 characters) detected</span>
-
-                </div>
-                <div id="mainevent-length-warning" class="col-6 alert alert-danger" style="display: none;">
-                  Response must be at least 1 sentence, between 50 and 1000 characters (including spaces).
-                </div>
-              </div>
-
-            </div>
-           
-            <p class="mt-3">
-              <small>Response must be <em>at least 10 sentences</em> and <em>1000 - 10,000 characters</em> including
-                spaces.</small>
-              <br>
-
-            </p>
-          </div>
-        </div> -->
-        <!--End of Prompt of day 3-->
-
+        
         <div id="rest-task">
           <div class="row justify-content-center">
             <div class="col-11 section" id="storyreading-section">
@@ -1658,8 +1464,9 @@
 
           </div>
         </div>
-        <div class="row justify-content-center">
-          <div class="form-group col-11 section">
+        <!-- demographic info -->
+        <div id = "demographic" class="row justify-content-center">
+          <!-- <div class="form-group col-11 section">
             <h4><label for="summary">Part 5: Tell us about yourself and this writing task</label></h4>
 
 
@@ -1756,7 +1563,7 @@
                 </label>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <div class="row justify-content-center mb-4">
@@ -1788,6 +1595,8 @@
 
   //my new script 
   var dragSrcEl = null;
+  var sessionNumber = 0;
+  var obj = {} ;
   var originalOrder = ['First story', 'Second story', 'Third story', 'Fourth story'];
   var sortedList = [];
 
@@ -1869,6 +1678,12 @@
     if (request.status == 200) {
       var response = JSON.parse(request.responseText);
       //document.getElementById("didalready").innerHTML += JSON.stringify(response)
+      document.getElementById("showParticipantID").innerHTML = response.showParticipantID;
+      sessionNumber = response.showSessionNum;
+      document.getElementById("showSessionNum").innerHTML = sessionNumber;
+      if (sessionNumber == 1){
+        document.getElementById("demographic").innerHTML = response.demographic;
+      }
       document.getElementById("promptPlace").innerHTML = response.prompt;
       document.getElementById("story1_formatted").innerHTML = response.story1;
       document.getElementById("story2_formatted").innerHTML = response.story2;
@@ -2133,43 +1948,68 @@
     var moral = document.getElementById("moral").value;
     //story date
     var storyDate = document.getElementById("date").value;
-    //demographic 
-    var gender = document.getElementById("annotatorGender").value;
-    var age = document.getElementById("age").value;
-    var race = document.getElementById("annotatorRace").value;
-    let empathyLevel;
-    const empathyOptions = document.getElementsByName(`empathylevel`);
-    for (const option of empathyOptions) {
-      if (option.checked) {
-        empathyLevel = option.value;
-        break;
-      }
-    }
     //feedback
     var feedback = document.getElementById("commentbox").value;
-
+    //demographic 
+    if (sessionNumber == 1){
+      var gender = document.getElementById("annotatorGender").value;
+      var age = document.getElementById("age").value;
+      var race = document.getElementById("annotatorRace").value;
+      let empathyLevel;
+      const empathyOptions = document.getElementsByName(`empathylevel`);
+      for (const option of empathyOptions) {
+        if (option.checked) {
+          empathyLevel = option.value;
+          break;
+        }
+      }
+      obj = {
+        //participantID: participantID,
+        valence: valence,
+        arousal: arousal,
+        mystoryTopic: mystoryTopic,
+        mystory: mystory,
+        survey1_answers: survey1_answers,
+        survey2_answers: survey2_answers,
+        survey3_answers: survey3_answers,
+        survey4_answers: survey4_answers,
+        mostEmpathizedOrder: mostEmpathizedOrder,
+        mainEvent: mainEvent,
+        narratorEmotions: narratorEmotions,
+        moral: moral,
+        storyDate: storyDate,
+        gender: gender,
+        age: age,
+        race: race,
+        empathyLevel: empathyLevel,
+        feedback: feedback
+      };
+    }
+    else {
+      obj = {
+        //participantID: participantID,
+        valence: valence,
+        arousal: arousal,
+        mystoryTopic: mystoryTopic,
+        mystory: mystory,
+        survey1_answers: survey1_answers,
+        survey2_answers: survey2_answers,
+        survey3_answers: survey3_answers,
+        survey4_answers: survey4_answers,
+        mostEmpathizedOrder: mostEmpathizedOrder,
+        mainEvent: mainEvent,
+        narratorEmotions: narratorEmotions,
+        moral: moral,
+        storyDate: storyDate,
+        //gender: gender,
+        // age: age,
+        // race: race,
+        // empathyLevel: empathyLevel,
+        feedback: feedback
+      };
+    }
+    
     //send POST request
-    var obj = {
-      //participantID: participantID,
-      valence: valence,
-      arousal: arousal,
-      mystoryTopic: mystoryTopic,
-      mystory: mystory,
-      survey1_answers: survey1_answers,
-      survey2_answers: survey2_answers,
-      survey3_answers: survey3_answers,
-      survey4_answers: survey4_answers,
-      mostEmpathizedOrder: mostEmpathizedOrder,
-      mainEvent: mainEvent,
-      narratorEmotions: narratorEmotions,
-      moral: moral,
-      storyDate: storyDate,
-      gender: gender,
-      age: age,
-      race: race,
-      empathyLevel: empathyLevel,
-      feedback: feedback
-    };
     var xmlHttp = new XMLHttpRequest();
     // var url = 'http://localhost:5192/submit/';
     var url = 'http://127.0.0.1:5000/submit/';
