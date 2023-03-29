@@ -14,7 +14,7 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 
 
-<title>Empathic stories</title>
+<title>Empathic Stories</title>
 
 <!-- I'm also including the script here, in case you wish to use it with your own URL/database. If you go that route, you'll need to set up a web interface to your DB that takes a worker ID and returns "1" if the worker is allowed to work on the HIT and "0" otherwise. Then you'll just replace "YOUR_URL" below to point to that web interface: -->
 
@@ -2178,6 +2178,11 @@
     request.setRequestHeader("Content-Type", "application/json");
     console.log(obj)
     request.send(JSON.stringify(obj));
+
+    if (request.status == 200) {
+            alert("Data submitted successfully!"); //comment this alert later (just for debugging)
+            window.location.href = "sessionDone.html";
+    }
 
     // request.onreadystatechange = function () {
     //   if (this.readyState == 4 && this.status == 200) {

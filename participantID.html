@@ -38,19 +38,24 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
         var xmlHttp = new XMLHttpRequest();
         var url = 'http://127.0.0.1:5000/participantIDInput/';
         var request = new XMLHttpRequest();
-        request.open('POST', url, true);
+        request.open('POST', url, false);
         request.setRequestHeader("Content-Type", "application/json");
         console.log(participantIDInput)
         console.log("i am before send")
         request.send(JSON.stringify({participantIDInput : participantIDInput}));
         console.log("i am after send")
 
-        request.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            alert("Data submitted successfully!");
+        if (request.status == 200) {
+            alert("Participant ID submitted successfully!"); //comment this alert later (just for debugging)
             window.location.href = "index.html";
         }
-        };
+
+        // request.onreadystatechange = function () {
+        // if (this.readyState == 4 && this.status == 200) {
+        //     alert("Data submitted successfully!");
+        //     window.location.href = "index.html";
+        // }
+        // };
     });
 </script>
  
