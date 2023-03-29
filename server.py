@@ -214,6 +214,15 @@ of the HIT by our checkers. Please answer honestly and to the best of your abili
 </div>
 '''
 
+dbprompt1 = '''
+Look back over your life, and tell us an emotional moment or experience you have had in the past.
+Whether it's a childhood memory, a turning point in your life, or a vivid adult experience, please
+describe the scene in detail.
+You might have encountered challenges or memorable events that could be realted to:
+[Family, Relationship/Friendship, Mental Health, Physical Health, College/School, Work, Trauma, Life Milestones/Changes, Happiness and Fulfillment, or Passion & Youth].
+Reflect on your emotions during the experience, describe how you felt across different events in the story, and explain its impact.
+What happened, when and where, who was involved, and what were you thinking and feeling?
+'''
 prompt2 = '''
 <div class="col-11 section" id="storywriting-section">
 <h4><label for="summary">Part 2: Write your story "prompt 2"</label></h4>
@@ -275,6 +284,16 @@ prompt2 = '''
 </div>
 '''
 
+dbprompt2 = '''
+Immerse in your emotions and describe a past experience that you may describe as either a high point or a low point in your life.
+A high point scene could be one that was an especially joyous, exciting, or wonderful moment in you life.
+The latter, however, is an unpleasant or painful experince you had to go through.
+You might have encountered challenges or memorable events that could be realted to:
+[Happiness and Satisfaction, Motivation, Gratitude, Grief, Loneliness, Depression, or Anxiety].
+Thinking back over your entire life, choose a scene, that could be positive or negative, which has had its impact in residing in your memory.
+What happened in the event, where and when, who was involved, and what were you thinking and feeling?
+'''
+
 prompt3 = '''
 <div class="col-11 section" id="storywriting-section">
 <h4><label for="summary">Part 2: Write your story "prompt 3"</label></h4>
@@ -331,6 +350,15 @@ prompt3 = '''
 
 </p>
 </div>
+'''
+
+dbprompt3 = '''
+In reviving your memories, you must have identified key moments or milestones in your life that have changed you from within. 
+These life changes may have taught you lessons that you still stand by even if you had to learn them the hard way.
+You might have encountered challenges or memorable events that could be realted to:
+[Motivation & Encouragement, Overcoming and Resilience, Happiness and Fulfillment, Social Support & Gratitude, or Hard Work & Success].
+Describe a story that may identify a turning point in your life, which may have changed your mindset and thoughts. What is the moral of your story?
+How has this life lesson impacted your judgement and self awareness?
 '''
 
 
@@ -505,7 +533,7 @@ def submit():
                        "race": race, "empathyLevel": empathyLevel}
         #######################################
         session1 = db.reference(id + '/s001')
-        session1.child("prompt").set("here store prompt1")
+        session1.child("prompt").set(dbprompt1)
         session1.child("demographic").set(demographic)
         session1.child("feedback").set(feedback)
         session1.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
@@ -521,7 +549,7 @@ def submit():
 
     elif currentSession == 2:
         session2 = db.reference(id + '/s002')
-        session2.child("prompt").set("here store prompt2")
+        session2.child("prompt").set(dbprompt2)
         # session2.child("demographic").set(demographic)
         session2.child("feedback").set(feedback)
         session2.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
@@ -537,7 +565,7 @@ def submit():
 
     elif currentSession == 3:
         session3 = db.reference(id + '/s003')
-        session3.child("prompt").set("here store prompt3")
+        session3.child("prompt").set(prompt3)
         # session3.child("demographic").set(demographic)
         session3.child("feedback").set(feedback)
         session3.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
