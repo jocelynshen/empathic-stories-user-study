@@ -144,7 +144,7 @@ demographic = '''
 
 prompt1 = '''
 <div class="col-11 section" id="storywriting-section">
-<h4><label for="summary">Part 2: Write your story "prompt 1"</label></h4>
+<h4><label for="summary">Part 2: Write your story</label></h4>
 <h5 class="text-justify" style="margin-top:.5rem">
     1. Look back over your life, and tell us an emotional moment or experience you have had in the past.
     Whether it's a childhood memory, a turning point in your life, or a vivid adult experience, please
@@ -225,7 +225,7 @@ What happened, when and where, who was involved, and what were you thinking and 
 '''
 prompt2 = '''
 <div class="col-11 section" id="storywriting-section">
-<h4><label for="summary">Part 2: Write your story "prompt 2"</label></h4>
+<h4><label for="summary">Part 2: Write your story</label></h4>
 <h5 class="text-justify" style="margin-top:.5rem">
     1. Immerse in your emotions and describe a past experience that you may describe as either a high point or a low point in your life.
     <br><br>A high point scene could be one that was an especially joyous, exciting, or wonderful moment in you life.
@@ -296,7 +296,7 @@ What happened in the event, where and when, who was involved, and what were you 
 
 prompt3 = '''
 <div class="col-11 section" id="storywriting-section">
-<h4><label for="summary">Part 2: Write your story "prompt 3"</label></h4>
+<h4><label for="summary">Part 2: Write your story</label></h4>
 <h5 class="text-justify" style="margin-top:.5rem">
     1. In reviving your memories, you must have identified key moments or milestones in your life that have changed you from within. 
     These life changes may have taught you lessons that you still stand by even if you had to learn them the hard way.
