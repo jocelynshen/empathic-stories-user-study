@@ -1678,17 +1678,22 @@
     if (request.status == 200) {
       var response = JSON.parse(request.responseText);
       //document.getElementById("didalready").innerHTML += JSON.stringify(response)
-      document.getElementById("showParticipantID").innerHTML = response.showParticipantID;
       sessionNumber = response.showSessionNum;
-      document.getElementById("showSessionNum").innerHTML = sessionNumber;
-      if (sessionNumber == 1){
-        document.getElementById("demographic").innerHTML = response.demographic;
+      if (sessionNumber == 4) {
+        window.location.replace("stop.html");
       }
-      document.getElementById("promptPlace").innerHTML = response.prompt;
-      document.getElementById("story1_formatted").innerHTML = response.story1;
-      document.getElementById("story2_formatted").innerHTML = response.story2;
-      document.getElementById("story3_formatted").innerHTML = response.story3;
-      document.getElementById("story4_formatted").innerHTML = response.story4;
+      else {
+        document.getElementById("showParticipantID").innerHTML = response.showParticipantID;
+        document.getElementById("showSessionNum").innerHTML = sessionNumber;
+        if (sessionNumber == 1){
+            document.getElementById("demographic").innerHTML = response.demographic;
+        }
+        document.getElementById("promptPlace").innerHTML = response.prompt;
+        document.getElementById("story1_formatted").innerHTML = response.story1;
+        document.getElementById("story2_formatted").innerHTML = response.story2;
+        document.getElementById("story3_formatted").innerHTML = response.story3;
+        document.getElementById("story4_formatted").innerHTML = response.story4;
+        }
       }
   }
 

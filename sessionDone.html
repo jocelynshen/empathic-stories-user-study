@@ -16,15 +16,45 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
     <div class="card d-flex justify-content-center">
         <h5 class="card-header bg-primary text-white">Empathic Stories User Study</h5>
         <div class="card-body">
-            <h5 class="card-text">You have finished your session.<br>
+
+            <p style="display: inline-block;" class="card-text">Participant ID:</p>
+            <p style="display: inline-block;" id = "showParticipantIDend"></p>
+           <br>
+            <p style="display: inline-block;" class="card-text">Session Number: </p>
+            <p style="display: inline-block;" id = "showSessionNumend"></p>
+
+            <h5 id="showMe"></h5>
+
+            <h5 id = "hideMe1" class="card-text">You have finished your session.<br>
                 If you would like to proceed now to your next session, click the button below to continue.</h5>
-                <p>Or, you can always come back later!</p>
+                <p id = "hideMe2" >Or, you can always come back later!</p>
             <div><p></p></div>
             <input type="submit" id="continueButton" class="btn btn-primary" value="Continue">
         </div>
     </div>
 </div>
 <script>
+    var xmlHttp = new XMLHttpRequest();
+    var url = 'http://127.0.0.1:5000/sessionDone/';
+    var request = new XMLHttpRequest();
+    request.open('GET', url, false);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(); 
+
+    if (request.status == 200) {
+      var response = JSON.parse(request.responseText);
+      //document.getElementById("didalready").innerHTML += JSON.stringify(response)
+      document.getElementById("showParticipantIDend").innerHTML = response.showParticipantID;
+      sessionNumber = response.showSessionNum;
+      document.getElementById("showSessionNumend").innerHTML = sessionNumber;
+      if (sessionNumber == 3){
+        document.getElementById("continueButton").hidden = true;
+        document.getElementById("hideMe1").hidden = true;
+        document.getElementById("hideMe2").hidden = true;
+        document.getElementById("showMe").innerHTML = "You have completed your third and final session.<br>Thank you for completing this study! Your time and effort are highly appreciated.";
+      }
+    }
+
     var continueButton = document.getElementById("continueButton");
     continueButton.addEventListener("click", function(event) {
         event.preventDefault();

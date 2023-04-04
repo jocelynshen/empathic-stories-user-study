@@ -2,7 +2,7 @@ from firebase_admin import credentials, firestore, initialize_app, db
 import firebase_admin
 import sys
 import random
-from flask import Flask, make_response
+from flask import Flask, make_response, redirect
 from flask import abort, request, jsonify
 import json
 # import tensorflow as tf
@@ -386,6 +386,9 @@ def get_participant_id():
         db.reference(participantIDInput + "/currentSession").set(2)
     elif currentSession == 2:
         db.reference(participantIDInput + "/currentSession").set(3)
+    elif currentSession == 3:
+        db.reference(participantIDInput + "/currentSession").set(4)
+
 
     return "success"
 
@@ -405,6 +408,13 @@ def get_participant_id():
 #     return json.dumps(info['gender'])
 # test
 
+@app.route('/sessionDone/', methods=["GET", "POST"])
+def sessionDone():
+    ref = db.reference(id)
+    currentSession = db.reference(id + "/currentSession").get()
+    dict = {'showParticipantID': id, 'showSessionNum': currentSession}
+    return json.dumps(dict)
+            
 
 @app.route('/getPrompt/', methods=["GET", "POST"])
 def get_prompt_and_stories():
@@ -482,6 +492,9 @@ def get_prompt_and_stories():
         story4 = story4session3random
         dict = {'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
                 'story2': story2, 'story3': story3, 'story4': story4}
+        
+    elif currentSession == 4:
+        dict = {'showParticipantID': id, 'showSessionNum': currentSession}
 
     return json.dumps(dict)
 
