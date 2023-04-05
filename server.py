@@ -69,7 +69,7 @@ demographic = '''
     <div class="form-group row">
         <label for="annotatorAge" class="col-sm-2 col-form-label">Age (years)</label>
         <div class="col-sm-4">
-        <input type="number" id="age" name="age" placeholder="-" class="form-control" min="18" max="100">
+        <input type="number" id="age" name="age" placeholder="-" class="form-control" min="18" max="100" required>
 
         </div>
         <div class="col-sm-4"><small>Leave blank if you do not wish to disclose</small></div>
@@ -106,22 +106,22 @@ demographic = '''
             required> <label class="form-check-label" for="notVeryTrue">&nbsp; Not very true of me </label>
         </div>
         <div class="form-check lickert">
-        <input class="form-check-input right" type="radio" name="empathylevel" id="notTrue" value="2">
+        <input class="form-check-input right" type="radio" name="empathylevel" id="notTrue" value="2" required>
         <label class="form-check-label" for="notTrue">&nbsp; Not true</label>
 
         </div>
         <div class="form-check lickert">
-        <input class="form-check-input right" type="radio" name="empathylevel" id="iamneutral" value="3">
+        <input class="form-check-input right" type="radio" name="empathylevel" id="iamneutral" value="3" required>
         <label class="form-check-label" for="iamneutral">&nbsp; Neutral</label>
 
         </div>
         <div class="form-check lickert">
-        <input class="form-check-input right" type="radio" name="empathylevel" id="true" value="4">
+        <input class="form-check-input right" type="radio" name="empathylevel" id="true" value="4" required>
         <label class="form-check-label" for="true">&nbsp; True</label>
 
         </div>
         <div class="form-check lickert">
-        <input class="form-check-input" type="radio" name="empathylevel" id="veryTrue" value="5">
+        <input class="form-check-input" type="radio" name="empathylevel" id="veryTrue" value="5" required>
         <label class="form-check-label" for="veryTrue">&nbsp; Very true of me</label>
         </div>
 
@@ -166,7 +166,7 @@ prompt1 = '''
     different events in the story, and explain its impact. What happened, when and where, who
     was involved, and what were you thinking and feeling?</h5>
 <label for="sel1" class="form-label">Choose the most relevant topic that desribes your story:</label>
-<select class="form-select" id="topics" name="topics" style="width:900px;">
+<select class="form-select" id="topics" name="topics" style="width:900px;" required>
     <option disabled selected value="">-- please select --</option>
     <option value="family">Family</option>
     <option value="relationship/friendship">Relationship/Friendship</option>
@@ -244,7 +244,7 @@ prompt2 = '''
     <h5 class="text-justify">Thinking back over your entire life, choose a scene, that could be positive or negative, which has had its impact in residing in your memory.
     What happened in the event, where and when, who was involved, and what were you thinking and feeling?</h5>
     <label for="sel1" class="form-label">Choose the topic that best desribes your emotions in the story:</label>
-    <select class="form-select" id="topics" name="topics" style="width:900px;">
+    <select class="form-select" id="topics" name="topics" style="width:900px;" required>
     <option disabled selected value="">-- please select --</option>
     <option value="happiness">Happiness and Satisfaction</option>
     <option value="motivation">Motivation</option>
@@ -312,7 +312,7 @@ prompt3 = '''
     </ul></h5>
     <h5 class="text-justify">Describe a story that may identify a turning point in your life, which may have changed your mindset and thoughts. What is the moral of your story? How has this life lesson impacted your judgement and self awareness?</h5>
     <label for="sel1" class="form-label">Choose the topic that best desribes the moral of your story:</label>
-    <select class="form-select" id="topics" name="topics" style="width:900px;">
+    <select class="form-select" id="topics" name="topics" style="width:900px;" required>
     <option disabled selected value="">-- please select --</option>
     <option value="motivation">Motivation & Encouragement</option>
     <option value="overcoming">Overcoming and Resilience</option>
