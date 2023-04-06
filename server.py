@@ -48,7 +48,7 @@ demographic = '''
 
     <h5 class="mt-4">1. How do you identify?<br><small>Select "prefer not to answer" if needed.</small></h5>
     <div class="form-group row mt-3">
-        <label for="gender" class="col-sm-2 col-form-label">Gender identity</label>
+        <label for="gender" class="col-sm-2 col-form-label">Gender identity*</label>
         <div class="col-sm-4">
         <select id="annotatorGender" name="annotatorGender" class="form-control" style="font-size: .85rem;"
             required>
@@ -67,7 +67,7 @@ demographic = '''
         </div>
     </div>
     <div class="form-group row">
-        <label for="annotatorAge" class="col-sm-2 col-form-label">Age (years)</label>
+        <label for="annotatorAge" class="col-sm-2 col-form-label">Age (years)*</label>
         <div class="col-sm-4">
         <input type="number" id="age" name="age" placeholder="-" class="form-control" min="18" max="100" required>
 
@@ -76,7 +76,7 @@ demographic = '''
 
     </div>
     <div class="form-group row">
-        <label for="race" class="col-sm-2 col-form-label">Race/ethnicity</label>
+        <label for="race" class="col-sm-2 col-form-label">Race/ethnicity*</label>
         <div class="col-sm-4">
         <select id="annotatorRace" name="annotatorRace" class="form-control" style="font-size: .85rem;"
             required>
@@ -97,7 +97,7 @@ demographic = '''
             currently.</small></div>
     </div>
     <div class="mb-3">
-        <h5 class="mt-4">2. To what extent does the following statement describe you:</h5>
+        <h5 class="mt-4">2. To what extent does the following statement describe you:*</h5>
         <label for="empathy" class="form-label">
         <h5>“I am an empathetic person.” </h5>
         </label>
@@ -135,7 +135,7 @@ demographic = '''
             I certify that my responses contain no personally identifiable information (name, address, SSN,
             etc)
             about
-            myself or anyone else.
+            myself or anyone else. *
         </label>
         </div>
     </div>
@@ -165,7 +165,7 @@ prompt1 = '''
 <h5 class="text-justify">Reflect on your emotions during the experience, describe how you felt across
     different events in the story, and explain its impact. What happened, when and where, who
     was involved, and what were you thinking and feeling?</h5>
-<label for="sel1" class="form-label">Choose the most relevant topic that desribes your story:</label>
+<label for="sel1" class="form-label">Choose the most relevant topic that desribes your story:*</label>
 <select class="form-select" id="topics" name="topics" style="width:900px;" required>
     <option disabled selected value="">-- please select --</option>
     <option value="family">Family</option>
@@ -183,7 +183,7 @@ prompt1 = '''
 <br>
 <small>Please share as vulnerably as you feel comfortably sharing, but do not include any personal
     identifiers (i.e. SSN, addresses,...etc).<br>
-    Your stories will be received <em>anonymously.</em></small>
+    Your stories will be received <em>anonymously.</em>*</small>
 
 
 <div class="row">
@@ -243,7 +243,7 @@ prompt2 = '''
     
     <h5 class="text-justify">Thinking back over your entire life, choose a scene, that could be positive or negative, which has had its impact in residing in your memory.
     What happened in the event, where and when, who was involved, and what were you thinking and feeling?</h5>
-    <label for="sel1" class="form-label">Choose the topic that best desribes your emotions in the story:</label>
+    <label for="sel1" class="form-label">Choose the topic that best desribes your emotions in the story:*</label>
     <select class="form-select" id="topics" name="topics" style="width:900px;" required>
     <option disabled selected value="">-- please select --</option>
     <option value="happiness">Happiness and Satisfaction</option>
@@ -258,7 +258,7 @@ prompt2 = '''
     
     <br>
     <small>Please share as vulnerably as you feel comfortably sharing, but do not include any personal identifiers (i.e. SSN, addresses,...etc).<br>
-    Your stories will be received <em>anonymously.</em></small>
+    Your stories will be received <em>anonymously.</em>*</small>
 
 
 <div class="row">
@@ -311,7 +311,7 @@ prompt3 = '''
         
     </ul></h5>
     <h5 class="text-justify">Describe a story that may identify a turning point in your life, which may have changed your mindset and thoughts. What is the moral of your story? How has this life lesson impacted your judgement and self awareness?</h5>
-    <label for="sel1" class="form-label">Choose the topic that best desribes the moral of your story:</label>
+    <label for="sel1" class="form-label">Choose the topic that best desribes the moral of your story:*</label>
     <select class="form-select" id="topics" name="topics" style="width:900px;" required>
     <option disabled selected value="">-- please select --</option>
     <option value="motivation">Motivation & Encouragement</option>
@@ -323,7 +323,7 @@ prompt3 = '''
     </select> 
     <br>
     <small>Please share as vulnerably as you feel comfortably sharing, but do not include any personal identifiers (i.e. SSN, addresses,...etc).<br>
-    Your stories will be received <em>anonymously.</em></small>
+    Your stories will be received <em>anonymously.</em>*</small>
 
 
 <div class="row">
@@ -514,7 +514,7 @@ def submit():
     mainEvent = request.json['mainEvent']
     narratorEmotions = request.json['narratorEmotions']
     moral = request.json['moral']
-    storyDate = request.json['storyDate']
+    fullDate = request.json['fullDate']
     # gender = request.json['gender']
     # age = request.json['age']
     # race = request.json['race']
@@ -524,7 +524,7 @@ def submit():
     # demographic = {"gender": gender, "age": age,
     #                "race": race, "empathyLevel": empathyLevel}
     mystoryQuestions = {"mainEvent": mainEvent,
-                        "narratorEmotions": narratorEmotions, "moral": moral, "storyDate": storyDate}
+                        "narratorEmotions": narratorEmotions, "moral": moral, "fullDate": fullDate}
     reflection = {"valence": valence, "arousal": arousal}
     story1 = {"condition": "condition1", "story": "this is story1",
               "survey1questions": survey1_answers}
