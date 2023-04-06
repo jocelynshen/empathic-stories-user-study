@@ -420,7 +420,7 @@
                         <input class="form-check-input right" type="checkbox" name="survey1-10[]" id="s1q10_option4"
                           value="other" onchange="getOtherValue1()" required>
                         <label class="form-check-label" for="s1q10_option4">&nbsp; Other</label>
-                        <input type="text" style="height:20px;" id="otherInput-1-10" disabled>
+                        <input type="text" style="height:20px; font-size:12px;" id="otherInput-1-10" disabled>
 
                       </div>
                       <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? Please specify. *</h5>
@@ -709,7 +709,7 @@
                         <input class="form-check-input right" type="checkbox" name="survey2-10[]" id="s2q10_option4"
                           value="other" onchange="getOtherValue2()" required>
                         <label class="form-check-label" for="s2q10_option4">&nbsp; Other</label>
-                        <input type="text" style="height:20px;" id="otherInput-2-10" disabled>
+                        <input type="text" style="height:20px; font-size:12px;" id="otherInput-2-10" disabled>
 
 
                       </div>
@@ -1001,7 +1001,7 @@
                         <input class="form-check-input right" type="checkbox" name="survey3-10[]" id="s3q10_option4"
                           value="other" onchange="getOtherValue3()" required>
                         <label class="form-check-label" for="s3q10_option4">&nbsp; Other</label>
-                        <input type="text" style="height:20px;" id="otherInput-3-10" disabled>
+                        <input type="text" style="height:20px; font-size:12px;" id="otherInput-3-10" disabled>
 
 
                       </div>
@@ -1296,7 +1296,7 @@
                       <input class="form-check-input right" type="checkbox" name="survey4-10[]" id="s4q10_option4"
                         value="other" onchange="getOtherValue4()" required>
                       <label class="form-check-label" for="s4q10_option4">&nbsp; Other</label>
-                      <input type="text" style="height:20px;" id="otherInput-4-10" disabled>
+                      <input type="text" style="height:20px; font-size:12px;" id="otherInput-4-10" disabled>
 
 
                     </div>
@@ -1325,10 +1325,16 @@
                   <div class="row">
                     <div class="col-12">
                       <h5>
-                        1. Drag and drop the items below to rank the 4 stories in the order that you empathized with
+                        1. Drag and drop the items below to rank the stories in the order that you empathized with
                         most to least: *
                       </h5>
-
+                      <p>Here are the 4 stories that you have been presented with in this session:</p>
+                      <ul>
+                        <li id="randomStory1"></li>
+                        <li id="randomStory2"></li>
+                        <li id="randomStory3"></li>
+                        <li id="randomStory4"></li>
+                      </ul>
                       <ul id="sortable">
                         <li id="item1" draggable="true">First story</li>
                         <li id="item2" draggable="true">Second story</li>
@@ -1445,7 +1451,7 @@
 
             </div>
             <h5 class="mt-4">
-              4. How many [days/months] ago was this story that you shared? *
+              4. How long ago was this story that you shared? *
             </h5>
             <div class='row'>
               <div class = 'input-group col-4'>
@@ -1726,6 +1732,10 @@
         document.getElementById("story2_formatted").innerHTML = response.story2;
         document.getElementById("story3_formatted").innerHTML = response.story3;
         document.getElementById("story4_formatted").innerHTML = response.story4;
+        document.getElementById("randomStory1").innerHTML = response.story1;
+        document.getElementById("randomStory2").innerHTML = response.story2;
+        document.getElementById("randomStory3").innerHTML = response.story3;
+        document.getElementById("randomStory4").innerHTML = response.story4;
         }
       }
   }
