@@ -43,7 +43,7 @@ model4 = ["model4story1", "model4story2", "model4story3", "model4story4",
 
 demographic = '''
 <div class="form-group col-11 section">
-    <h4><label for="summary">Part 5: Tell us about yourself and this writing task</label></h4>
+    <h4><label for="summary">Part 4: Tell us about yourself and this writing task</label></h4>
 
 
     <h5 class="mt-4">1. How do you identify?<br><small>Select "prefer not to answer" if needed.</small></h5>

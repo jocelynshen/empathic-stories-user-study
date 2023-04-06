@@ -44,104 +44,234 @@
 
       <div id="main-task">
 
-        <div class="row justify-content-center">
-          <div class="col-11 section" id="reflection-section">
-            <h4 class="mt-4"><label for="story">Part 1: Reflect on your emotions right now</label></h4>
-            <h6 class="mt-4">Valence (how pleasant or unpleasant you are feeling) *</h6>
-            <div class="form-check form-check-inline ml-3 lickert">
-              <label class="form-check-label" for="val1">Unpleasant &nbsp;</label>
-              <input class="form-check-input right" type="radio" name="valence" id="val1" value="1" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="val2">&nbsp;</label>
-              <input class="form-check-input right" type="radio" name="valence" id="val2" value="2" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="val3">&nbsp;</label>
-              <input class="form-check-input right" type="radio" name="valence" id="val3" value="3" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="val4">&nbsp;</label>
-              <input class="form-check-input right" type="radio" name="valence" id="val4" value="4" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="val5">&nbsp;</label>
-              <input class="form-check-input" type="radio" name="valence" id="val5" value="5" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="val6">&nbsp; </label>
+        <!--Start of page 1-->
+        <div id="page1" name="pages">
+          <!--reflection-->
+          <div class="row justify-content-center">
+            <div class="col-11 section" id="reflection-section">
+              <h4 class="mt-4"><label for="story">Part 1: Reflect on your emotions right now</label></h4>
+              <h6 class="mt-4">Valence (how pleasant or unpleasant you are feeling) *</h6>
+              <div class="form-check form-check-inline ml-3 lickert">
+                <label class="form-check-label" for="val1">Unpleasant &nbsp;</label>
+                <input class="form-check-input right" type="radio" name="valence" id="val1" value="1" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="val2">&nbsp;</label>
+                <input class="form-check-input right" type="radio" name="valence" id="val2" value="2" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="val3">&nbsp;</label>
+                <input class="form-check-input right" type="radio" name="valence" id="val3" value="3" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="val4">&nbsp;</label>
+                <input class="form-check-input right" type="radio" name="valence" id="val4" value="4" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="val5">&nbsp;</label>
+                <input class="form-check-input" type="radio" name="valence" id="val5" value="5" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="val6">&nbsp; </label>
 
-              <input class="form-check-input" type="radio" name="valence" id="val6" value="6" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="val7">&nbsp; </label>
+                <input class="form-check-input" type="radio" name="valence" id="val6" value="6" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="val7">&nbsp; </label>
 
-              <input class="form-check-input" type="radio" name="valence" id="val7" value="7" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="val8">&nbsp; </label>
+                <input class="form-check-input" type="radio" name="valence" id="val7" value="7" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="val8">&nbsp; </label>
 
-              <input class="form-check-input" type="radio" name="valence" id="val8" value="8" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="val9">&nbsp;</label>
-              <input class="form-check-input" type="radio" name="valence" id="val9" value="9" required>
-              <label class="form-check-label" for="val9">&nbsp; Extremely happy</label>
-            </div>
+                <input class="form-check-input" type="radio" name="valence" id="val8" value="8" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="val9">&nbsp;</label>
+                <input class="form-check-input" type="radio" name="valence" id="val9" value="9" required>
+                <label class="form-check-label" for="val9">&nbsp; Extremely happy</label>
+              </div>
 
-            <h6 class="mt-4">Arousal (how strong your feelings are) *</h6>
-            <div class="form-check form-check-inline ml-3 lickert">
-              <label class="form-check-label" for="arousal1">Sleepy/tired &nbsp;</label>
-              <input class="form-check-input right" type="radio" name="arousal" id="arousal1" value="1" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="arousal2">&nbsp;</label>
-              <input class="form-check-input right" type="radio" name="arousal" id="arousal2" value="2" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="arousal3">&nbsp;</label>
-              <input class="form-check-input right" type="radio" name="arousal" id="arousal3" value="3" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="arousal4">&nbsp;</label>
-              <input class="form-check-input right" type="radio" name="arousal" id="arousal4" value="4" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="arousal5">&nbsp;</label>
-              <input class="form-check-input" type="radio" name="arousal" id="arousal5" value="5" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="arousal6">&nbsp; </label>
+              <h6 class="mt-4">Arousal (how strong your feelings are) *</h6>
+              <div class="form-check form-check-inline ml-3 lickert">
+                <label class="form-check-label" for="arousal1">Sleepy/tired &nbsp;</label>
+                <input class="form-check-input right" type="radio" name="arousal" id="arousal1" value="1" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="arousal2">&nbsp;</label>
+                <input class="form-check-input right" type="radio" name="arousal" id="arousal2" value="2" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="arousal3">&nbsp;</label>
+                <input class="form-check-input right" type="radio" name="arousal" id="arousal3" value="3" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="arousal4">&nbsp;</label>
+                <input class="form-check-input right" type="radio" name="arousal" id="arousal4" value="4" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="arousal5">&nbsp;</label>
+                <input class="form-check-input" type="radio" name="arousal" id="arousal5" value="5" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="arousal6">&nbsp; </label>
 
-              <input class="form-check-input" type="radio" name="arousal" id="arousal6" value="6" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="arousal7">&nbsp; </label>
+                <input class="form-check-input" type="radio" name="arousal" id="arousal6" value="6" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="arousal7">&nbsp; </label>
 
-              <input class="form-check-input" type="radio" name="arousal" id="arousal7" value="7" required>
-            </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="arousal8">&nbsp; </label>
+                <input class="form-check-input" type="radio" name="arousal" id="arousal7" value="7" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="arousal8">&nbsp; </label>
 
-              <input class="form-check-input" type="radio" name="arousal" id="arousal8" value="8" required>
+                <input class="form-check-input" type="radio" name="arousal" id="arousal8" value="8" required>
+              </div>
+              <div class="form-check form-check-inline lickert">
+                <label class="form-check-label" for="arousal9">&nbsp;</label>
+                <input class="form-check-input" type="radio" name="arousal" id="arousal9" value="9" required>
+                <label class="form-check-label" for="arousal9">&nbsp; Energetic/Aroused</label>
+              </div>
             </div>
-            <div class="form-check form-check-inline lickert">
-              <label class="form-check-label" for="arousal9">&nbsp;</label>
-              <input class="form-check-input" type="radio" name="arousal" id="arousal9" value="9" required>
-              <label class="form-check-label" for="arousal9">&nbsp; Energetic/Aroused</label>
+          </div>
+          <br>
+
+          <!--Prompt-->
+          <div id = "promptPlace" class="row justify-content-center">
+          </div>
+
+          <!--Part 4-->
+          <div class="row justify-content-center">
+            <div id = "part4" class="section col-11">
+              <h4><label for="summary">Part 3: Answer questions about the story you wrote</label></h4>
+              <h5 style="margin-top:.5rem">
+                1. What is the <b style="color: orange">main event</b> being described in the story? *
+              </h5>
+              <p class="mt-3">
+                <small>Response must be <em>at least 1 sentence</em> and <em>50-1000 characters</em> including
+                  spaces.</small>
+                <br>
+
+              </p>
+              <div class="row">
+                <div class="col-8">
+
+                  <div class="form-group">
+                    <textarea class="form-control" name="mainevent" id="mainevent" rows="5"
+                      oninput="updateCounter(this,1,100,50,1000);" required></textarea>
+                    <span id="mainevent-sentence-counter">0 sentences (0 characters) detected</span>
+
+                  </div>
+                  <div id="mainevent-length-warning" class="col-6 alert alert-danger" style="display: none;">
+                    Response must be at least 1 sentence, between 50 and 1000 characters (including spaces).
+                  </div>
+                </div>
+
+              </div>
+
+              <h5 class="mt-4">
+                2. Describe the emotions the <b style="color: purple">narrator</b> feels <b>before and after</b> the
+                main
+                event and <b>why</b>
+                they feel
+                this way. *<br> Answer as
+                though you were
+                explaining how the narrator felt to someone who knew nothing about the situation. <br>
+
+              </h5>
+              <!-- <p style="color:red; font-weight: bold;">Copying/pasting or using automatic tools (e.g. ChatGPT, GPT-3) to
+                answer this question will result in
+                rejection
+                of the HIT by our checkers. Please answer honestly and to the best of your ability.</p> -->
+              <p class="mt-3">
+                <small>Response must be <em>at least 2 sentences</em> and <em>150-1000 characters</em> including
+                  spaces.</small>
+                <br>
+
+              </p>
+              <div class="row">
+                <div class="col-8">
+
+                  <div class="form-group">
+                    <textarea class="form-control" name="emotion1" id="emotion1"
+                      oninput="updateCounter(this,2,100,150,1000);" rows="5" required></textarea>
+                    <span id="emotion1-sentence-counter">0 sentences (0 characters) detected</span>
+
+                  </div>
+                  <div id="emotion1-length-warning" class="col-6 alert alert-danger" style="display: none;">
+                    Response must be at least 2 sentences, between 150 and 1000 characters (including spaces).
+                  </div>
+
+                </div>
+
+              </div>
+
+              <h5 class="mt-4">
+                3. What is the <b style="color: green">high-level lesson</b> or takeaway (ie. moral) of the story? *<br>
+
+              </h5>
+              <!-- <p style="color:red; font-weight: bold;">Copying/pasting or using automatic tools (e.g. ChatGPT, GPT-3) to
+                answer this question will result in
+                rejection
+                of the HIT by our checkers. Please answer honestly and to the best of your ability.</p> -->
+              <p class="mt-3">
+                <small>Response must be <em>at least 1 sentence</em> and <em>100-1000 characters</em> including
+                  spaces.</small>
+              </p>
+              <div class="row">
+                <div class="col-8">
+
+                  <div class="form-group">
+                    <textarea class="form-control" name="moral" id="moral" rows="5"
+                      oninput="updateCounter(this,1,100,100,1000);" required></textarea>
+                    <span id="moral-sentence-counter">0 sentences (0 characters) detected</span>
+
+                  </div>
+                  <div id="moral-length-warning" class="col-6 alert alert-danger" style="display: none;">
+                    Response must be at least 1 sentence, between 100 and 1000 characters (including spaces).
+                  </div>
+                </div>
+
+              </div>
+              <h5 class="mt-4">
+                4. How long ago was this story that you shared? *
+              </h5>
+              <div class='row'>
+                <div class = 'input-group col-4'>
+                  <input type="'number" class="form-control" min ="0" max ="31" id="date" name="date" placeholder ='-' required>
+                  <div class="input-group-append">
+                    <select class="form-control dropdown-toggle" id="dateDropDown" name="dateDropDown" required>
+                      <option disabled selected value="">-- please select --</option>
+                      <option value="days">Days</option>
+                      <option value="weeks">Weeks</option>
+                      <option value="months">Months</option>
+                      <option value="years">Years</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                
+                <div><p></p><br></div>
+              </div>
+              <!-- demographic info -->
+              <div id = "demographic" class="row justify-content-center">
+              </div>
+              <div class='text-center'>
+              <button type="button" class="btn btn-lg btn-primary" onclick="showPage('page2')">Next</button>
+              </div>
+              <p></p>
             </div>
           </div>
         </div>
-        <br>
-
-        <!--Prompt-->
-        <div id = "promptPlace" class="row justify-content-center">
-        </div>
+        <!--End of page 1-->
         
         <div id="rest-task">
           <div class="row justify-content-center">
             <div class="col-11 section" id="storyreading-section">
-              <h4><label for="story">Part 3-A: Read the following 3 stories carefully and answer questions about
+              <!--Page 2-->
+              <div id="page2" name="pages" style="display:none">
+              <h4><label for="story">Part 5-A: Read the following 4 stories carefully and answer questions about
                   them</label></h4>
 
               <!-- <p style="color:blue">${story1_formatted}</p> -->
@@ -432,10 +562,20 @@
                   </div>
                 </p>
               </div>
+              <!-- <input type="button" class="btn btn-primary" value="Previous" onclick="showPage('page1')"> -->
+              <div class='text-center'>
+                <p></p>
+              <input type="button" class="btn btn-lg btn-primary" value="Next" onclick="showPage('page3')">
+              </div>
               <!--Survey on story 1 ends here-->
+            </div>
+            <!--End of Page 2-->
 
               <!--Survey on story 2-->
               <!-- <p style="color:blue">${story2_formatted}</p> -->
+
+              <!--Page 3-->
+              <div id="page3" name="pages" style="display:none">
               <p id="story2_formatted" style="color:blue"></p>
               <h5 class="card-header" style="background: #e9ecef;">
                 Survey on story 2
@@ -723,10 +863,18 @@
                   </div>
                 </p>
               </div>
+              <!-- <input type="button" class="btn btn-primary" value="Previous" onclick="showPage('page2')"> -->
+              <div class='text-center'>
+                <p></p>
+              <input type="button" class="btn btn-lg btn-primary" value="Next" onclick="showPage('page4')">
+              </div>
               <!--Survey on story 2 ends here-->
+            </div>
+            <!--End of page 3-->
 
               <!--Survey on story 3-->
-
+              <!--Page 4-->
+              <div id="page4" name="pages" style="display:none">
               <!-- <p style="color:blue">${story3_formatted}</p> -->
               <p id = "story3_formatted" style="color:blue"></p>
               <h5 class="card-header" style="background: #e9ecef;">
@@ -1017,11 +1165,18 @@
               </div>
               </p>
             
-
+              <!-- <input type="button" class="btn btn-primary" value="Previous" onclick="showPage('page3')"> -->
+              <div class='text-center'>
+                <p></p>
+              <input type="button" class="btn btn-lg btn-primary" value="Next" onclick="showPage('page5')">
+              </div>
             <!--Survey on story 3 ends here-->
+          </div>
+          <!--End of page 4-->
 
             <!--Survey on story 4-->
-
+            <!--page 5-->
+            <div id="page5" name="pages" style="display:none">
             <!-- <p style="color:blue">${story4_formatted}</p> -->
             <p id = "story4_formatted" style="color:blue"></p>
             <h5 class="card-header" style="background: #e9ecef;">
@@ -1310,324 +1465,100 @@
                 </div>
               </p>
             </div>
-          </div>
+            <!-- <input type="button" class="btn btn-primary" value="Previous" onclick="showPage('page4')"> -->
+            <div class='text-center'>
+              <p></p>
+            <input type="button" class="btn btn-lg btn-primary" value="Next" onclick="showPage('page6')">
+            </div>
+           </div>
 
             <!--Survey on story 4 ends here-->
+          </div>
+          <!--End of page 5-->
 
-            <!--Part 3-B-->
+            <!--Part 5-B-->
             <div><p></p></div>
-            <div class=" col-11 section">
-              <h5>Part 3-B: Compare the four stories you have read</h5>
+            <!--page 6-->
+            <div id="page6" name="pages" style="display:none">
+              <div class=" col-11">
+                <h5>Part 5-B: Compare the four stories that you have read</h5>
 
 
-              <div class="card-body collapse show bg-light" id="fullInstructions">
-                <p class="card-text">
-                  <div class="row">
-                    <div class="col-12">
-                      <h5>
-                        1. Drag and drop the items below to rank the stories in the order that you empathized with
-                        most to least: *
-                      </h5>
-                      <p>Here are the 4 stories that you have been presented with in this session:</p>
-                      <ul>
-                        <li id="randomStory1"></li>
-                        <li id="randomStory2"></li>
-                        <li id="randomStory3"></li>
-                        <li id="randomStory4"></li>
-                      </ul>
-                      <ul id="sortable">
-                        <li id="item1" draggable="true">First story</li>
-                        <li id="item2" draggable="true">Second story</li>
-                        <li id="item3" draggable="true">Third story</li>
-                        <li id="item4" draggable="true">Fourth story</li>
-                      </ul>
-                      <!-- <button  onclick="clickme()">click me</button>
-                      <p id="clickmee"></p> -->
+                <div class="card-body collapse show bg-light" id="fullInstructions">
+                  <p class="card-text">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5>
+                          1. Drag and drop the items below to rank the stories in the order that you empathized with
+                          most to least: *
+                        </h5>
+                        <p>Here are the 4 stories that you have been presented with in this session:</p>
+                        <ul>
+                          <li id="randomStory1"></li>
+                          <li id="randomStory2"></li>
+                          <li id="randomStory3"></li>
+                          <li id="randomStory4"></li>
+                        </ul>
+                        <ul id="sortable">
+                          <li id="item1" draggable="true">First story</li>
+                          <li id="item2" draggable="true">Second story</li>
+                          <li id="item3" draggable="true">Third story</li>
+                          <li id="item4" draggable="true">Fourth story</li>
+                        </ul>
+                        <!-- <button  onclick="clickme()">click me</button>
+                        <p id="clickmee"></p> -->
 
-                      <!--End-->
+                        <!--End-->
+                      </div>
                     </div>
-                  </div>
-                </p>
-              </div>
-            </div>
-
-
-          </div>
-
-          <div><p></p></div>
-          <div class="section">
-            <h4><label for="summary">Part 4: Answer questions about the story you wrote</label></h4>
-            <h5 style="margin-top:.5rem">
-              1. What is the <b style="color: orange">main event</b> being described in the story? *
-            </h5>
-            <p class="mt-3">
-              <small>Response must be <em>at least 1 sentence</em> and <em>50-1000 characters</em> including
-                spaces.</small>
-              <br>
-
-            </p>
-            <div class="row">
-              <div class="col-8">
-
-                <div class="form-group">
-                  <textarea class="form-control" name="mainevent" id="mainevent" rows="5"
-                    oninput="updateCounter(this,1,100,50,1000);" required></textarea>
-                  <span id="mainevent-sentence-counter">0 sentences (0 characters) detected</span>
-
+                  </p>
                 </div>
-                <div id="mainevent-length-warning" class="col-6 alert alert-danger" style="display: none;">
-                  Response must be at least 1 sentence, between 50 and 1000 characters (including spaces).
+              </div>
+              <div><p></p></div>
+              <div class="row justify-content-center">
+                <div class="form-group col-11 section">
+
                 </div>
               </div>
 
-            </div>
-
-
-
-
-
-            <h5 class="mt-4">
-              2. Describe the emotions the <b style="color: purple">narrator</b> feels <b>before and after</b> the
-              main
-              event and <b>why</b>
-              they feel
-              this way. *<br> Answer as
-              though you were
-              explaining how the narrator felt to someone who knew nothing about the situation. <br>
-
-            </h5>
-            <!-- <p style="color:red; font-weight: bold;">Copying/pasting or using automatic tools (e.g. ChatGPT, GPT-3) to
-              answer this question will result in
-              rejection
-              of the HIT by our checkers. Please answer honestly and to the best of your ability.</p> -->
-            <p class="mt-3">
-              <small>Response must be <em>at least 2 sentences</em> and <em>150-1000 characters</em> including
-                spaces.</small>
-              <br>
-
-            </p>
-            <div class="row">
-              <div class="col-8">
-
-                <div class="form-group">
-                  <textarea class="form-control" name="emotion1" id="emotion1"
-                    oninput="updateCounter(this,2,100,150,1000);" rows="5" required></textarea>
-                  <span id="emotion1-sentence-counter">0 sentences (0 characters) detected</span>
-
+              <div class="row justify-content-center mb-4">
+                <div class="col-11 section"></div>
+                <div class="col-8 text-center" style="font-size: 10pt;">
+                  <p>
+                    Optional Feedback: Thanks for filling out hit above!
+                    If something about the hit was unclear, please either leave a comment in the box below!
+                    We would like to make this HIT easier for future workers, so we really appreciate feedback though it
+                    is
+                    optional.
+                  </p>
+                  <textarea id="commentbox" name="commentbox" class="form-control" style="width: 100%;"></textarea><br>
+                  <input type="submit" id="submitButton" class="btn btn-primary" value="Submit Hit!">
                 </div>
-                <div id="emotion1-length-warning" class="col-6 alert alert-danger" style="display: none;">
-                  Response must be at least 2 sentences, between 150 and 1000 characters (including spaces).
-                </div>
-
-              </div>
-
-            </div>
-
-            <h5 class="mt-4">
-              3. What is the <b style="color: green">high-level lesson</b> or takeaway (ie. moral) of the story? *<br>
-
-            </h5>
-            <!-- <p style="color:red; font-weight: bold;">Copying/pasting or using automatic tools (e.g. ChatGPT, GPT-3) to
-              answer this question will result in
-              rejection
-              of the HIT by our checkers. Please answer honestly and to the best of your ability.</p> -->
-            <p class="mt-3">
-              <small>Response must be <em>at least 1 sentence</em> and <em>100-1000 characters</em> including
-                spaces.</small>
-            </p>
-            <div class="row">
-              <div class="col-8">
-
-                <div class="form-group">
-                  <textarea class="form-control" name="moral" id="moral" rows="5"
-                    oninput="updateCounter(this,1,100,100,1000);" required></textarea>
-                  <span id="moral-sentence-counter">0 sentences (0 characters) detected</span>
-
-                </div>
-                <div id="moral-length-warning" class="col-6 alert alert-danger" style="display: none;">
-                  Response must be at least 1 sentence, between 100 and 1000 characters (including spaces).
+                <div class="col-6 mt-2 alert alert-danger" id="cantSubmit" style="display: none;">
+                  You're missing some questions! Please verify that you've filled out all the questions with the appropriate
+                  lengths.
                 </div>
               </div>
-
             </div>
-            <h5 class="mt-4">
-              4. How long ago was this story that you shared? *
-            </h5>
-            <div class='row'>
-              <div class = 'input-group col-4'>
-                <input type="'number" class="form-control" min ="0" max ="31" id="date" name="date" placeholder ='-' required>
-                <div class="input-group-append">
-                  <select class="form-control dropdown-toggle" id="dateDropDown" name="dateDropDown" required>
-                    <option disabled selected value="">-- please select --</option>
-                    <option value="days">Days</option>
-                    <option value="weeks">Weeks</option>
-                    <option value="months">Months</option>
-                    <option value="years">Years</option>
-                  </select>
-                </div>
-              </div>
-              <br>
-              <!-- <button onclick="clickme()">click me</button>
-              <br>
-              <p id="showResultHere"></p> -->
-              <div><p></p><br></div>
-            </div>
-            <!-- <script>
-              function clickme() {
-                // document.getElementById("showResultHere").innerHTML = "fullDate";
-                var fullDate = ''
-                var storyDate = document.getElementById("date").value;
-                var dateDropDown = document.getElementById("dateDropDown").value;
-                fullDate = storyDate + ' ' + dateDropDown;
-                console.log(fullDate);
-                document.getElementById("showResultHere").innerHTML = fullDate;
-              }
-            </script> -->
-
-            <!-- <div class="row">
-              <div class="col-8">
-
-                <div class="form-group">
-                  <textarea class="form-control" name="date" id="date" rows="5" placeholder="e.g. 4 months"
-                    required></textarea>
-                </div>
-
-              </div>
-
-            </div> -->
-
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="form-group col-11 section">
-
-          </div>
-        </div>
-        <!-- demographic info -->
-        <div id = "demographic" class="row justify-content-center">
-          <!-- <div class="form-group col-11 section">
-            <h4><label for="summary">Part 5: Tell us about yourself and this writing task</label></h4>
-
-
-            <h5 class="mt-4">1. How do you identify?<br><small>Select "prefer not to answer" if needed.</small></h5>
-            <div class="form-group row mt-3">
-              <label for="gender" class="col-sm-2 col-form-label">Gender identity</label>
-              <div class="col-sm-4">
-                <select id="annotatorGender" name="annotatorGender" class="form-control" style="font-size: .85rem;"
-                  required>
-                  <option disabled selected value="">-- please select --</option>
-                  <option value="man">Man/Male</option>
-                  <option value="woman">Woman/Female</option>
-                  <option value="transman">Trans man</option>
-                  <option value="transwoman">Trans woman</option>
-                  <option value="nonBinary">Non-binary</option>
-                  <option value="other">Other</option>
-                  <option value="na">- prefer not to disclose -</option>
-                </select>
-              </div>
-              <div class="col-sm-4"><small>Please select the gender identity you most identify with
-                  currently.</small>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="annotatorAge" class="col-sm-2 col-form-label">Age (years)</label>
-              <div class="col-sm-4">
-                <input type="number" id="age" name="age" placeholder="-" class="form-control" min="18" max="100">
-
-              </div>
-              <div class="col-sm-4"><small>Leave blank if you do not wish to disclose</small></div>
-
-            </div>
-            <div class="form-group row">
-              <label for="race" class="col-sm-2 col-form-label">Race/ethnicity</label>
-              <div class="col-sm-4">
-                <select id="annotatorRace" name="annotatorRace" class="form-control" style="font-size: .85rem;"
-                  required>
-                  <option disabled selected value="">-- please select --</option>
-                  <option value="asian">Asian/Asian American</option>
-                  <option value="indian">South Asian/Indian American</option>
-                  <option value="black">Black/African American</option>
-                  <option value="hisp">Hispanic/Latinx</option>
-                  <option value="white">White/Caucasian</option>
-                  <option value="middleEastern">Middle Eastern</option>
-                  <option value="islander">Native Hawaiian/Pacific Islander</option>
-                  <option value="native">Native American/First Nations</option>
-                  <option value="other">Mixed/other</option>
-                  <option value="na">- prefer not to disclose -</option>
-                </select>
-              </div>
-              <div class="col-sm-4"><small>Please select the racial/ethnic identity you most identify with
-                  currently.</small></div>
-            </div>
-            <div class="mb-3">
-              <h5 class="mt-4">2. To what extent does the following statement describe you:</h5>
-              <label for="empathy" class="form-label">
-                <h5>“I am an empathetic person.” </h5>
-              </label>
-              <div class="form-check lickert">
-                <input class="form-check-input right" type="radio" name="empathylevel" id="notTrueAtAll" value="1"
-                  required> <label class="form-check-label" for="notVeryTrue">&nbsp; Not very true of me </label>
-              </div>
-              <div class="form-check lickert">
-                <input class="form-check-input right" type="radio" name="empathylevel" id="notTrue" value="2">
-                <label class="form-check-label" for="notTrue">&nbsp; Not true</label>
-
-              </div>
-              <div class="form-check lickert">
-                <input class="form-check-input right" type="radio" name="empathylevel" id="iamneutral" value="3">
-                <label class="form-check-label" for="iamneutral">&nbsp; Neutral</label>
-
-              </div>
-              <div class="form-check lickert">
-                <input class="form-check-input right" type="radio" name="empathylevel" id="true" value="4">
-                <label class="form-check-label" for="true">&nbsp; True</label>
-
-              </div>
-              <div class="form-check lickert">
-                <input class="form-check-input" type="radio" name="empathylevel" id="veryTrue" value="5">
-                <label class="form-check-label" for="veryTrue">&nbsp; Very true of me</label>
-              </div>
-
-            </div>
-
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="certify-no-pii-story" name="certify-no-pii-story"
-                  required>
-                <label class="form-check-label" for="certify-no-pii-story">
-                  I certify that my responses contain no personally identifiable information (name, address, SSN,
-                  etc)
-                  about
-                  myself or anyone else.
-                </label>
-              </div>
-            </div>
-          </div> -->
-        </div>
-
-        <div class="row justify-content-center mb-4">
-          <div class="col-11 section"></div>
-          <div class="col-8 text-center" style="font-size: 10pt;">
-            <p>
-              Optional Feedback: Thanks for filling out hit above!
-              If something about the hit was unclear, please either leave a comment in the box below!
-              We would like to make this HIT easier for future workers, so we really appreciate feedback though it
-              is
-              optional.
-            </p>
-            <textarea id="commentbox" name="commentbox" class="form-control" style="width: 100%;"></textarea><br>
-            <input type="submit" id="submitButton" class="btn btn-primary" value="Submit Hit!">
-          </div>
-          <div class="col-6 mt-2 alert alert-danger" id="cantSubmit" style="display: none;">
-            You're missing some questions! Please verify that you've filled out all the questions with the appropriate
-            lengths.
-          </div>
-        </div>
+      <!--end of page 6-->
       </div>
     </div>
   </div>
 </div>
 <script>
+
+  //function to split the form into pages
+
+  function showPage(pageId) {
+  // Hide all pages
+  var pages = document.getElementsByName("pages");
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].style.display = "none";
+  }
+  // Show the requested page
+  document.getElementById(pageId).style.display = "block";
+  }
+  //////////////////////////////////////////////////////////////////////////////
   var e;
   var condition;
   var ipAddress = "";
