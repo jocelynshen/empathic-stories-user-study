@@ -31,6 +31,8 @@
       <br>
       <h5 style="display: inline-block;" class="card-text">Session Number: </h5>
       <h5 style="display: inline-block;" id = "showSessionNum"></h5>
+      <p></p>
+      <p class="justify-content-center" style="margin:auto; color:blue;font-weight:bold;">Please do not reload the current page or hit the back button until you reach the submit button at the end of this session.</p>
       <p><small>Questions that end with * are required</small></p>
     </div>
   </div>
@@ -1458,7 +1460,23 @@
                   </select>
                 </div>
               </div>
+              <br>
+              <!-- <button onclick="clickme()">click me</button>
+              <br>
+              <p id="showResultHere"></p> -->
+              <div><p></p><br></div>
             </div>
+            <!-- <script>
+              function clickme() {
+                // document.getElementById("showResultHere").innerHTML = "fullDate";
+                var fullDate = ''
+                var storyDate = document.getElementById("date").value;
+                var dateDropDown = document.getElementById("dateDropDown").value;
+                fullDate = storyDate + ' ' + dateDropDown;
+                console.log(fullDate);
+                document.getElementById("showResultHere").innerHTML = fullDate;
+              }
+            </script> -->
 
             <!-- <div class="row">
               <div class="col-8">
@@ -1969,7 +1987,7 @@
     //story date
     var fullDate = ''
     var storyDate = document.getElementById("date").value;
-    var dateDropDown = dosument.getElementById("dateDropDown").value;
+    var dateDropDown = document.getElementById("dateDropDown").value;
     fullDate = storyDate + ' ' + dateDropDown;
     //feedback
     var feedback = document.getElementById("commentbox").value;
