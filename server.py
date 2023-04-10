@@ -2,7 +2,7 @@ from firebase_admin import credentials, firestore, initialize_app, db
 import firebase_admin
 import sys
 import random
-from flask import Flask, make_response, redirect
+from flask import Flask, make_response, redirect, url_for
 from flask import abort, request, jsonify
 import json
 # import tensorflow as tf
@@ -29,7 +29,7 @@ default_app = firebase_admin.initialize_app(c, {
     'databaseURL': "https://empathic-stories-default-rtdb.firebaseio.com/"
 })
 
-id = 0
+# id = 0
 num_hits_per_worker = 15
 
 model1 = ["model1story1", "model1story2", "model1story3", "model1story4",
@@ -373,9 +373,15 @@ def get_participant_id():
     # # randomly select story FROM stories that haven't been seen before (store it in firebase)
     # print('test')
     participantIDInput = request.json['participantIDInput']
-    global id
-    id = participantIDInput
-    print(f'The value of my id is {id}')
+    # id_url_sessionDone = url_for('sessionDone', participantIDInput = participantIDInput)
+    id_url_sessionDone = url_for('sessionDone') + '?participantIDInput=' + participantIDInput
+    id_url_getPrompt = url_for('getPrompt') + '?participantIDInput=' + participantIDInput
+    id_url_submit = url_for('submit') + '?participantIDInput=' + participantIDInput
+    
+
+    # global id
+    # id = participantIDInput
+    print(f'The value of my id is {participantIDInput}')
 
     ref = db.reference(participantIDInput)
     currentSession = db.reference(participantIDInput + "/currentSession").get()
@@ -391,6 +397,7 @@ def get_participant_id():
 
 
     return "success"
+    # return jsonify({'participantIDInput': participantIDInput})
 
 # test
 # @app.route('/index/', methods=["GET", "POST"])
@@ -410,9 +417,10 @@ def get_participant_id():
 
 @app.route('/sessionDone/', methods=["GET", "POST"])
 def sessionDone():
-    ref = db.reference(id)
-    currentSession = db.reference(id + "/currentSession").get()
-    dict = {'showParticipantID': id, 'showSessionNum': currentSession}
+    participantIDInput = request.args.get('participantIDInput')
+    ref = db.reference(participantIDInput)
+    currentSession = db.reference(participantIDInput + "/currentSession").get()
+    dict = {'showParticipantID': participantIDInput, 'showSessionNum': currentSession}
     return json.dumps(dict)
             
 
@@ -421,6 +429,7 @@ def get_prompt_and_stories():
 
     # """Get initial writing prompt for user + retrieve 3 stories from 3 models + save to firebase"""
     # randomly select story FROM stories that haven't been seen before (store it in firebase)
+    participantIDInput = request.args.get('participantIDInput')
     prompt = ''
     story1 = ''
     story2 = ''
@@ -466,15 +475,15 @@ def get_prompt_and_stories():
     story3session3random = random.choice(model3Session3)
     story4session3random = random.choice(model4Session3)
     ##########################################################################
-    ref = db.reference(id)
-    currentSession = db.reference(id + "/currentSession").get()
+    ref = db.reference(participantIDInput)
+    currentSession = db.reference(participantIDInput + "/currentSession").get()
     if currentSession == 1:
         prompt = prompt1
         story1 = story1session1random
         story2 = story2session1random
         story3 = story3session1random
         story4 = story4session1random
-        dict = {'demographic': demographic, 'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
+        dict = {'demographic': demographic, 'showParticipantID': participantIDInput, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
                 'story2': story2, 'story3': story3, 'story4': story4}
     elif currentSession == 2:
         prompt = prompt2
@@ -482,7 +491,7 @@ def get_prompt_and_stories():
         story2 = story2session2random
         story3 = story3session2random
         story4 = story4session2random
-        dict = {'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
+        dict = {'showParticipantID': participantIDInput, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
                 'story2': story2, 'story3': story3, 'story4': story4}
     elif currentSession == 3:
         prompt = prompt3
@@ -490,18 +499,18 @@ def get_prompt_and_stories():
         story2 = story2session3random
         story3 = story3session3random
         story4 = story4session3random
-        dict = {'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
+        dict = {'showParticipantID': participantIDInput, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
                 'story2': story2, 'story3': story3, 'story4': story4}
         
     elif currentSession == 4:
-        dict = {'showParticipantID': id, 'showSessionNum': currentSession}
+        dict = {'showParticipantID': participantIDInput, 'showSessionNum': currentSession}
 
     return json.dumps(dict)
 
 
 @app.route('/submit/', methods=["GET", "POST"])
 def submit():
-
+    participantIDInput = request.args.get('participantIDInput')
     valence = request.json['valence']
     arousal = request.json['arousal']
     mystoryTopic = request.json['mystoryTopic']
@@ -535,8 +544,8 @@ def submit():
     story4 = {"condition": "condition4", "story": "this is story4",
               "survey4questions": survey4_answers}
 
-    ref = db.reference(id)
-    currentSession = db.reference(id + "/currentSession").get()
+    ref = db.reference(participantIDInput)
+    currentSession = db.reference(participantIDInput + "/currentSession").get()
     if currentSession == 1:
         gender = request.json['gender']
         age = request.json['age']
@@ -545,7 +554,7 @@ def submit():
         demographic = {"gender": gender, "age": age,
                        "race": race, "empathyLevel": empathyLevel}
         #######################################
-        session1 = db.reference(id + '/s001')
+        session1 = db.reference(participantIDInput + '/s001')
         session1.child("prompt").set(dbprompt1)
         session1.child("demographic").set(demographic)
         session1.child("feedback").set(feedback)
@@ -561,7 +570,7 @@ def submit():
         # db.reference(participantID + "/currentSession").set(2)
 
     elif currentSession == 2:
-        session2 = db.reference(id + '/s002')
+        session2 = db.reference(participantIDInput + '/s002')
         session2.child("prompt").set(dbprompt2)
         # session2.child("demographic").set(demographic)
         session2.child("feedback").set(feedback)
@@ -577,7 +586,7 @@ def submit():
         # db.reference(participantID + "/currentSession").set(3)
 
     elif currentSession == 3:
-        session3 = db.reference(id + '/s003')
+        session3 = db.reference(participantIDInput + '/s003')
         session3.child("prompt").set(prompt3)
         # session3.child("demographic").set(demographic)
         session3.child("feedback").set(feedback)
