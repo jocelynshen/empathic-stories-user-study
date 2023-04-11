@@ -385,8 +385,8 @@ def get_participant_id():
     sem.release()
     return "success"
 
-def get_stories_from_model():
-    return ["story from model1", "story from model2", "story from model3", "story from model4"]
+def get_stories_from_model(mystory):
+    return {"condition1": "story about apples", "condition2": "story about bananas", "condition3": "story about dogs", "condition4": "story about bananas"}
 
 @app.route('/sessionDone/', methods=["GET", "POST"])
 def sessionDone():
@@ -404,76 +404,73 @@ def getPrompt():
     # """Get initial writing prompt for user + retrieve 3 stories from 3 models + save to firebase"""
     # randomly select story FROM stories that haven't been seen before (store it in firebase)
     sem.acquire()
-    
     id = request.json['participantIDInput']
     ##########################################################################
     currentSession = db.reference(id + "/currentSession").get()
     if currentSession == 1:
         prompt = prompt1
-        story1 = story1session1random
-        story2 = story2session1random
-        story3 = story3session1random
-        story4 = story4session1random
-        dict = {'demographic': demographic, 'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
-                'story2': story2, 'story3': story3, 'story4': story4}
+        dict = {'demographic': demographic, 'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt}
     elif currentSession == 2:
         prompt = prompt2
-        story1 = story1session2random
-        story2 = story2session2random
-        story3 = story3session2random
-        story4 = story4session2random
-        dict = {'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
-                'story2': story2, 'story3': story3, 'story4': story4}
+        dict = {'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt}
     elif currentSession == 3:
         prompt = prompt3
-        story1 = story1session3random
-        story2 = story2session3random
-        story3 = story3session3random
-        story4 = story4session3random
-        dict = {'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt, 'story1': story1,
-                'story2': story2, 'story3': story3, 'story4': story4}
-        
+        dict = {'showParticipantID': id, 'showSessionNum': currentSession, 'prompt': prompt}
     elif currentSession == 4:
         dict = {'showParticipantID': id, 'showSessionNum': currentSession}
     sem.release()
     return json.dumps(dict)
 
 
-@app.route('/submit/', methods=["GET", "POST"])
-def submit():
+@app.route('/submitMyStory/', methods=["GET", "POST"])
+def submitMyStory():
+    """Save their story in firebase"""
     sem.acquire()
+    id = request.json['participantIDInput']
+
     valence = request.json['valence']
     arousal = request.json['arousal']
-    mystoryTopic = request.json['mystoryTopic']
+    reflection = {"valence": valence, "arousal": arousal}
+
     mystory = request.json['mystory']
+    fullDate = request.json['fullDate']
+    mystoryTopic = request.json['mystoryTopic']
+    mainEvent = request.json['mainEvent']
+    narratorEmotions = request.json['narratorEmotions']
+    moral = request.json['moral']
+
+    mystoryQuestions = {"mainEvent": mainEvent,
+                    "narratorEmotions": narratorEmotions, "moral": moral, "fullDate": fullDate}
+
+    ref = db.reference(id)
+    currentSession = db.reference(id + "/currentSession").get()
+    session = db.reference(id + '/s00' + str(currentSession))
+
+    session.child("mystory").set(mystory)
+    session.child("mystoryTopic").set(mystoryTopic)
+    session.child("mystoryQuestions").set(mystoryQuestions)
+    session.child("reflection").set(reflection)
+
+    ## make call to model and send back
+    stories = get_stories_from_model(mystory)
+    # TODO: remove duplicates and randomize, save to firebase with what model it came from, send the 1-4 stories back to frontend to display
+
+    sem.release()
+    pass
+
+@app.route('/submitSurveyQuestions/', methods=["GET", "POST"])
+def submitSurveyQuestions():
+    sem.acquire()
+    id = request.json['participantIDInput']
+
     survey1_answers = request.json['survey1_answers']
     survey2_answers = request.json['survey2_answers']
     survey3_answers = request.json['survey3_answers']
     survey4_answers = request.json['survey4_answers']
     mostEmpathizedOrder = request.json['mostEmpathizedOrder']
-    mainEvent = request.json['mainEvent']
-    narratorEmotions = request.json['narratorEmotions']
-    moral = request.json['moral']
-    fullDate = request.json['fullDate']
-    # gender = request.json['gender']
-    # age = request.json['age']
-    # race = request.json['race']
-    # empathyLevel = request.json['empathyLevel']
+    
     feedback = request.json['feedback']
 
-    # demographic = {"gender": gender, "age": age,
-    #                "race": race, "empathyLevel": empathyLevel}
-    mystoryQuestions = {"mainEvent": mainEvent,
-                        "narratorEmotions": narratorEmotions, "moral": moral, "fullDate": fullDate}
-    reflection = {"valence": valence, "arousal": arousal}
-    story1 = {"condition": "condition1", "story": "this is story1",
-              "survey1questions": survey1_answers}
-    story2 = {"condition": "condition2", "story": "this is story2",
-              "survey2questions": survey2_answers}
-    story3 = {"condition": "condition3", "story": "this is story3",
-              "survey3questions": survey3_answers}
-    story4 = {"condition": "condition4", "story": "this is story4",
-              "survey4questions": survey4_answers}
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
     if currentSession == 1:
@@ -483,55 +480,25 @@ def submit():
         empathyLevel = request.json['empathyLevel']
         demographic = {"gender": gender, "age": age,
                        "race": race, "empathyLevel": empathyLevel}
-        #######################################
         session1 = db.reference(id + '/s001')
-        session1.child("prompt").set(dbprompt1)
         session1.child("demographic").set(demographic)
         session1.child("feedback").set(feedback)
+        session1.child("prompt").set(dbprompt1)
         session1.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
-        session1.child("mystory").set(mystory)
-        session1.child("mystoryTopic").set(mystoryTopic)
-        session1.child("mystoryQuestions").set(mystoryQuestions)
-        session1.child("reflection").set(reflection)
-        session1.child("story1").set(story1)
-        session1.child("story2").set(story2)
-        session1.child("story3").set(story3)
-        session1.child("story4").set(story4)
-        # db.reference(participantID + "/currentSession").set(2)
 
     elif currentSession == 2:
         session2 = db.reference(id + '/s002')
         session2.child("prompt").set(dbprompt2)
-        # session2.child("demographic").set(demographic)
         session2.child("feedback").set(feedback)
         session2.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
-        session2.child("mystory").set(mystory)
-        session2.child("mystoryTopic").set(mystoryTopic)
-        session2.child("mystoryQuestions").set(mystoryQuestions)
-        session2.child("reflection").set(reflection)
-        session2.child("story1").set(story1)
-        session2.child("story2").set(story2)
-        session2.child("story3").set(story3)
-        session2.child("story4").set(story4)
-        # db.reference(participantID + "/currentSession").set(3)
 
     elif currentSession == 3:
         session3 = db.reference(id + '/s003')
         session3.child("prompt").set(prompt3)
-        # session3.child("demographic").set(demographic)
         session3.child("feedback").set(feedback)
         session3.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
-        session3.child("mystory").set(mystory)
-        session3.child("mystoryTopic").set(mystoryTopic)
-        session3.child("mystoryQuestions").set(mystoryQuestions)
-        session3.child("reflection").set(reflection)
-        session3.child("story1").set(story1)
-        session3.child("story2").set(story2)
-        session3.child("story3").set(story3)
-        session3.child("story4").set(story4)
     sem.release()
     return 'Data submitted successfully!'
-    # pass
 
 ################################### START SERVER ###################################
 # to run the server run the following command:
