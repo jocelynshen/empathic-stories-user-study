@@ -36,6 +36,8 @@ default_app = firebase_admin.initialize_app(c, {
 id = 0
 num_hits_per_worker = 15
 
+ALLOWED_USERS = ["p001", "p002", "p000", "p003"]
+
 demographic = '''
 <div class="form-group col-11 section">
     <h4><label for="summary">Part 4: Tell us about yourself and this writing task</label></h4>
@@ -362,7 +364,7 @@ def hello_world():
     return "Hello World"
 
 
-@app.route('/participantIDInput/', methods=["POST"])
+@app.route('/participantIDInput/', methods=["GET", "POST"])
 def get_participant_id():
     sem.acquire()
     # """Get current session number for participant"""
@@ -382,6 +384,9 @@ def get_participant_id():
     elif currentSession == 3:
         db.reference(participantIDInput + "/currentSession").set(4)
 
+    if participantIDInput not in ALLOWED_USERS:
+        sem.release()
+        abort(404)
     sem.release()
     return "success"
 
@@ -455,8 +460,14 @@ def submitMyStory():
     stories = get_stories_from_model(mystory)
     # TODO: remove duplicates and randomize, save to firebase with what model it came from, send the 1-4 stories back to frontend to display
 
+    dict = {
+        "story1": stories["condition1"],
+        "story2": stories["condition2"],
+        "story3": stories["condition3"],
+        "story4": stories["condition4"],
+    }
     sem.release()
-    pass
+    return json.dumps(dict)
 
 @app.route('/submitSurveyQuestions/', methods=["GET", "POST"])
 def submitSurveyQuestions():
