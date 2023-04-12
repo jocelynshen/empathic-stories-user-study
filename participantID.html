@@ -1853,7 +1853,7 @@
       }
 
       function showPage(pageId) {
-        var ok = false; // TODO: check that likert values are valid before continuing to the next page
+        var ok = true; // TODO: check that likert values are valid before continuing to the next page
         console.log("All fields valid? " + ok);
         $(":valid").removeClass("invalid");
         $(".lickert>input:valid").parents().removeClass("invalid");
