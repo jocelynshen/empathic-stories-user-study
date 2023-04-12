@@ -144,8 +144,6 @@ prompt1 = '''
     <h4><label for="summary">Part 2: Write your story</label></h4>
     <h5 class="text-justify" style="margin-top:.5rem">
         1. Look back over your life, and tell us an emotional moment or experience you have had in the past.
-        Whether it's a childhood memory, a turning point in your life, or a vivid adult experience, please
-        describe the scene in detail.
         <br>You might have encountered challenges or memorable events that could be realted to:</h5>
     <ul>
         <li>Family</li>
@@ -159,9 +157,7 @@ prompt1 = '''
         <li>Happiness and Fulfillment</li>
         <li>Passion & Youth</li>
     </ul>
-    <h5 class="text-justify">Reflect on your emotions during the experience, describe how you felt across
-        different events in the story, and explain its impact. What happened, when and where, who
-        was involved, and what were you thinking and feeling?</h5>
+    <h5 class="text-justify">Whether it's a childhood memory, a turning point in your life, or a vivid adult experience, please tell a story reflecting on your emotions during the experience, describing how you felt across different events in the story, and explaining its impact.</h5>
     <label for="sel1" class="form-label">Choose the most relevant topic that desribes your story:*</label>
     <select class="form-select" id="topics" name="topics" style="width:900px;" required>
         <option disabled selected value="">-- please select --</option>
@@ -184,11 +180,10 @@ prompt1 = '''
 
 
     <div class="row">
-        <div class="col-8">
+        <div >
 
         <div class="form-group">
-            <textarea class="form-control" name="userstory" id="userstory" style="width: 900px;
-            height: 200px;" oninput="updateCounter(this,1,100,50,1000);" required></textarea>
+            <textarea class="form-control" name="userstory" id="userstory" rows="20" oninput="updateCounter(this,1,100,50,1000);" required></textarea>
             <span id="userstory-sentence-counter">0 sentences (0 characters) detected</span>
 
         </div>
@@ -223,8 +218,8 @@ prompt2 = '''
     <h4><label for="summary">Part 2: Write your story</label></h4>
     <h5 class="text-justify" style="margin-top:.5rem">
         1. Immerse in your emotions and describe a past experience that you may describe as either a high point or a low point in your life.
-        <br><br>A high point scene could be one that was an especially joyous, exciting, or wonderful moment in you life.
-        The latter, however, is an unpleasant or painful experince you had to go through.
+A high point scene could be one that was an especially joyous, exciting, or wonderful moment in you life.
+The latter, however, is an unpleasant or painful experince you had to go through.
         <br>You might have encountered challenges or memorable events that could be realted to:</h5>
         <ul>
             <li>Happiness and Satisfaction</li>
@@ -236,8 +231,8 @@ prompt2 = '''
             <li>Anxiety</li>
         </ul></h5>
         
-        <h5 class="text-justify">Thinking back over your entire life, choose a scene, that could be positive or negative, which has had its impact in residing in your memory.
-        What happened in the event, where and when, who was involved, and what were you thinking and feeling?</h5>
+        <h5 class="text-justify">Thinking back over your entire life, choose a scene, that could be positive or negative, which has had its impact in residing in your memory and write a story about it.
+</h5>
         <label for="sel1" class="form-label">Choose the topic that best desribes your emotions in the story:*</label>
         <select class="form-select" id="topics" name="topics" style="width:900px;" required>
         <option disabled selected value="">-- please select --</option>
@@ -257,10 +252,10 @@ prompt2 = '''
 
 
     <div class="row">
-        <div class="col-8">
+        <div >
 
         <div class="form-group">
-            <textarea class="form-control" name="userstory" id="userstory" style="width: 900px; height: 200px;" oninput="updateCounter(this,1,100,50,1000);" required></textarea>
+            <textarea class="form-control" name="userstory" id="userstory" rows="20" oninput="updateCounter(this,1,100,50,1000);" required></textarea>
             <span id="userstory-sentence-counter">0 sentences (0 characters) detected</span>
 
         </div>
@@ -294,7 +289,7 @@ prompt3 = '''
     <h4><label for="summary">Part 2: Write your story</label></h4>
     <h5 class="text-justify" style="margin-top:.5rem">
         1. In reviving your memories, you must have identified key moments or milestones in your life that have changed you from within. 
-        These life changes may have taught you lessons that you still stand by even if you had to learn them the hard way.
+These life changes may have taught you lessons that you still stand by even if you had to learn them the hard way.
         <br>You might have encountered challenges or memorable events that could be realted to:</h5>
         <ul>
             <li>Motivation & Encouragement</li>
@@ -305,7 +300,8 @@ prompt3 = '''
             
             
         </ul></h5>
-        <h5 class="text-justify">Describe a story that may identify a turning point in your life, which may have changed your mindset and thoughts. What is the moral of your story? How has this life lesson impacted your judgement and self awareness?</h5>
+        <h5 class="text-justify">Describe a story that may identify a turning point in your life, which may have changed your mindset and thoughts. In your story, you might reflect on what the moral of the story was,
+and how this life lesson impacted your judgement and self awareness.</h5>
         <label for="sel1" class="form-label">Choose the topic that best desribes the moral of your story:*</label>
         <select class="form-select" id="topics" name="topics" style="width:900px;" required>
         <option disabled selected value="">-- please select --</option>
@@ -322,11 +318,10 @@ prompt3 = '''
 
 
     <div class="row">
-        <div class="col-8">
+        <div>
 
         <div class="form-group">
-            <textarea class="form-control" name="userstory" id="userstory" style="width: 900px;
-            height: 200px;"
+            <textarea class="form-control" name="userstory" id="userstory" rows="20"
             oninput="updateCounter(this,1,100,50,1000);" required></textarea>
             <span id="userstory-sentence-counter">0 sentences (0 characters) detected</span>
 
