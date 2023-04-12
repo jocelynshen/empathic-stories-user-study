@@ -36,7 +36,7 @@ default_app = firebase_admin.initialize_app(c, {
 id = 0
 num_hits_per_worker = 15
 
-ALLOWED_USERS = ["p001", "p002", "p000", "p003"]
+ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004"]
 
 demographic = '''
 <div class="form-group col-11 section">
@@ -213,12 +213,10 @@ prompt1 = '''
 
 dbprompt1 = '''
 Look back over your life, and tell us an emotional moment or experience you have had in the past.
-Whether it's a childhood memory, a turning point in your life, or a vivid adult experience, please
-describe the scene in detail.
-You might have encountered challenges or memorable events that could be realted to:
+You might have encountered challenges or memorable events that could be related to:
 [Family, Relationship/Friendship, Mental Health, Physical Health, College/School, Work, Trauma, Life Milestones/Changes, Happiness and Fulfillment, or Passion & Youth].
-Reflect on your emotions during the experience, describe how you felt across different events in the story, and explain its impact.
-What happened, when and where, who was involved, and what were you thinking and feeling?
+
+Whether it's a childhood memory, a turning point in your life, or a vivid adult experience, please tell a story reflecting on your emotions during the experience, describing how you felt across different events in the story, and explaining its impact.
 '''
 prompt2 = '''
 <div class="col-11 section" id="storywriting-section">
@@ -285,10 +283,10 @@ dbprompt2 = '''
 Immerse in your emotions and describe a past experience that you may describe as either a high point or a low point in your life.
 A high point scene could be one that was an especially joyous, exciting, or wonderful moment in you life.
 The latter, however, is an unpleasant or painful experince you had to go through.
-You might have encountered challenges or memorable events that could be realted to:
+You might have encountered challenges or memorable events that could be related to:
 [Happiness and Satisfaction, Motivation, Gratitude, Grief, Loneliness, Depression, or Anxiety].
-Thinking back over your entire life, choose a scene, that could be positive or negative, which has had its impact in residing in your memory.
-What happened in the event, where and when, who was involved, and what were you thinking and feeling?
+
+Thinking back over your entire life, choose a scene, that could be positive or negative, which has had its impact in residing in your memory and write a story about it.
 '''
 
 prompt3 = '''
@@ -352,10 +350,10 @@ prompt3 = '''
 dbprompt3 = '''
 In reviving your memories, you must have identified key moments or milestones in your life that have changed you from within. 
 These life changes may have taught you lessons that you still stand by even if you had to learn them the hard way.
-You might have encountered challenges or memorable events that could be realted to:
+You might have encountered challenges or memorable events that could be related to:
 [Motivation & Encouragement, Overcoming and Resilience, Happiness and Fulfillment, Social Support & Gratitude, or Hard Work & Success].
-Describe a story that may identify a turning point in your life, which may have changed your mindset and thoughts. What is the moral of your story?
-How has this life lesson impacted your judgement and self awareness?
+Describe a story that may identify a turning point in your life, which may have changed your mindset and thoughts. In your story, you might reflect on what the moral of the story was,
+and how this life lesson impacted your judgement and self awareness.
 '''
 
 
