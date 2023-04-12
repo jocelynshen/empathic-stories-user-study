@@ -1,6 +1,5 @@
 from firebase_admin import credentials, firestore, initialize_app, db
 import firebase_admin
-import sys
 import random
 from flask import Flask, make_response, redirect, url_for, session
 from flask import abort, request, jsonify
@@ -16,7 +15,30 @@ import threading
 
 from multiprocessing import Lock
 
+import sys
+sys.path.append("./")
 sys.path.append("../")
+
+import pandas as pd
+from sentence_transformers import SentenceTransformer
+import openai
+from passwords import open_ai_api_key
+# from prompts import empathy_sim, event_sim, emotion_sim, moral_sim, empathy_sum, event_sum, emotion_sum, moral_sum
+openai.api_key = open_ai_api_key
+
+from numpy import dot
+from numpy.linalg import norm
+
+model_SBERT = SentenceTransformer('all-mpnet-base-v2')
+df_clean = pd.read_csv("STORIES (user study).csv")
+
+def f(x):
+    try:
+        return eval(x)
+    except:
+        return x
+df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(f)
+
 lock = Lock()
 app = Flask(__name__)
 # app.secret_key = 'my_secret_key'
@@ -33,10 +55,14 @@ default_app = firebase_admin.initialize_app(c, {
     'databaseURL': "https://empathic-stories-default-rtdb.firebaseio.com/"
 })
 
-id = 0
-num_hits_per_worker = 15
 
 ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004", "p005", 'p006']
+
+
+def get_cosine_similarity(a, b):
+    cos_sim = dot(a, b)/(norm(a)*norm(b))
+    return cos_sim
+
 
 @app.route('/')
 def hello_world():
@@ -70,7 +96,22 @@ def get_participant_id():
     return "success"
 
 def get_stories_from_model(mystory):
-    return {"condition1": "story about apples", "condition2": "story about bananas", "condition3": "story about dogs", "condition4": "story about bananas"}
+    prompt = f"""Story: 
+    {mystory}
+
+    Write a story from your own life that the narrator would empathize with. Do not refer to the narrator explicitly.
+    """
+    embeddings = model_SBERT.encode(mystory)
+    best_match_SBERT = df_clean["embeddings_SBERT"].apply(lambda x: get_cosine_similarity(embeddings, x)).idxmax()
+    r2 = df_clean["story"].iloc[best_match_SBERT]
+
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=500
+    )
+    r3 = response["choices"][0]["message"]["content"].replace("\n\n", "\n")
+    return {"condition1": "story about apples", "condition2": "story about bananas", "condition3": r3}
 
 @app.route('/sessionDone/', methods=["GET", "POST"])
 def sessionDone():
