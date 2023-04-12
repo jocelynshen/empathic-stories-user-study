@@ -35,12 +35,14 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 </div>
 <script>
     var xmlHttp = new XMLHttpRequest();
+    var id = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length).substring(4);
+
     // var url = 'http://127.0.0.1:5000/sessionDone/';
     var url = 'https://wall-e.media.mit.edu:5192/sessionDone/';
     var request = new XMLHttpRequest();
     request.open('GET', url, false);
     request.setRequestHeader("Content-Type", "application/json");
-    request.send(); 
+    request.send(JSON.stringify({participantIDInput : id}));
 
     if (request.status == 200) {
       var response = JSON.parse(request.responseText);
