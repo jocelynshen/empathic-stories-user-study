@@ -36,7 +36,7 @@ default_app = firebase_admin.initialize_app(c, {
 id = 0
 num_hits_per_worker = 15
 
-ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004"]
+ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004", "p005", 'p006']
 
 demographic = '''
 <div class="form-group col-11 section">
@@ -449,16 +449,19 @@ def submitMyStory():
     session.child("mystoryQuestions").set(mystoryQuestions)
     session.child("reflection").set(reflection)
 
-    ## make call to model and send back
+    ## make call to model and save firebase mapping
     stories = get_stories_from_model(mystory)
+
+    session.child("storyMap").set(stories)
     # TODO: remove duplicates and randomize, save to firebase with what model it came from, send the 1-4 stories back to frontend to display
 
     dict = {
-        "story1": stories["condition1"],
-        "story2": stories["condition2"],
-        "story3": stories["condition3"],
-        "story4": stories["condition4"],
     }
+    # check for duplicates
+    unique_stories = list(set(stories.values()))
+    random.shuffle(unique_stories)
+    for i in range(len(unique_stories)):
+        dict["story" + str(i + 1)] = unique_stories[i]
     sem.release()
     return json.dumps(dict)
 
