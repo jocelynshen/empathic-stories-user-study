@@ -144,7 +144,7 @@ prompt1 = '''
     <h4><label for="summary">Part 2: Write your story</label></h4>
     <h5 class="text-justify" style="margin-top:.5rem">
         1. Look back over your life, and tell us an emotional moment or experience you have had in the past.
-        <br>You might have encountered challenges or memorable events that could be realted to:</h5>
+        <br>You might have encountered challenges or memorable events that could be related to:</h5>
     <ul>
         <li>Family</li>
         <li>Relationship/Friendship</li>
@@ -220,7 +220,7 @@ prompt2 = '''
         1. Immerse in your emotions and describe a past experience that you may describe as either a high point or a low point in your life.
 A high point scene could be one that was an especially joyous, exciting, or wonderful moment in you life.
 The latter, however, is an unpleasant or painful experince you had to go through.
-        <br>You might have encountered challenges or memorable events that could be realted to:</h5>
+        <br>You might have encountered challenges or memorable events that could be related to:</h5>
         <ul>
             <li>Happiness and Satisfaction</li>
             <li>Motivation</li>
@@ -290,7 +290,7 @@ prompt3 = '''
     <h5 class="text-justify" style="margin-top:.5rem">
         1. In reviving your memories, you must have identified key moments or milestones in your life that have changed you from within. 
 These life changes may have taught you lessons that you still stand by even if you had to learn them the hard way.
-        <br>You might have encountered challenges or memorable events that could be realted to:</h5>
+        <br>You might have encountered challenges or memorable events that could be related to:</h5>
         <ul>
             <li>Motivation & Encouragement</li>
             <li>Overcoming and Resilience</li>
@@ -444,10 +444,12 @@ def submitMyStory():
     currentSession = db.reference(id + "/currentSession").get()
     session = db.reference(id + '/s00' + str(currentSession))
 
-    session.child("mystory").set(mystory)
-    session.child("mystoryTopic").set(mystoryTopic)
-    session.child("mystoryQuestions").set(mystoryQuestions)
-    session.child("reflection").set(reflection)
+    session_values = session.get()
+    if not session_values or "mystory" not in session_values:
+        session.child("mystory").set(mystory)
+        session.child("mystoryTopic").set(mystoryTopic)
+        session.child("mystoryQuestions").set(mystoryQuestions)
+        session.child("reflection").set(reflection)
 
     ## make call to model and save firebase mapping
     stories = get_stories_from_model(mystory)
