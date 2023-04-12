@@ -147,7 +147,7 @@
             <div id="part4" class="section col-11">
               <h4><label for="summary">Part 3: Answer questions about the story you wrote</label></h4>
               <h5 style="margin-top:.5rem">
-                1. What is the <b style="color: orange">main event</b> being described in the story? *
+                1. What is the <b style="color: orange">main event</b> being described in your story? *
               </h5>
               <p class="mt-3">
                 <small>Response must be <em>at least 1 sentence</em> and <em>50-1000 characters</em> including
@@ -172,13 +172,11 @@
               </div>
 
               <h5 class="mt-4">
-                2. Describe the emotions the <b style="color: purple">narrator</b> feels <b>before and after</b> the
+                2. Describe the <b style="color: purple">emotions</b> you felt <b>before and after</b> the
                 main
                 event and <b>why</b>
-                they feel
-                this way. *<br> Answer as
-                though you were
-                explaining how the narrator felt to someone who knew nothing about the situation. <br>
+                you feel
+                this way. *<br>
 
               </h5>
               <!-- <p style="color:red; font-weight: bold;">Copying/pasting or using automatic tools (e.g. ChatGPT, GPT-3) to
@@ -209,7 +207,8 @@
               </div>
 
               <h5 class="mt-4">
-                3. What is the <b style="color: green">high-level lesson</b> or takeaway (ie. moral) of the story? *<br>
+                3. What is the <b style="color: green">high-level lesson</b> or takeaway (ie. moral) of your story?
+                *<br>
 
               </h5>
               <!-- <p style="color:red; font-weight: bold;">Copying/pasting or using automatic tools (e.g. ChatGPT, GPT-3) to
@@ -611,6 +610,9 @@
                         <small>Type "nothing" if your answer is nothing</small><br>
                         <textarea class='mx-0' type="text" cols='32' style="height:30px; margin:10px; font-size:12px;"
                           id="s1q11" value="nothing" required></textarea>
+
+
+                          
 
                         <!--End-->
                       </div>
@@ -1720,37 +1722,26 @@
                   </p>
                 </div>
               </div>
-              <div>
-                <p></p>
-              </div>
-              <div class="row justify-content-center">
-                <div class="form-group col-11 section">
-
-                </div>
-              </div>
 
               <div class="row justify-content-center mb-4">
                 <div class="col-11 section"></div>
                 <div class="col-8 text-center" style="font-size: 10pt;">
                   <p>
-                    Optional Feedback: Thanks for filling out hit above!
-                    If something about the hit was unclear, please either leave a comment in the box below!
-                    We would like to make this HIT easier for future workers, so we really appreciate feedback though it
-                    is
-                    optional.
+                    Optional Feedback:
                   </p>
                   <textarea id="commentbox" name="commentbox" class="form-control" style="width: 100%;"></textarea><br>
                   <input type="submit" id="submitButton" class="btn btn-primary" value="Submit Hit!">
                 </div>
-                <div class="col-6 mt-2 alert alert-danger" id="cantSubmit" style="display: none;">
-                  You're missing some questions! Please verify that you've filled out all the questions with the
-                  appropriate
-                  lengths.
-                </div>
+
               </div>
             </div>
             <!--end of page 6-->
           </div>
+        </div>
+        <div class="col-6 mt-2 alert alert-danger" id="cantSubmit" style="display: none;">
+          You're missing some questions! Please verify that you've filled out all the questions with the
+          appropriate
+          lengths.
         </div>
       </div>
     </div>
@@ -1791,58 +1782,101 @@
         //get user story
         var mystory = document.getElementById("userstory").value;
 
-        var xmlHttp = new XMLHttpRequest();
-        var url = 'https://wall-e.media.mit.edu:5192/submitMyStory/';
-        var request = new XMLHttpRequest();
-        request.open('POST', url, false);
-        request.setRequestHeader("Content-Type", "application/json");
-        request.send(JSON.stringify({
-          participantIDInput: id,
-          mainEvent: mainEvent,
-          narratorEmotions: narratorEmotions,
-          moral: moral,
-          fullDate: fullDate,
-          valence: valence,
-          arousal: arousal,
-          mystoryTopic: mystoryTopic,
-          mystory: mystory,
-        }));
+        var ok = checkUserStory(); // TODO
+        ok = checkEmotion1() && ok;
 
-        if (request.status == 200) {
-          var response = JSON.parse(request.responseText);
-          //document.getElementById("didalready").innerHTML += JSON.stringify(response)
-          sessionNumber = response.showSessionNum;
-          if (sessionNumber > 3) {
-            window.location.replace("stop.html?id=" + id);
-          } else {
-            // TODO: only display the number of surveys as there are number of stories returned by the server
-            document.getElementById("story1_formatted").innerHTML = response.story1;
-            document.getElementById("story2_formatted").innerHTML = response.story2;
-            document.getElementById("story3_formatted").innerHTML = response.story3;
-            document.getElementById("story4_formatted").innerHTML = response.story4;
-            document.getElementById("randomStory1").innerHTML = response.story1;
-            document.getElementById("randomStory2").innerHTML = response.story2;
-            document.getElementById("randomStory3").innerHTML = response.story3;
-            document.getElementById("randomStory4").innerHTML = response.story4;
+        ok = checkSummary() && ok;
+
+        ok = checkMoral() && ok;
+
+
+        console.log("All fields valid? " + ok);
+        $(":valid").removeClass("invalid");
+        $(".lickert>input:valid").parents().removeClass("invalid");
+        $(".form-check>input:valid").parents().removeClass("invalid");
+        if (!ok) {
+          $("#cantSubmit").show();
+          $(":invalid").addClass("invalid");
+          $(".lickert>input:invalid").parents().addClass("invalid");
+          $(".form-check>input:invalid").parents().addClass("invalid");
+        } else {
+
+          var xmlHttp = new XMLHttpRequest();
+          var url = 'https://wall-e.media.mit.edu:5192/submitMyStory/';
+          var request = new XMLHttpRequest();
+          request.open('POST', url, false);
+          request.setRequestHeader("Content-Type", "application/json");
+          request.send(JSON.stringify({
+            participantIDInput: id,
+            mainEvent: mainEvent,
+            narratorEmotions: narratorEmotions,
+            moral: moral,
+            fullDate: fullDate,
+            valence: valence,
+            arousal: arousal,
+            mystoryTopic: mystoryTopic,
+            mystory: mystory,
+          }));
+
+          if (request.status == 200) {
+            $("#cantSubmit").hide();
+            $(":invalid").removeClass("invalid");
+            $(".lickert>input:invalid").parents().removeClass("invalid");
+            $(".form-check>input:invalid").parents().removeClass("invalid");
+            var response = JSON.parse(request.responseText);
+            //document.getElementById("didalready").innerHTML += JSON.stringify(response)
+            sessionNumber = response.showSessionNum;
+            if (sessionNumber > 3) {
+              window.location.replace("stop.html?id=" + id);
+            } else {
+              // TODO: only display the number of surveys as there are number of stories returned by the server
+              document.getElementById("story1_formatted").innerHTML = response.story1;
+              document.getElementById("story2_formatted").innerHTML = response.story2;
+              document.getElementById("story3_formatted").innerHTML = response.story3;
+              document.getElementById("story4_formatted").innerHTML = response.story4;
+              document.getElementById("randomStory1").innerHTML = response.story1;
+              document.getElementById("randomStory2").innerHTML = response.story2;
+              document.getElementById("randomStory3").innerHTML = response.story3;
+              document.getElementById("randomStory4").innerHTML = response.story4;
+            }
+            // Hide all pages
+            var pages = document.getElementsByName("pages");
+            for (var i = 0; i < pages.length; i++) {
+              pages[i].style.display = "none";
+            }
+            // Show the requested page
+            document.getElementById(pageId).style.display = "block";
+
           }
+
         }
-        // Hide all pages
-        var pages = document.getElementsByName("pages");
-        for (var i = 0; i < pages.length; i++) {
-          pages[i].style.display = "none";
-        }
-        // Show the requested page
-        document.getElementById(pageId).style.display = "block";
       }
 
       function showPage(pageId) {
-        // Hide all pages
-        var pages = document.getElementsByName("pages");
-        for (var i = 0; i < pages.length; i++) {
-          pages[i].style.display = "none";
+        var ok = false; // TODO: check that likert values are valid before continuing to the next page
+        console.log("All fields valid? " + ok);
+        $(":valid").removeClass("invalid");
+        $(".lickert>input:valid").parents().removeClass("invalid");
+        $(".form-check>input:valid").parents().removeClass("invalid");
+        if (!ok) {
+          $("#cantSubmit").show();
+          $(":invalid").addClass("invalid");
+          $(".lickert>input:invalid").parents().addClass("invalid");
+          $(".form-check>input:invalid").parents().addClass("invalid");
+        } else {
+          $("#cantSubmit").hide();
+            $(":invalid").removeClass("invalid");
+            $(".lickert>input:invalid").parents().removeClass("invalid");
+            $(".form-check>input:invalid").parents().removeClass("invalid");
+          // Hide all pages
+          var pages = document.getElementsByName("pages");
+          for (var i = 0; i < pages.length; i++) {
+            pages[i].style.display = "none";
+          }
+          // Show the requested page
+          document.getElementById(pageId).style.display = "block";
         }
-        // Show the requested page
-        document.getElementById(pageId).style.display = "block";
+
       }
       //////////////////////////////////////////////////////////////////////////////
       var e;
@@ -2220,17 +2254,12 @@
           };
         } else {
           obj = {
-            //participantID: participantID,
+            participantIDInput: id,
             survey1_answers: survey1_answers,
             survey2_answers: survey2_answers,
             survey3_answers: survey3_answers,
             survey4_answers: survey4_answers,
             mostEmpathizedOrder: mostEmpathizedOrder,
-
-            //gender: gender,
-            // age: age,
-            // race: race,
-            // empathyLevel: empathyLevel,
             feedback: feedback
           };
         }
@@ -2254,27 +2283,9 @@
         //     alert("Data submitted successfully!");
         //   }
         // };
-
       });
 
       // submit test ends here
-
-
-
-      /**
-       * Gets a URL parameter from the query string
-       */
-      function turkGetParam(name, defaultValue) {
-        var regexS = "[\?&]" + name + "=([^&#]*)";
-        var regex = new RegExp(regexS);
-        var tmpURL = window.location.href;
-        var results = regex.exec(tmpURL);
-        if (results == null) {
-          return defaultValue;
-        } else {
-          return results[1];
-        }
-      }
 
       function toggleConsent(checked) {
         if (checked) {
@@ -2466,7 +2477,7 @@
       }
 
       .section {
-        border-top: solid darkgrey .75px;
+        /* border-top: solid darkgrey .75px; */
         padding-top: 15px;
       }
 
