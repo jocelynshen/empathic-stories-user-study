@@ -103,7 +103,7 @@ def get_stories_from_model(mystory):
     """
     embeddings = model_SBERT.encode(mystory)
     best_match_SBERT = df_clean["embeddings_SBERT"].apply(lambda x: get_cosine_similarity(embeddings, x)).idxmax()
-    r2 = df_clean["story"].iloc[best_match_SBERT]
+    r2 = df_clean["story_formatted"].iloc[best_match_SBERT]
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -111,7 +111,7 @@ def get_stories_from_model(mystory):
         max_tokens=500
     )
     r3 = response["choices"][0]["message"]["content"].replace("\n\n", "\n")
-    return {"condition1": "story about apples", "condition2": "story about bananas", "condition3": r3}
+    return {"condition1": "story about apples", "condition2": r2, "condition3": r3}
 
 @app.route('/sessionDone/', methods=["GET", "POST"])
 def sessionDone():
