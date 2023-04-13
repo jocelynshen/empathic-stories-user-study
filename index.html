@@ -22,13 +22,13 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
             
             <div><p></p></div>
             <p>Click the <b>Start</b> button below to start your session.</p>
-            <input type="submit" id="idSubmitButton" class="btn btn-primary" value="Start">
+            <input type="submit" id="idSubmitButton" class="btn btn-primary" value="Start" >
         </div>
     </div>
 </div>
 
 <script>
-    //console.log("i am in script")
+    // console.log("i am in script")
     var idSubmitButton = document.getElementById("idSubmitButton");
 
     idSubmitButton.addEventListener("click", function(event) {
@@ -44,13 +44,13 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
         request.open('POST', url, false);
         request.setRequestHeader("Content-Type", "application/json");
         //console.log(participantIDInput)
-        //console.log("i am before send")
+        // console.log("i am before send")
         request.send(JSON.stringify({participantIDInput : participantIDInput}));
         //console.log("i am after send")
-
+        // console.log("request.status", request.status)
         if (request.status == 200) {
             //alert("Participant ID submitted successfully!"); 
-            window.location.href = "participantID.html";
+            window.location.href = "participantID.html?id=" + participantIDInput;
         }
 
         // request.onreadystatechange = function () {
