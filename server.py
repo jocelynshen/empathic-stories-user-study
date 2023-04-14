@@ -29,7 +29,7 @@ openai.api_key = open_ai_api_key
 from numpy import dot
 from numpy.linalg import norm
 
-model_SBERT = SentenceTransformer('all-mpnet-base-v2')
+# model_SBERT = SentenceTransformer('all-mpnet-base-v2')
 df_clean = pd.read_csv("STORIES (user study).csv")
 
 def f(x):
@@ -37,7 +37,7 @@ def f(x):
         return eval(x)
     except:
         return x
-df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(f)
+# df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(f)
 
 lock = Lock()
 app = Flask(__name__)
@@ -56,7 +56,7 @@ default_app = firebase_admin.initialize_app(c, {
 })
 
 
-ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004", "p005", 'p006']
+ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004", "p005", 'p006', 'p009']
 
 
 def get_cosine_similarity(a, b):
@@ -77,6 +77,9 @@ def get_participant_id():
     # print('test')
     participantIDInput = request.json['participantIDInput']
     print(f'The value of my id is {participantIDInput}')
+    if participantIDInput not in ALLOWED_USERS:
+        sem.release()
+        abort(404)
     ref = db.reference(participantIDInput)
     currentSession = db.reference(participantIDInput + "/currentSession").get()
 
@@ -89,9 +92,7 @@ def get_participant_id():
     elif currentSession == 3:
         db.reference(participantIDInput + "/currentSession").set(4)
 
-    if participantIDInput not in ALLOWED_USERS:
-        sem.release()
-        abort(404)
+    
     sem.release()
     return "success"
 
@@ -101,9 +102,9 @@ def get_stories_from_model(mystory):
 
     Write a story from your own life that the narrator would empathize with. Do not refer to the narrator explicitly.
     """
-    embeddings = model_SBERT.encode(mystory)
-    best_match_SBERT = df_clean["embeddings_SBERT"].apply(lambda x: get_cosine_similarity(embeddings, x)).idxmax()
-    r2 = df_clean["story_formatted"].iloc[best_match_SBERT]
+    # embeddings = model_SBERT.encode(mystory)
+    # best_match_SBERT = df_clean["embeddings_SBERT"].apply(lambda x: get_cosine_similarity(embeddings, x)).idxmax()
+    # r2 = df_clean["story_formatted"].iloc[best_match_SBERT]
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -111,7 +112,7 @@ def get_stories_from_model(mystory):
         max_tokens=500
     )
     r3 = response["choices"][0]["message"]["content"].replace("\n\n", "\n")
-    return {"condition1": "story about apples", "condition2": r2, "condition3": r3}
+    return {"condition1": "story about apples", "condition2": "story about bananas", "condition3": r3}
 
 @app.route('/sessionDone/', methods=["GET", "POST"])
 def sessionDone():
@@ -233,5 +234,5 @@ if __name__ == '__main__':
     host = sys.argv[1]
     port = sys.argv[2]
     debug = sys.argv[3]
-    # app.run(host='0.0.0.0', port=5000, debug=True)
-    app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))
+    app.run(host='0.0.0.0', port=5000, debug=True)
+    # app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))
