@@ -23,7 +23,6 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 import openai
 from passwords import open_ai_api_key
-# from prompts import empathy_sim, event_sim, emotion_sim, moral_sim, empathy_sum, event_sum, emotion_sum, moral_sum
 openai.api_key = open_ai_api_key
 
 from numpy import dot
@@ -36,10 +35,6 @@ df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(eval)
 
 lock = Lock()
 app = Flask(__name__)
-# app.secret_key = 'my_secret_key'
-local_storage = threading.local()
-app.config['UPLOAD_FOLDER'] = "data/"
-app.config['MAX_CONTENT_LENGTH'] = 10000 * 1024 * 1024
 CORS(app)
 logging.getLogger('flask_cors').level = logging.DEBUG
 
