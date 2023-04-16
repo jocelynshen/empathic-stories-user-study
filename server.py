@@ -46,7 +46,7 @@ default_app = firebase_admin.initialize_app(c, {
 })
 
 
-ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004", "p005", 'p006', 'p009']
+ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004", "p005", 'p006', 'p009', 'p010', 'p011', 'p012']
 
 
 def get_cosine_similarity(a, b):
@@ -75,13 +75,9 @@ def get_participant_id():
 
     if currentSession is None:
         db.reference(participantIDInput + "/currentSession").set(1)
-    elif currentSession == 1:
-        db.reference(participantIDInput + "/currentSession").set(2)
-    elif currentSession == 2:
-        db.reference(participantIDInput + "/currentSession").set(3)
-    elif currentSession == 3:
-        db.reference(participantIDInput + "/currentSession").set(4)
-
+    elif currentSession not in [1, 2, 3]:
+        sem.release()
+        abort(404)        
     
     sem.release()
     return "success"
@@ -110,6 +106,12 @@ def sessionDone():
     id = request.json['participantIDInput']
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
+    if currentSession == 1:
+        db.reference(participantIDInput + "/currentSession").set(2)
+    elif currentSession == 2:
+        db.reference(participantIDInput + "/currentSession").set(3)
+    elif currentSession == 3:
+        db.reference(participantIDInput + "/currentSession").set(4)
     dict = {'showParticipantID': id, 'showSessionNum': currentSession}
     sem.release()
     return json.dumps(dict)
@@ -148,6 +150,14 @@ def submitMyStory():
     mystoryQuestions = {"mainEvent": mainEvent,
                     "narratorEmotions": narratorEmotions, "moral": moral, "fullDate": fullDate}
 
+    gender = request.json['gender']
+    age = request.json['age']
+    race = request.json['race']
+    empathyLevel = request.json['empathyLevel']
+    demographic = {"gender": gender, "age": age,
+                    "race": race, "empathyLevel": empathyLevel}
+        
+
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
     session = db.reference(id + '/s00' + str(currentSession))
@@ -158,6 +168,8 @@ def submitMyStory():
         session.child("mystoryTopic").set(mystoryTopic)
         session.child("mystoryQuestions").set(mystoryQuestions)
         session.child("reflection").set(reflection)
+        session.child("demographic").set(demographic)
+        
 
     ## make call to model and save firebase mapping
     stories = get_stories_from_model(mystory)
@@ -191,14 +203,7 @@ def submitSurveyQuestions():
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
     if currentSession == 1:
-        gender = request.json['gender']
-        age = request.json['age']
-        race = request.json['race']
-        empathyLevel = request.json['empathyLevel']
-        demographic = {"gender": gender, "age": age,
-                       "race": race, "empathyLevel": empathyLevel}
         session1 = db.reference(id + '/s001')
-        session1.child("demographic").set(demographic)
         session1.child("feedback").set(feedback)
         # session1.child("prompt").set(dbprompt1)
         session1.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
@@ -224,5 +229,5 @@ if __name__ == '__main__':
     host = sys.argv[1]
     port = sys.argv[2]
     debug = sys.argv[3]
-    app.run(host='0.0.0.0', port=5000, debug=True)
-    # app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))
+    # app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))
