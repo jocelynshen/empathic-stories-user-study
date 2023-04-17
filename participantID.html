@@ -2153,11 +2153,12 @@
         //get user story
         var mystory = document.getElementById("userstory").value;
         
+        console.log(sessionNumber);
         if(sessionNumber == 1){
           var gender = document.getElementById("annotatorGender").value;
           var age = document.getElementById("age").value;
           var race = document.getElementById("annotatorRace").value;
-          let empathyLevel;
+          var empathyLevel;
           const empathyOptions = document.getElementsByName(`empathylevel`);
           for (const option of empathyOptions) {
             if (option.checked) {
