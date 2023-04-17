@@ -28,7 +28,7 @@ openai.api_key = open_ai_api_key
 from numpy import dot
 from numpy.linalg import norm
 
-# model_SBERT = SentenceTransformer('all-mpnet-base-v2')
+model_SBERT = SentenceTransformer('all-mpnet-base-v2')
 df_clean = pd.read_csv("STORIES (user study).csv")
 df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(eval)
 
@@ -105,12 +105,7 @@ def sessionDone():
     id = request.json['participantIDInput']
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
-    if currentSession == 1:
-        db.reference(id + "/currentSession").set(2)
-    elif currentSession == 2:
-        db.reference(id + "/currentSession").set(3)
-    elif currentSession == 3:
-        db.reference(id + "/currentSession").set(4)
+
     dict = {'showParticipantID': id, 'showSessionNum': currentSession}
     sem.release()
     return json.dumps(dict)
@@ -158,14 +153,13 @@ def submitMyStory():
                     "narratorEmotions": narratorEmotions, "moral": moral, "fullDate": fullDate}
     ref = db.reference(id)
     session = db.reference(id + '/s00' + str(currentSession))
-    session_values = session.get()
-    if not session_values or "mystory" not in session_values:
-        session.child("mystory").set(mystory)
-        session.child("mystoryTopic").set(mystoryTopic)
-        session.child("mystoryQuestions").set(mystoryQuestions)
-        session.child("reflection").set(reflection)
-        if currentSession == 1:
-            session.child("demographic").set(demographic)
+
+    session.child("mystory").set(mystory)
+    session.child("mystoryTopic").set(mystoryTopic)
+    session.child("mystoryQuestions").set(mystoryQuestions)
+    session.child("reflection").set(reflection)
+    if currentSession == 1:
+        session.child("demographic").set(demographic)
         
 
     ## make call to model and save firebase mapping
@@ -209,6 +203,7 @@ def submitSurveyQuestions():
         session1.child("survey2_answers").set(survey2_answers)
         session1.child("survey3_answers").set(survey3_answers)
         session1.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
+        db.reference(id + "/currentSession").set(2)
 
     elif currentSession == 2:
         session2 = db.reference(id + '/s002')
@@ -218,6 +213,7 @@ def submitSurveyQuestions():
         session2.child("survey2_answers").set(survey2_answers)
         session2.child("survey3_answers").set(survey3_answers)
         session2.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
+        db.reference(id + "/currentSession").set(3)
 
     elif currentSession == 3:
         session3 = db.reference(id + '/s003')
@@ -227,6 +223,7 @@ def submitSurveyQuestions():
         session3.child("survey2_answers").set(survey2_answers)
         session3.child("survey3_answers").set(survey3_answers)
         session3.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
+        db.reference(id + "/currentSession").set(4)
     sem.release()
     return 'Data submitted successfully!'
 
