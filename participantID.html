@@ -41,6 +41,7 @@
   <div>
 
     <h5 id="didalready"></h5>
+    <p id="loading" style="display:none">Loading...do not refresh</p>
     <div class="p-3" id="all-content">
 
       <div id="main-task">
@@ -401,102 +402,107 @@
               <div id="demographic" class="row justify-content-center" style="display:none">
                 <div class="form-group col-11 section">
                   <h4><label for="summary">Part 4: Tell us about yourself and this writing task</label></h4>
-              
-              
-                  <h5 class="mt-4">1. How do you identify?<br><small>Select "prefer not to answer" if needed.</small></h5>
+
+
+                  <h5 class="mt-4">1. How do you identify?<br><small>Select "prefer not to answer" if needed.</small>
+                  </h5>
                   <div class="form-group row mt-3">
-                      <label for="gender" class="col-sm-2 col-form-label">Gender identity*</label>
-                      <div class="col-sm-4">
-                      <select id="annotatorGender" name="annotatorGender" class="form-control" style="font-size: .85rem;"
-                          required>
-                          <option disabled selected value="">-- please select --</option>
-                          <option value="man">Man/Male</option>
-                          <option value="woman">Woman/Female</option>
-                          <option value="transman">Trans man</option>
-                          <option value="transwoman">Trans woman</option>
-                          <option value="nonBinary">Non-binary</option>
-                          <option value="other">Other</option>
-                          <option value="na">- prefer not to disclose -</option>
+                    <label for="gender" class="col-sm-2 col-form-label">Gender identity*</label>
+                    <div class="col-sm-4">
+                      <select id="annotatorGender" name="annotatorGender" class="form-control"
+                        style="font-size: .85rem;" required>
+                        <option disabled selected value="">-- please select --</option>
+                        <option value="man">Man/Male</option>
+                        <option value="woman">Woman/Female</option>
+                        <option value="transman">Trans man</option>
+                        <option value="transwoman">Trans woman</option>
+                        <option value="nonBinary">Non-binary</option>
+                        <option value="other">Other</option>
+                        <option value="na">- prefer not to disclose -</option>
                       </select>
-                      </div>
-                      <div class="col-sm-4"><small>Please select the gender identity you most identify with
-                          currently.</small>
-                      </div>
+                    </div>
+                    <div class="col-sm-4"><small>Please select the gender identity you most identify with
+                        currently.</small>
+                    </div>
                   </div>
                   <div class="form-group row">
-                      <label for="annotatorAge" class="col-sm-2 col-form-label">Age (years)*</label>
-                      <div class="col-sm-4">
-                      <input type="number" id="age" name="age" placeholder="-" class="form-control" min="18" max="100">
-              
-                      </div>
-                      <div class="col-sm-4"><small>Leave blank if you do not wish to disclose</small></div>
-              
+                    <label for="annotatorAge" class="col-sm-2 col-form-label">Age (years)*</label>
+                    <div class="col-sm-4">
+                      <input type="number" id="age" name="age" placeholder="-" class="form-control" min="18" max="100"
+                        required>
+
+                    </div>
+                    <!-- <div class="col-sm-4"><small>Leave blank if you do not wish to disclose</small></div> -->
+
                   </div>
                   <div class="form-group row">
-                      <label for="race" class="col-sm-2 col-form-label">Race/ethnicity*</label>
-                      <div class="col-sm-4">
+                    <label for="race" class="col-sm-2 col-form-label">Race/ethnicity*</label>
+                    <div class="col-sm-4">
                       <select id="annotatorRace" name="annotatorRace" class="form-control" style="font-size: .85rem;"
-                          required>
-                          <option disabled selected value="">-- please select --</option>
-                          <option value="asian">Asian/Asian American</option>
-                          <option value="indian">South Asian/Indian American</option>
-                          <option value="black">Black/African American</option>
-                          <option value="hisp">Hispanic/Latinx</option>
-                          <option value="white">White/Caucasian</option>
-                          <option value="middleEastern">Middle Eastern</option>
-                          <option value="islander">Native Hawaiian/Pacific Islander</option>
-                          <option value="native">Native American/First Nations</option>
-                          <option value="other">Mixed/other</option>
-                          <option value="na">- prefer not to disclose -</option>
+                        required>
+                        <option disabled selected value="">-- please select --</option>
+                        <option value="asian">Asian/Asian American</option>
+                        <option value="indian">South Asian/Indian American</option>
+                        <option value="black">Black/African American</option>
+                        <option value="hisp">Hispanic/Latinx</option>
+                        <option value="white">White/Caucasian</option>
+                        <option value="middleEastern">Middle Eastern</option>
+                        <option value="islander">Native Hawaiian/Pacific Islander</option>
+                        <option value="native">Native American/First Nations</option>
+                        <option value="other">Mixed/other</option>
+                        <option value="na">- prefer not to disclose -</option>
                       </select>
-                      </div>
-                      <div class="col-sm-4"><small>Please select the racial/ethnic identity you most identify with
-                          currently.</small></div>
+                    </div>
+                    <div class="col-sm-4"><small>Please select the racial/ethnic identity you most identify with
+                        currently.</small></div>
                   </div>
                   <div class="mb-3">
-                      <h5 class="mt-4">2. To what extent does the following statement describe you:*</h5>
-                      <label for="empathy" class="form-label">
+                    <h5 class="mt-4">2. To what extent does the following statement describe you:*</h5>
+                    <label for="empathy" class="form-label">
                       <h5>“I am an empathetic person.” </h5>
-                      </label>
-                      <div class="form-check lickert">
+                    </label>
+                    <div class="form-check lickert">
                       <input class="form-check-input right" type="radio" name="empathylevel" id="notTrueAtAll" value="1"
-                          required> <label class="form-check-label" for="notVeryTrue">&nbsp; Not very true of me </label>
-                      </div>
-                      <div class="form-check lickert">
-                      <input class="form-check-input right" type="radio" name="empathylevel" id="notTrue" value="2" required>
+                        required> <label class="form-check-label" for="notVeryTrue">&nbsp; Not very true of me </label>
+                    </div>
+                    <div class="form-check lickert">
+                      <input class="form-check-input right" type="radio" name="empathylevel" id="notTrue" value="2"
+                        required>
                       <label class="form-check-label" for="notTrue">&nbsp; Not true</label>
-              
-                      </div>
-                      <div class="form-check lickert">
-                      <input class="form-check-input right" type="radio" name="empathylevel" id="iamneutral" value="3" required>
+
+                    </div>
+                    <div class="form-check lickert">
+                      <input class="form-check-input right" type="radio" name="empathylevel" id="iamneutral" value="3"
+                        required>
                       <label class="form-check-label" for="iamneutral">&nbsp; Neutral</label>
-              
-                      </div>
-                      <div class="form-check lickert">
-                      <input class="form-check-input right" type="radio" name="empathylevel" id="true" value="4" required>
+
+                    </div>
+                    <div class="form-check lickert">
+                      <input class="form-check-input right" type="radio" name="empathylevel" id="true" value="4"
+                        required>
                       <label class="form-check-label" for="true">&nbsp; True</label>
-              
-                      </div>
-                      <div class="form-check lickert">
+
+                    </div>
+                    <div class="form-check lickert">
                       <input class="form-check-input" type="radio" name="empathylevel" id="veryTrue" value="5" required>
                       <label class="form-check-label" for="veryTrue">&nbsp; Very true of me</label>
-                      </div>
-              
+                    </div>
+
                   </div>
-              
+
                   <div class="form-group">
-                      <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="certify-no-pii-story" name="certify-no-pii-story"
-                          required>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="certify-no-pii-story"
+                        name="certify-no-pii-story" required>
                       <label class="form-check-label" for="certify-no-pii-story">
-                          I certify that my responses contain no personally identifiable information (name, address, SSN,
-                          etc)
-                          about
-                          myself or anyone else. *
+                        I certify that my responses contain no personally identifiable information (name, address, SSN,
+                        etc)
+                        about
+                        myself or anyone else. *
                       </label>
-                      </div>
+                    </div>
                   </div>
-                  </div>
+                </div>
               </div>
               <div class='text-center'>
                 <button type="button" class="btn btn-lg btn-primary" onclick="submitStory('page2')">Submit
@@ -536,62 +542,64 @@
                         </h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-1" id="s1q1_option1"
-                            value="1" required> <label class="form-check-label" for="s1q1_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-1"
+                            id="s1q1_option1" value="1" required> <label class="form-check-label"
+                            for="s1q1_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-1" id="s1q1_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-1"
+                            id="s1q1_option2" value="2" required>
                           <label class="form-check-label" for="s1q1_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-1" id="s1q1_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-1"
+                            id="s1q1_option3" value="3" required>
                           <label class="form-check-label" for="s1q1_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-1" id="s1q1_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-1"
+                            id="s1q1_option4" value="4" required>
                           <label class="form-check-label" for="s1q1_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio" type="radio" name="survey1-1" id="s1q1_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio" type="radio" name="survey1-1" id="s1q1_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s1q1_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4" id="s1q2">2. I can feel the narrator’s emotions in the story. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-2" id="s1q2_option1"
-                            value="1" required> <label class="form-check-label" for="s1q2_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-2"
+                            id="s1q2_option1" value="1" required> <label class="form-check-label"
+                            for="s1q2_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-2" id="s1q2_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-2"
+                            id="s1q2_option2" value="2" required>
                           <label class="form-check-label" for="s1q2_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-2" id="s1q2_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-2"
+                            id="s1q2_option3" value="3" required>
                           <label class="form-check-label" for="s1q2_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-2" id="s1q2_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-2"
+                            id="s1q2_option4" value="4" required>
                           <label class="form-check-label" for="s1q2_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio" type="radio" name="survey1-2" id="s1q2_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio" type="radio" name="survey1-2" id="s1q2_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s1q2_option5">&nbsp; Strongly agree</label>
                         </div>
 
@@ -599,155 +607,160 @@
                         <h5 class="mt-4">3. I can recognize the narrator’s situation. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-3" id="s1q3_option1"
-                            value="1" required> <label class="form-check-label" for="s1q3_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-3"
+                            id="s1q3_option1" value="1" required> <label class="form-check-label"
+                            for="s1q3_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-3" id="s1q3_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-3"
+                            id="s1q3_option2" value="2" required>
                           <label class="form-check-label" for="s1q3_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-3" id="s1q3_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-3"
+                            id="s1q3_option3" value="3" required>
                           <label class="form-check-label" for="s1q3_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-3" id="s1q3_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-3"
+                            id="s1q3_option4" value="4" required>
                           <label class="form-check-label" for="s1q3_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio" type="radio" name="survey1-3" id="s1q3_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio" type="radio" name="survey1-3" id="s1q3_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s1q3_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4">4. The narrator’s reactions to the situation are understandable. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-4" id="s1q4_option1"
-                            value="1" required> <label class="form-check-label" for="s1q4_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-4"
+                            id="s1q4_option1" value="1" required> <label class="form-check-label"
+                            for="s1q4_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-4" id="s1q4_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-4"
+                            id="s1q4_option2" value="2" required>
                           <label class="form-check-label" for="s1q4_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-4" id="s1q4_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-4"
+                            id="s1q4_option3" value="3" required>
                           <label class="form-check-label" for="s1q4_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-4" id="s1q4_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-4"
+                            id="s1q4_option4" value="4" required>
                           <label class="form-check-label" for="s1q4_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio" type="radio" name="survey1-4" id="s1q4_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio" type="radio" name="survey1-4" id="s1q4_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s1q4_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4">5. I can relate to what the narrator was going through. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-5" id="s1q5_option1"
-                            value="1" required> <label class="form-check-label" for="s1q5_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-5"
+                            id="s1q5_option1" value="1" required> <label class="form-check-label"
+                            for="s1q5_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-5" id="s1q5_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-5"
+                            id="s1q5_option2" value="2" required>
                           <label class="form-check-label" for="s1q5_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-5" id="s1q5_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-5"
+                            id="s1q5_option3" value="3" required>
                           <label class="form-check-label" for="s1q5_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-5" id="s1q5_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-5"
+                            id="s1q5_option4" value="4" required>
                           <label class="form-check-label" for="s1q5_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio" type="radio" name="survey1-5" id="s1q5_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio" type="radio" name="survey1-5" id="s1q5_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s1q5_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4">6. I can identify with the situation described in the story. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-6" id="s1q6_option1"
-                            value="1" required> <label class="form-check-label" for="s1q6_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-6"
+                            id="s1q6_option1" value="1" required> <label class="form-check-label"
+                            for="s1q6_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-6" id="s1q6_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-6"
+                            id="s1q6_option2" value="2" required>
                           <label class="form-check-label" for="s1q6_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-6" id="s1q6_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-6"
+                            id="s1q6_option3" value="3" required>
                           <label class="form-check-label" for="s1q6_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-6" id="s1q6_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-6"
+                            id="s1q6_option4" value="4" required>
                           <label class="form-check-label" for="s1q6_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio" type="radio" name="survey1-6" id="s1q6_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio" type="radio" name="survey1-6" id="s1q6_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s1q6_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4">7. I can identify with the narrator of the story. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-7" id="s1q7_option1"
-                            value="1" required> <label class="form-check-label" for="s1q7_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-7"
+                            id="s1q7_option1" value="1" required> <label class="form-check-label"
+                            for="s1q7_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-7" id="s1q7_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-7"
+                            id="s1q7_option2" value="2" required>
                           <label class="form-check-label" for="s1q7_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-7" id="s1q7_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-7"
+                            id="s1q7_option3" value="3" required>
                           <label class="form-check-label" for="s1q7_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-7" id="s1q7_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-7"
+                            id="s1q7_option4" value="4" required>
                           <label class="form-check-label" for="s1q7_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio" type="radio" name="survey1-7" id="s1q7_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio" type="radio" name="survey1-7" id="s1q7_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s1q7_option5">&nbsp; Strongly agree</label>
                         </div>
 
@@ -755,90 +768,92 @@
                           empathize as much as compared to if I knew it was human. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-8" id="s1q8_option1"
-                            value="1" required> <label class="form-check-label" for="s1q8_option1">&nbsp; Empathize less
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-8"
+                            id="s1q8_option1" value="1" required> <label class="form-check-label"
+                            for="s1q8_option1">&nbsp; Empathize less
                           </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-8" id="s1q8_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-8"
+                            id="s1q8_option2" value="2" required>
                           <label class="form-check-label" for="s1q8_option2">&nbsp; Empathize a little less</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-8" id="s1q8_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-8"
+                            id="s1q8_option3" value="3" required>
                           <label class="form-check-label" for="s1q8_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-8" id="s1q8_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-8"
+                            id="s1q8_option4" value="4" required>
                           <label class="form-check-label" for="s1q8_option4">&nbsp; Empathize a little more</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio" type="radio" name="survey1-8" id="s1q8_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio" type="radio" name="survey1-8" id="s1q8_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s1q8_option5">&nbsp; Empathize more</label>
                         </div>
 
                         <h5 class="mt-4">9. How different from your written story is this story? *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-9" id="s1q9_option1"
-                            value="1" required> <label class="form-check-label" for="s1q9_option1">&nbsp; Very different
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-9"
+                            id="s1q9_option1" value="1" required> <label class="form-check-label"
+                            for="s1q9_option1">&nbsp; Very different
                           </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-9" id="s1q9_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-9"
+                            id="s1q9_option2" value="2" required>
                           <label class="form-check-label" for="s1q9_option2">&nbsp; Different</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-9" id="s1q9_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-9"
+                            id="s1q9_option3" value="3" required>
                           <label class="form-check-label" for="s1q9_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio" type="radio" name="survey1-9" id="s1q9_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio" type="radio" name="survey1-9"
+                            id="s1q9_option4" value="4" required>
                           <label class="form-check-label" for="s1q9_option4">&nbsp; Similar</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio" type="radio" name="survey1-9" id="s1q9_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio" type="radio" name="survey1-9" id="s1q9_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s1q9_option5">&nbsp; Very similar</label>
                         </div>
 
                         <h5 class="mt-4">10. What made you empathize with this story? *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-10[]" id="s1q10_option1"
-                            value="the-narrator-situation" required> <label class="form-check-label"
+                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-10[]"
+                            id="s1q10_option1" value="the-narrator-situation" required> <label class="form-check-label"
                             for="s1q10_option1">&nbsp; The
                             situation the narrator goes through </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-10[]" id="s1q10_option2"
-                            value="the-narraor-feelings" required>
+                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-10[]"
+                            id="s1q10_option2" value="the-narraor-feelings" required>
                           <label class="form-check-label" for="s1q10_option2">&nbsp; The feelings the narrator
                             has</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-10[]" id="s1q10_option3"
-                            value="takeaway&reflection" required>
+                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-10[]"
+                            id="s1q10_option3" value="takeaway&reflection" required>
                           <label class="form-check-label" for="s1q10_option3">&nbsp; The overall takeaway and reflection
                             of the story</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-10[]" id="s1q10_option4"
-                            value="other" onchange="getOtherValue1()" required>
+                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-10[]"
+                            id="s1q10_option4" value="other" onchange="getOtherValue1()" required>
                           <label class="form-check-label" for="s1q10_option4">&nbsp; Other</label>
                           <input type="text" style="height:20px; font-size:12px;" id="otherInput-1-10" disabled>
 
@@ -889,217 +904,224 @@
                         </h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-1" id="s2q1_option1"
-                            value="1" required> <label class="form-check-label" for="s2q1_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-1"
+                            id="s2q1_option1" value="1" required> <label class="form-check-label"
+                            for="s2q1_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-1" id="s2q1_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-1"
+                            id="s2q1_option2" value="2" required>
                           <label class="form-check-label" for="s2q1_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-1" id="s2q1_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-1"
+                            id="s2q1_option3" value="3" required>
                           <label class="form-check-label" for="s2q1_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-1" id="s2q1_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-1"
+                            id="s2q1_option4" value="4" required>
                           <label class="form-check-label" for="s2q1_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio2" type="radio" name="survey2-1" id="s2q1_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio2" type="radio" name="survey2-1" id="s2q1_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s2q1_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4">2. I can feel the narrator’s emotions in the story. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-2" id="s2q2_option1"
-                            value="1" required> <label class="form-check-label" for="s2q2_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-2"
+                            id="s2q2_option1" value="1" required> <label class="form-check-label"
+                            for="s2q2_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-2" id="s2q2_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-2"
+                            id="s2q2_option2" value="2" required>
                           <label class="form-check-label" for="s2q2_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-2" id="s2q2_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-2"
+                            id="s2q2_option3" value="3" required>
                           <label class="form-check-label" for="s2q2_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-2" id="s2q2_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-2"
+                            id="s2q2_option4" value="4" required>
                           <label class="form-check-label" for="s2q2_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio2" type="radio" name="survey2-2" id="s2q2_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio2" type="radio" name="survey2-2" id="s2q2_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s2q2_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4">3. I can recognize the narrator’s situation. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-3" id="s2q3_option1"
-                            value="1" required> <label class="form-check-label" for="s2q3_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-3"
+                            id="s2q3_option1" value="1" required> <label class="form-check-label"
+                            for="s2q3_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-3" id="s2q3_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-3"
+                            id="s2q3_option2" value="2" required>
                           <label class="form-check-label" for="s2q3_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-3" id="s2q3_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-3"
+                            id="s2q3_option3" value="3" required>
                           <label class="form-check-label" for="s2q3_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-3" id="s2q3_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-3"
+                            id="s2q3_option4" value="4" required>
                           <label class="form-check-label" for="s2q3_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio2" type="radio" name="survey2-3" id="s2q3_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio2" type="radio" name="survey2-3" id="s2q3_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s2q3_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4">4. The narrator’s reactions to the situation are understandable. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-4" id="s2q4_option1"
-                            value="1" required> <label class="form-check-label" for="s2q4_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-4"
+                            id="s2q4_option1" value="1" required> <label class="form-check-label"
+                            for="s2q4_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-4" id="s2q4_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-4"
+                            id="s2q4_option2" value="2" required>
                           <label class="form-check-label" for="s2q4_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-4" id="s2q4_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-4"
+                            id="s2q4_option3" value="3" required>
                           <label class="form-check-label" for="s2q4_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-4" id="s2q4_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-4"
+                            id="s2q4_option4" value="4" required>
                           <label class="form-check-label" for="s2q4_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio2" type="radio" name="survey2-4" id="s2q4_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio2" type="radio" name="survey2-4" id="s2q4_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s2q4_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4">5. I can relate to what the narrator was going through. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-5" id="s2q5_option1"
-                            value="1" required> <label class="form-check-label" for="s2q5_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-5"
+                            id="s2q5_option1" value="1" required> <label class="form-check-label"
+                            for="s2q5_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-5" id="s2q5_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-5"
+                            id="s2q5_option2" value="2" required>
                           <label class="form-check-label" for="s2q5_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-5" id="s2q5_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-5"
+                            id="s2q5_option3" value="3" required>
                           <label class="form-check-label" for="s2q5_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-5" id="s2q5_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-5"
+                            id="s2q5_option4" value="4" required>
                           <label class="form-check-label" for="s2q5_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio2" type="radio" name="survey2-5" id="s2q5_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio2" type="radio" name="survey2-5" id="s2q5_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s2q5_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4">6. I can identify with the situation described in the story. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-6" id="s2q6_option1"
-                            value="1" required> <label class="form-check-label" for="s2q6_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-6"
+                            id="s2q6_option1" value="1" required> <label class="form-check-label"
+                            for="s2q6_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-6" id="s2q6_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-6"
+                            id="s2q6_option2" value="2" required>
                           <label class="form-check-label" for="s2q6_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-6" id="s2q6_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-6"
+                            id="s2q6_option3" value="3" required>
                           <label class="form-check-label" for="s2q6_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-6" id="s2q6_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-6"
+                            id="s2q6_option4" value="4" required>
                           <label class="form-check-label" for="s2q6_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio2" type="radio" name="survey2-6" id="s2q6_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio2" type="radio" name="survey2-6" id="s2q6_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s2q6_option5">&nbsp; Strongly agree</label>
                         </div>
 
                         <h5 class="mt-4">7. I can identify with the narrator of the story. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-7" id="s2q7_option1"
-                            value="1" required> <label class="form-check-label" for="s2q7_option1">&nbsp; Strongly
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-7"
+                            id="s2q7_option1" value="1" required> <label class="form-check-label"
+                            for="s2q7_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-7" id="s2q7_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-7"
+                            id="s2q7_option2" value="2" required>
                           <label class="form-check-label" for="s2q7_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-7" id="s2q7_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-7"
+                            id="s2q7_option3" value="3" required>
                           <label class="form-check-label" for="s2q7_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-7" id="s2q7_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-7"
+                            id="s2q7_option4" value="4" required>
                           <label class="form-check-label" for="s2q7_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio2" type="radio" name="survey2-7" id="s2q7_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio2" type="radio" name="survey2-7" id="s2q7_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s2q7_option5">&nbsp; Strongly agree</label>
                         </div>
 
@@ -1107,89 +1129,92 @@
                           empathize as much as compared to if I knew it was human. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-8" id="s2q8_option1"
-                            value="1" required> <label class="form-check-label" for="s2q8_option1">&nbsp; Empathize less
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-8"
+                            id="s2q8_option1" value="1" required> <label class="form-check-label"
+                            for="s2q8_option1">&nbsp; Empathize less
                           </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-8" id="s2q8_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-8"
+                            id="s2q8_option2" value="2" required>
                           <label class="form-check-label" for="s2q8_option2">&nbsp; Empathize a little less</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-8" id="s2q8_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-8"
+                            id="s2q8_option3" value="3" required>
                           <label class="form-check-label" for="s2q8_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-8" id="s2q8_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-8"
+                            id="s2q8_option4" value="4" required>
                           <label class="form-check-label" for="s2q8_option4">&nbsp; Empathize a little more</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio2" type="radio" name="survey2-8" id="s2q8_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio2" type="radio" name="survey2-8" id="s2q8_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s2q8_option5">&nbsp; Empathize more</label>
                         </div>
 
                         <h5 class="mt-4">9. How different from your written story is this story? *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-9" id="s2q9_option1"
-                            value="1" required> <label class="form-check-label" for="s2q9_option1">&nbsp; Very different
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-9"
+                            id="s2q9_option1" value="1" required> <label class="form-check-label"
+                            for="s2q9_option1">&nbsp; Very different
                           </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-9" id="s2q9_option2"
-                            value="2" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-9"
+                            id="s2q9_option2" value="2" required>
                           <label class="form-check-label" for="s2q9_option2">&nbsp; Different</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-9" id="s2q9_option3"
-                            value="3" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-9"
+                            id="s2q9_option3" value="3" required>
                           <label class="form-check-label" for="s2q9_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-9" id="s2q9_option4"
-                            value="4" required>
+                          <input class="form-check-input right survey-radio2" type="radio" name="survey2-9"
+                            id="s2q9_option4" value="4" required>
                           <label class="form-check-label" for="s2q9_option4">&nbsp; Similar</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input survey-radio2" type="radio" name="survey2-9" id="s2q9_option5" value="5"
-                            required>
+                          <input class="form-check-input survey-radio2" type="radio" name="survey2-9" id="s2q9_option5"
+                            value="5" required>
                           <label class="form-check-label" for="s2q9_option5">&nbsp; Very similar</label>
                         </div>
 
                         <h5 class="mt-4">10. What made you empathize with this story? *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-10[]" id="s2q10_option1"
-                            value="situation" required> <label class="form-check-label" for="s2q10_option1">&nbsp; The
+                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-10[]"
+                            id="s2q10_option1" value="situation" required> <label class="form-check-label"
+                            for="s2q10_option1">&nbsp; The
                             situation the narrator goes through </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-10[]" id="s2q10_option2"
-                            value="feelings" required>
+                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-10[]"
+                            id="s2q10_option2" value="feelings" required>
                           <label class="form-check-label" for="s2q10_option2">&nbsp; The feelings the narrator
                             has</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-10[]" id="s2q10_option3"
-                            value="takeaway&reflection" required>
+                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-10[]"
+                            id="s2q10_option3" value="takeaway&reflection" required>
                           <label class="form-check-label" for="s2q10_option3">&nbsp; The overall takeaway and reflection
                             of the story</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-10[]" id="s2q10_option4"
-                            value="other" onchange="getOtherValue2()" required>
+                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-10[]"
+                            id="s2q10_option4" value="other" onchange="getOtherValue2()" required>
                           <label class="form-check-label" for="s2q10_option4">&nbsp; Other</label>
                           <input type="text" style="height:20px; font-size:12px;" id="otherInput-2-10" disabled>
 
@@ -1985,7 +2010,7 @@
     </div>
     <script>
       var id = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length).substring(4);
-      
+
       //function to split the form into pages
       function submitStory(pageId) {
         //main event
@@ -2020,12 +2045,35 @@
         //get user story
         var mystory = document.getElementById("userstory").value;
 
+        var gender = document.getElementById("annotatorGender").value;
+        var age = document.getElementById("age").value;
+        var race = document.getElementById("annotatorRace").value;
+        let empathyLevel;
+        const empathyOptions = document.getElementsByName(`empathylevel`);
+        for (const option of empathyOptions) {
+          if (option.checked) {
+            empathyLevel = option.value;
+            break;
+          }
+        }
+
+        var certify = document.getElementById("certify-no-pii-story").checked;
+
         var ok = checkUserStory(); // TODO
         ok = checkEmotion1() && ok;
 
         ok = checkSummary() && ok;
 
         ok = checkMoral() && ok;
+
+        // ok = ($(":invalid").length == 0) && ok;
+
+        if (valence && arousal && storyDate && dateDropDown && mystoryTopic && gender && age && race && empathyLevel &&
+          certify) {
+          ok = ok && true;
+        } else {
+          ok = ok && false;
+        }
 
 
         console.log("All fields valid? " + ok);
@@ -2038,13 +2086,50 @@
           $(".lickert>input:invalid").parents().addClass("invalid");
           $(".form-check>input:invalid").parents().addClass("invalid");
         } else {
-
+          document.getElementById("all-content").style.display = "none";
+          document.getElementById("loading").style.display = "block";
           var xmlHttp = new XMLHttpRequest();
           // var url = 'http://127.0.0.1:5000/submitMyStory/';
           var url = 'https://wall-e.media.mit.edu:5192/submitMyStory/';
           var request = new XMLHttpRequest();
-          request.open('POST', url, false);
+
+          request.open('POST', url, true);
           request.setRequestHeader("Content-Type", "application/json");
+          request.onreadystatechange = function () {
+            if (request.status == 200 && request.readyState == 4) {
+              $("#cantSubmit").hide();
+              $(":invalid").removeClass("invalid");
+              $(".lickert>input:invalid").parents().removeClass("invalid");
+              $(".form-check>input:invalid").parents().removeClass("invalid");
+              var response = JSON.parse(request.response);
+              //document.getElementById("didalready").innerHTML += JSON.stringify(response)
+              sessionNumber = response.showSessionNum;
+              if (sessionNumber > 3) {
+                window.location.replace("stop.html?id=" + id);
+              } else {
+                // TODO: only display the number of surveys as there are number of stories returned by the server
+                document.getElementById("story1_formatted").innerHTML = response.story1;
+                document.getElementById("story2_formatted").innerHTML = response.story2;
+                document.getElementById("story3_formatted").innerHTML = response.story3;
+                document.getElementById("story4_formatted").innerHTML = response.story4;
+                document.getElementById("randomStory1").innerHTML = response.story1;
+                document.getElementById("randomStory2").innerHTML = response.story2;
+                document.getElementById("randomStory3").innerHTML = response.story3;
+                document.getElementById("randomStory4").innerHTML = response.story4;
+              }
+              // Hide all pages
+              var pages = document.getElementsByName("pages");
+              for (var i = 0; i < pages.length; i++) {
+                pages[i].style.display = "none";
+              }
+              // Show the requested page
+              document.getElementById("all-content").style.display = "block";
+              document.getElementById("loading").style.display = "none";
+              document.getElementById(pageId).style.display = "block";
+
+            }
+          }
+
           request.send(JSON.stringify({
             participantIDInput: id,
             mainEvent: mainEvent,
@@ -2055,78 +2140,52 @@
             arousal: arousal,
             mystoryTopic: mystoryTopic,
             mystory: mystory,
+            gender: gender,
+            age: age,
+            race: race,
+            empathyLevel: empathyLevel,
           }));
 
-          if (request.status == 200) {
-            $("#cantSubmit").hide();
-            $(":invalid").removeClass("invalid");
-            $(".lickert>input:invalid").parents().removeClass("invalid");
-            $(".form-check>input:invalid").parents().removeClass("invalid");
-            var response = JSON.parse(request.responseText);
-            //document.getElementById("didalready").innerHTML += JSON.stringify(response)
-            sessionNumber = response.showSessionNum;
-            if (sessionNumber > 3) {
-              window.location.replace("stop.html?id=" + id);
-            } else {
-              // TODO: only display the number of surveys as there are number of stories returned by the server
-              document.getElementById("story1_formatted").innerHTML = response.story1;
-              document.getElementById("story2_formatted").innerHTML = response.story2;
-              document.getElementById("story3_formatted").innerHTML = response.story3;
-              document.getElementById("story4_formatted").innerHTML = response.story4;
-              document.getElementById("randomStory1").innerHTML = response.story1;
-              document.getElementById("randomStory2").innerHTML = response.story2;
-              document.getElementById("randomStory3").innerHTML = response.story3;
-              document.getElementById("randomStory4").innerHTML = response.story4;
-            }
-            // Hide all pages
-            var pages = document.getElementsByName("pages");
-            for (var i = 0; i < pages.length; i++) {
-              pages[i].style.display = "none";
-            }
-            // Show the requested page
-            document.getElementById(pageId).style.display = "block";
 
-          }
 
         }
       }
 
-      function checkSurvey(pageId){
-         // Get all radio buttons and checkboxes that belong to the survey
-         var radioButtons='';
-         var checkboxes='';
-         if (pageId == 'page3') {
+      function checkSurvey(pageId) {
+        // Get all radio buttons and checkboxes that belong to the survey
+        var radioButtons = '';
+        var checkboxes = '';
+        if (pageId == 'page3') {
           radioButtons = document.querySelectorAll(".survey-radio");
           checkboxes = document.querySelectorAll(".survey-checkbox");
-         }
-         else if (pageId == 'page4') {
+        } else if (pageId == 'page4') {
           radioButtons = document.querySelectorAll(".survey-radio2");
           checkboxes = document.querySelectorAll(".survey-checkbox2");
-         }
-          
-          // Check if all radio buttons are answered
-          let isRadioAnswered = false;
-          radioButtons.forEach((button) => {
-            if (button.checked) {
-              isRadioAnswered = true;
-            }
-          });
+        }
 
-          // Check if all checkboxes are answered
-          let isCheckboxAnswered = false;
-          checkboxes.forEach((checkbox) => {
-            if (checkbox.checked) {
-              isCheckboxAnswered = true;
-            }
-          });
-          // Show alert message if questions are not answered
-          if (!isRadioAnswered || !isCheckboxAnswered) {
-            // alert("Please answer all questions.");
-            return false;
-          } else {
-            // Submit the form if questions are answered
-            return true;
+        // Check if all radio buttons are answered
+        let isRadioAnswered = false;
+        radioButtons.forEach((button) => {
+          if (button.checked) {
+            isRadioAnswered = true;
           }
+        });
+
+        // Check if all checkboxes are answered
+        let isCheckboxAnswered = false;
+        checkboxes.forEach((checkbox) => {
+          if (checkbox.checked) {
+            isCheckboxAnswered = true;
+          }
+        });
+        // Show alert message if questions are not answered
+        if (!isRadioAnswered || !isCheckboxAnswered) {
+          // alert("Please answer all questions.");
+          return false;
+        } else {
+          // Submit the form if questions are answered
+          return true;
+        }
       }
 
       function showPage(pageId) {
@@ -2255,7 +2314,7 @@
             document.getElementById("showParticipantID").innerHTML = response.showParticipantID;
             document.getElementById("showSessionNum").innerHTML = sessionNumber;
             if (sessionNumber == 1) {
-              document.getElementById("demographic").style.display="block";
+              document.getElementById("demographic").style.display = "block";
             }
             document.getElementById("storywriting-section" + sessionNumber).style.display = "block"
             // document.getElementById("promptPlace").innerHTML = response.prompt;
@@ -2503,65 +2562,33 @@
 
         //feedback
         var feedback = document.getElementById("commentbox").value;
-        //demographic 
-        if (sessionNumber == 1) {
-          var gender = document.getElementById("annotatorGender").value;
-          var age = document.getElementById("age").value;
-          var race = document.getElementById("annotatorRace").value;
-          let empathyLevel;
-          const empathyOptions = document.getElementsByName(`empathylevel`);
-          for (const option of empathyOptions) {
-            if (option.checked) {
-              empathyLevel = option.value;
-              break;
-            }
-          }
-          obj = {
-            //participantID: participantID,
-            survey1_answers: survey1_answers,
-            survey2_answers: survey2_answers,
-            survey3_answers: survey3_answers,
-            survey4_answers: survey4_answers,
-            mostEmpathizedOrder: mostEmpathizedOrder,
-
-            gender: gender,
-            age: age,
-            race: race,
-            empathyLevel: empathyLevel,
-            feedback: feedback
-          };
-        } else {
-          obj = {
-            participantIDInput: id,
-            survey1_answers: survey1_answers,
-            survey2_answers: survey2_answers,
-            survey3_answers: survey3_answers,
-            survey4_answers: survey4_answers,
-            mostEmpathizedOrder: mostEmpathizedOrder,
-            feedback: feedback
-          };
-        }
+        obj = {
+          participantIDInput: id,
+          survey1_answers: survey1_answers,
+          survey2_answers: survey2_answers,
+          survey3_answers: survey3_answers,
+          survey4_answers: survey4_answers,
+          mostEmpathizedOrder: mostEmpathizedOrder,
+          feedback: feedback
+        };
 
         //send POST request
         var xmlHttp = new XMLHttpRequest();
-        // var url = 'http://127.0.0.1:5000/submitSurveyQuestions/';
-        var url = 'https://wall-e.media.mit.edu:5192/submitSurveyQuestions/';
+        var url = 'http://127.0.0.1:5000/submitSurveyQuestions/';
+        // var url = 'https://wall-e.media.mit.edu:5192/submitSurveyQuestions/';
         var request = new XMLHttpRequest();
-        request.open('POST', url, false);
+        request.open('POST', url, true);
         request.setRequestHeader("Content-Type", "application/json");
-        console.log(obj)
-        request.send(JSON.stringify(obj));
-
-        if (request.status == 200) {
-          alert("Data submitted successfully!"); //comment this alert later (just for debugging)
-          window.location.href = "sessionDone.html?id=" + id;
+        request.onreadystatechange = function () {
+          if (request.status == 200 && request.readyState == 4) {
+            document.getElementById("all-content").style.display = "block";
+            document.getElementById("loading").style.display = "none";
+            alert("Data submitted successfully!"); //comment this alert later (just for debugging)
+            
+            window.location.href = "sessionDone.html?id=" + id;
+          }
         }
-
-        // request.onreadystatechange = function () {
-        //   if (this.readyState == 4 && this.status == 200) {
-        //     alert("Data submitted successfully!");
-        //   }
-        // };
+        request.send(JSON.stringify(obj));
       });
 
       // submit test ends here

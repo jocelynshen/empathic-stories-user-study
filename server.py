@@ -23,7 +23,6 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 import openai
 from passwords import open_ai_api_key
-# from prompts import empathy_sim, event_sim, emotion_sim, moral_sim, empathy_sum, event_sum, emotion_sum, moral_sum
 openai.api_key = open_ai_api_key
 
 from numpy import dot
@@ -45,10 +44,6 @@ df_clean = pd.read_csv("STORIES (user study).csv")
 
 lock = Lock()
 app = Flask(__name__)
-# app.secret_key = 'my_secret_key'
-local_storage = threading.local()
-app.config['UPLOAD_FOLDER'] = "data/"
-app.config['MAX_CONTENT_LENGTH'] = 10000 * 1024 * 1024
 CORS(app)
 logging.getLogger('flask_cors').level = logging.DEBUG
 
@@ -60,7 +55,7 @@ default_app = firebase_admin.initialize_app(c, {
 })
 
 
-ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004", "p005", 'p006', 'p009']
+ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004", "p005", 'p006', 'p009', 'p010', 'p011', 'p012']
 
 
 def get_cosine_similarity(a, b):
@@ -89,13 +84,9 @@ def get_participant_id():
 
     if currentSession is None:
         db.reference(participantIDInput + "/currentSession").set(1)
-    elif currentSession == 1:
-        db.reference(participantIDInput + "/currentSession").set(2)
-    elif currentSession == 2:
-        db.reference(participantIDInput + "/currentSession").set(3)
-    elif currentSession == 3:
-        db.reference(participantIDInput + "/currentSession").set(4)
-
+    elif currentSession not in [1, 2, 3]:
+        sem.release()
+        abort(404)        
     
     sem.release()
     return "success"
@@ -124,6 +115,12 @@ def sessionDone():
     id = request.json['participantIDInput']
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
+    if currentSession == 1:
+        db.reference(participantIDInput + "/currentSession").set(2)
+    elif currentSession == 2:
+        db.reference(participantIDInput + "/currentSession").set(3)
+    elif currentSession == 3:
+        db.reference(participantIDInput + "/currentSession").set(4)
     dict = {'showParticipantID': id, 'showSessionNum': currentSession}
     sem.release()
     return json.dumps(dict)
@@ -162,6 +159,14 @@ def submitMyStory():
     mystoryQuestions = {"mainEvent": mainEvent,
                     "narratorEmotions": narratorEmotions, "moral": moral, "fullDate": fullDate}
 
+    gender = request.json['gender']
+    age = request.json['age']
+    race = request.json['race']
+    empathyLevel = request.json['empathyLevel']
+    demographic = {"gender": gender, "age": age,
+                    "race": race, "empathyLevel": empathyLevel}
+        
+
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
     session = db.reference(id + '/s00' + str(currentSession))
@@ -172,6 +177,8 @@ def submitMyStory():
         session.child("mystoryTopic").set(mystoryTopic)
         session.child("mystoryQuestions").set(mystoryQuestions)
         session.child("reflection").set(reflection)
+        session.child("demographic").set(demographic)
+        
 
     ## make call to model and save firebase mapping
     stories = get_stories_from_model(mystory)
@@ -205,14 +212,7 @@ def submitSurveyQuestions():
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
     if currentSession == 1:
-        gender = request.json['gender']
-        age = request.json['age']
-        race = request.json['race']
-        empathyLevel = request.json['empathyLevel']
-        demographic = {"gender": gender, "age": age,
-                       "race": race, "empathyLevel": empathyLevel}
         session1 = db.reference(id + '/s001')
-        session1.child("demographic").set(demographic)
         session1.child("feedback").set(feedback)
         # session1.child("prompt").set(dbprompt1)
         session1.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
