@@ -30,17 +30,7 @@ from numpy.linalg import norm
 
 # model_SBERT = SentenceTransformer('all-mpnet-base-v2')
 df_clean = pd.read_csv("STORIES (user study).csv")
-
-# <<<<<<< HEAD
-# def f(x):
-#     try:
-#         return eval(x)
-#     except:
-#         return x
-# # df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(f)
-# =======
-# df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(eval)
-# >>>>>>> 44150e1f237c95db55f1d357103ea99be911bc8d
+df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(eval)
 
 lock = Lock()
 app = Flask(__name__)
