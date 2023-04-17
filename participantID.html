@@ -858,11 +858,35 @@
                           <input type="text" style="height:20px; font-size:12px;" id="otherInput-1-10" disabled>
 
                         </div>
-                        <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? Please specify. *
+                        <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? *
                         </h5>
-                        <small>Type "nothing" if your answer is nothing</small><br>
-                        <textarea class='mx-0' type="text" cols='32' style="height:30px; margin:10px; font-size:12px;"
-                          id="s1q11" value="nothing" required></textarea>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-11[]"
+                            id="s1q11_option1" value="the-narrator-situation" required> <label class="form-check-label"
+                            for="s1q11_option1">&nbsp; The
+                            situation the narrator goes through </label>
+                        </div>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-11[]"
+                            id="s1q11_option2" value="the-narraor-feelings" required>
+                          <label class="form-check-label" for="s1q11_option2">&nbsp; The feelings the narrator
+                            has</label>
+
+                        </div>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-11[]"
+                            id="s1q11_option3" value="takeaway&reflection" required>
+                          <label class="form-check-label" for="s1q11_option3">&nbsp; The overall takeaway and reflection
+                            of the story</label>
+
+                        </div>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox" type="checkbox" name="survey1-11[]"
+                            id="s1q11_option4" value="other" onchange="getOtherValue1()" required>
+                          <label class="form-check-label" for="s1q11_option4">&nbsp; Other</label>
+                          <input type="text" style="height:20px; font-size:12px;" id="otherInput-1-11" disabled>
+
+                        </div>
 
 
 
@@ -1220,11 +1244,36 @@
 
 
                         </div>
-                        <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? Please specify. *
+                        <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? *
                         </h5>
-                        <small>Type "nothing" if your answer is nothing</small><br>
-                        <textarea class='mx-0' type="text" cols='32' style="height:30px; margin:10px; font-size:12px;"
-                          id="s2q11" value="nothing" required></textarea>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-11[]"
+                            id="s2q11_option1" value="situation" required> <label class="form-check-label"
+                            for="s2q11_option1">&nbsp; The
+                            situation the narrator goes through </label>
+                        </div>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-11[]"
+                            id="s2q11_option2" value="feelings" required>
+                          <label class="form-check-label" for="s2q11_option2">&nbsp; The feelings the narrator
+                            has</label>
+
+                        </div>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-11[]"
+                            id="s2q11_option3" value="takeaway&reflection" required>
+                          <label class="form-check-label" for="s2q11_option3">&nbsp; The overall takeaway and reflection
+                            of the story</label>
+
+                        </div>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox2" type="checkbox" name="survey2-11[]"
+                            id="s2q11_option4" value="other" onchange="getOtherValue2()" required>
+                          <label class="form-check-label" for="s2q11_option4">&nbsp; Other</label>
+                          <input type="text" style="height:20px; font-size:12px;" id="otherInput-2-11" disabled>
+
+
+                        </div>
 
 
                         <!--End-->
@@ -1263,30 +1312,30 @@
                         </h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-1" id="s3q1_option1"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-1" id="s3q1_option1"
                             value="1" required> <label class="form-check-label" for="s3q1_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-1" id="s3q1_option2"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-1" id="s3q1_option2"
                             value="2" required>
                           <label class="form-check-label" for="s3q1_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-1" id="s3q1_option3"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-1" id="s3q1_option3"
                             value="3" required>
                           <label class="form-check-label" for="s3q1_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-1" id="s3q1_option4"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-1" id="s3q1_option4"
                             value="4" required>
                           <label class="form-check-label" for="s3q1_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input" type="radio" name="survey3-1" id="s3q1_option5" value="5"
+                          <input class="form-check-input survey-radio3" type="radio" name="survey3-1" id="s3q1_option5" value="5"
                             required>
                           <label class="form-check-label" for="s3q1_option5">&nbsp; Strongly agree</label>
                         </div>
@@ -1294,30 +1343,30 @@
                         <h5 class="mt-4">2. I can feel the narrator’s emotions in the story. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-2" id="s3q2_option1"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-2" id="s3q2_option1"
                             value="1" required> <label class="form-check-label" for="s3q2_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-2" id="s3q2_option2"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-2" id="s3q2_option2"
                             value="2" required>
                           <label class="form-check-label" for="s3q2_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-2" id="s3q2_option3"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-2" id="s3q2_option3"
                             value="3" required>
                           <label class="form-check-label" for="s3q2_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-2" id="s3q2_option4"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-2" id="s3q2_option4"
                             value="4" required>
                           <label class="form-check-label" for="s3q2_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input" type="radio" name="survey3-2" id="s3q2_option5" value="5"
+                          <input class="form-check-input survey-radio3" type="radio" name="survey3-2" id="s3q2_option5" value="5"
                             required>
                           <label class="form-check-label" for="s3q2_option5">&nbsp; Strongly agree</label>
                         </div>
@@ -1325,30 +1374,30 @@
                         <h5 class="mt-4">3. I can recognize the narrator’s situation. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-3" id="s3q3_option1"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-3" id="s3q3_option1"
                             value="1" required> <label class="form-check-label" for="s3q3_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-3" id="s3q3_option2"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-3" id="s3q3_option2"
                             value="2" required>
                           <label class="form-check-label" for="s3q3_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-3" id="s3q3_option3"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-3" id="s3q3_option3"
                             value="3" required>
                           <label class="form-check-label" for="s3q3_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-3" id="s3q3_option4"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-3" id="s3q3_option4"
                             value="4" required>
                           <label class="form-check-label" for="s3q3_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input" type="radio" name="survey3-3" id="s3q3_option5" value="5"
+                          <input class="form-check-input survey-radio3" type="radio" name="survey3-3" id="s3q3_option5" value="5"
                             required>
                           <label class="form-check-label" for="s3q3_option5">&nbsp; Strongly agree</label>
                         </div>
@@ -1356,30 +1405,30 @@
                         <h5 class="mt-4">4. The narrator’s reactions to the situation are understandable. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-4" id="s3q4_option1"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-4" id="s3q4_option1"
                             value="1" required> <label class="form-check-label" for="s3q4_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-4" id="s3q4_option2"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-4" id="s3q4_option2"
                             value="2" required>
                           <label class="form-check-label" for="s3q4_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-4" id="s3q4_option3"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-4" id="s3q4_option3"
                             value="3" required>
                           <label class="form-check-label" for="s3q4_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-4" id="s3q4_option4"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-4" id="s3q4_option4"
                             value="4" required>
                           <label class="form-check-label" for="s3q4_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input" type="radio" name="survey3-4" id="s3q4_option5" value="5"
+                          <input class="form-check-input survey-radio3" type="radio" name="survey3-4" id="s3q4_option5" value="5"
                             required>
                           <label class="form-check-label" for="s3q4_option5">&nbsp; Strongly agree</label>
                         </div>
@@ -1387,30 +1436,30 @@
                         <h5 class="mt-4">5. I can relate to what the narrator was going through. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-5" id="s3q5_option1"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-5" id="s3q5_option1"
                             value="1" required> <label class="form-check-label" for="s3q5_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-5" id="s3q5_option2"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-5" id="s3q5_option2"
                             value="2" required>
                           <label class="form-check-label" for="s3q5_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-5" id="s3q5_option3"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-5" id="s3q5_option3"
                             value="3" required>
                           <label class="form-check-label" for="s3q5_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-5" id="s3q5_option4"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-5" id="s3q5_option4"
                             value="4" required>
                           <label class="form-check-label" for="s3q5_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input" type="radio" name="survey3-5" id="s3q5_option5" value="5"
+                          <input class="form-check-input survey-radio3" type="radio" name="survey3-5" id="s3q5_option5" value="5"
                             required>
                           <label class="form-check-label" for="s3q5_option5">&nbsp; Strongly agree</label>
                         </div>
@@ -1418,30 +1467,30 @@
                         <h5 class="mt-4">6. I can identify with the situation described in the story. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-6" id="s3q6_option1"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-6" id="s3q6_option1"
                             value="1" required> <label class="form-check-label" for="s3q6_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-6" id="s3q6_option2"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-6" id="s3q6_option2"
                             value="2" required>
                           <label class="form-check-label" for="s3q6_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-6" id="s3q6_option3"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-6" id="s3q6_option3"
                             value="3" required>
                           <label class="form-check-label" for="s3q6_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-6" id="s3q6_option4"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-6" id="s3q6_option4"
                             value="4" required>
                           <label class="form-check-label" for="s3q6_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input" type="radio" name="survey3-6" id="s3q6_option5" value="5"
+                          <input class="form-check-input survey-radio3" type="radio" name="survey3-6" id="s3q6_option5" value="5"
                             required>
                           <label class="form-check-label" for="s3q6_option5">&nbsp; Strongly agree</label>
                         </div>
@@ -1449,30 +1498,30 @@
                         <h5 class="mt-4">7. I can identify with the narrator of the story. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-7" id="s3q7_option1"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-7" id="s3q7_option1"
                             value="1" required> <label class="form-check-label" for="s3q7_option1">&nbsp; Strongly
                             disagree </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-7" id="s3q7_option2"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-7" id="s3q7_option2"
                             value="2" required>
                           <label class="form-check-label" for="s3q7_option2">&nbsp; Disagree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-7" id="s3q7_option3"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-7" id="s3q7_option3"
                             value="3" required>
                           <label class="form-check-label" for="s3q7_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-7" id="s3q7_option4"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-7" id="s3q7_option4"
                             value="4" required>
                           <label class="form-check-label" for="s3q7_option4">&nbsp; Agree</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input" type="radio" name="survey3-7" id="s3q7_option5" value="5"
+                          <input class="form-check-input survey-radio3" type="radio" name="survey3-7" id="s3q7_option5" value="5"
                             required>
                           <label class="form-check-label" for="s3q7_option5">&nbsp; Strongly agree</label>
                         </div>
@@ -1481,30 +1530,30 @@
                           empathize as much as compared to if I knew it was human. *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-8" id="s3q8_option1"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-8" id="s3q8_option1"
                             value="1" required> <label class="form-check-label" for="s3q8_option1">&nbsp; Empathize less
                           </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-8" id="s3q8_option2"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-8" id="s3q8_option2"
                             value="2" required>
                           <label class="form-check-label" for="s3q8_option2">&nbsp; Empathize a little less</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-8" id="s3q8_option3"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-8" id="s3q8_option3"
                             value="3" required>
                           <label class="form-check-label" for="s3q8_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-8" id="s3q8_option4"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-8" id="s3q8_option4"
                             value="4" required>
                           <label class="form-check-label" for="s3q8_option4">&nbsp; Empathize a little more</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input" type="radio" name="survey3-8" id="s3q8_option5" value="5"
+                          <input class="form-check-input survey-radio3" type="radio" name="survey3-8" id="s3q8_option5" value="5"
                             required>
                           <label class="form-check-label" for="s3q8_option5">&nbsp; Empathize more</label>
                         </div>
@@ -1512,30 +1561,30 @@
                         <h5 class="mt-4">9. How different from your written story is this story? *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-9" id="s3q9_option1"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-9" id="s3q9_option1"
                             value="1" required> <label class="form-check-label" for="s3q9_option1">&nbsp; Very different
                           </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-9" id="s3q9_option2"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-9" id="s3q9_option2"
                             value="2" required>
                           <label class="form-check-label" for="s3q9_option2">&nbsp; Different</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-9" id="s3q9_option3"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-9" id="s3q9_option3"
                             value="3" required>
                           <label class="form-check-label" for="s3q9_option3">&nbsp; Neutral</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="radio" name="survey3-9" id="s3q9_option4"
+                          <input class="form-check-input right survey-radio3" type="radio" name="survey3-9" id="s3q9_option4"
                             value="4" required>
                           <label class="form-check-label" for="s3q9_option4">&nbsp; Similar</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input" type="radio" name="survey3-9" id="s3q9_option5" value="5"
+                          <input class="form-check-input survey-radio3" type="radio" name="survey3-9" id="s3q9_option5" value="5"
                             required>
                           <label class="form-check-label" for="s3q9_option5">&nbsp; Very similar</label>
                         </div>
@@ -1543,37 +1592,61 @@
                         <h5 class="mt-4">10. What made you empathize with this story? *</h5>
 
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="checkbox" name="survey3-10[]" id="s3q10_option1"
+                          <input class="form-check-input right survey-checkbox3" type="checkbox" name="survey3-10[]" id="s3q10_option1"
                             value="situation" required> <label class="form-check-label" for="s3q10_option1">&nbsp; The
                             situation the narrator goes through </label>
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="checkbox" name="survey3-10[]" id="s3q10_option2"
+                          <input class="form-check-input right survey-checkbox3" type="checkbox" name="survey3-10[]" id="s3q10_option2"
                             value="feelings" required>
                           <label class="form-check-label" for="s3q10_option2">&nbsp; The feelings the narrator
                             has</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="checkbox" name="survey3-10[]" id="s3q10_option3"
+                          <input class="form-check-input right survey-checkbox3" type="checkbox" name="survey3-10[]" id="s3q10_option3"
                             value="takeaway&reflection" required>
                           <label class="form-check-label" for="s3q10_option3">&nbsp; The overall takeaway and reflection
                             of the story</label>
 
                         </div>
                         <div class="form-check lickert">
-                          <input class="form-check-input right" type="checkbox" name="survey3-10[]" id="s3q10_option4"
+                          <input class="form-check-input right survey-checkbox3" type="checkbox" name="survey3-10[]" id="s3q10_option4"
                             value="other" onchange="getOtherValue3()" required>
                           <label class="form-check-label" for="s3q10_option4">&nbsp; Other</label>
                           <input type="text" style="height:20px; font-size:12px;" id="otherInput-3-10" disabled>
 
 
                         </div>
-                        <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? Please specify. *
+                        <h5 class="mt-4">11. What made you <em>not</em> empathize with this story? *
                         </h5>
-                        <small>Type "nothing" if your answer is nothing</small><br>
-                        <textarea class='mx-0' type="text" cols='32' style="height:30px; margin:10px; font-size:12px;"
-                          id="s3q11" value="nothing" required></textarea>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox3" type="checkbox" name="survey3-11[]" id="s3q11_option1"
+                            value="situation" required> <label class="form-check-label" for="s3q11_option1">&nbsp; The
+                            situation the narrator goes through </label>
+                        </div>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox3" type="checkbox" name="survey3-11[]" id="s3q11_option2"
+                            value="feelings" required>
+                          <label class="form-check-label" for="s3q11_option2">&nbsp; The feelings the narrator
+                            has</label>
+
+                        </div>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox3" type="checkbox" name="survey3-11[]" id="s3q11_option3"
+                            value="takeaway&reflection" required>
+                          <label class="form-check-label" for="s3q11_option3">&nbsp; The overall takeaway and reflection
+                            of the story</label>
+
+                        </div>
+                        <div class="form-check lickert">
+                          <input class="form-check-input right survey-checkbox3" type="checkbox" name="survey3-11[]" id="s3q11_option4"
+                            value="other" onchange="getOtherValue3()" required>
+                          <label class="form-check-label" for="s3q11_option4">&nbsp; Other</label>
+                          <input type="text" style="height:20px; font-size:12px;" id="otherInput-3-11" disabled>
+
+
+                        </div>
 
 
                       </div>
@@ -1586,7 +1659,7 @@
                 <!-- <input type="button" class="btn btn-primary" value="Previous" onclick="showPage('page3')"> -->
                 <div class='text-center'>
                   <p></p>
-                  <input type="button" class="btn btn-lg btn-primary" value="Next" onclick="showPage('page5')">
+                  <input type="button" class="btn btn-lg btn-primary" value="Next" onclick="showPage('page6')">
                 </div>
                 <!--Survey on story 3 ends here-->
               </div>
@@ -1594,8 +1667,8 @@
 
               <!--Survey on story 4-->
               <!--page 5-->
-              <div id="page5" name="pages" style="display:none">
-                <!-- <p style="color:blue">${story4_formatted}</p> -->
+              <!-- <div id="page5" name="pages" style="display:none">
+                <p style="color:blue">${story4_formatted}</p>
                 <p id="story4_formatted" style="color:blue"></p>
                 <h5 class="card-header" style="background: #e9ecef;">
                   Survey on story 4
@@ -1929,17 +2002,17 @@
                           id="s4q11" value="nothing" required></textarea>
 
 
-                        <!--End-->
+                        
                       </div>
                     </div>
                   </p>
                 </div>
-                <!-- <input type="button" class="btn btn-primary" value="Previous" onclick="showPage('page4')"> -->
+                <input type="button" class="btn btn-primary" value="Previous" onclick="showPage('page4')">
                 <div class='text-center'>
                   <p></p>
                   <input type="button" class="btn btn-lg btn-primary" value="Next" onclick="showPage('page6')">
                 </div>
-              </div>
+              </div> -->
 
               <!--Survey on story 4 ends here-->
             </div>
@@ -1952,7 +2025,7 @@
             <!--page 6-->
             <div id="page6" name="pages" style="display:none">
               <div class=" col-11">
-                <h5>Part 5-B: Compare the four stories that you have read</h5>
+                <h5>Part 5-B: Compare the three stories that you have read</h5>
 
 
                 <div class="card-body collapse show bg-light" id="fullInstructions">
@@ -1963,18 +2036,18 @@
                           1. Drag and drop the items below to rank the stories in the order that you empathized with
                           most to least: *
                         </h5>
-                        <p>Here are the 4 stories that you have been presented with in this session:</p>
+                        <p>Here are the three stories that you have been presented with in this session:</p>
                         <ul>
                           <li id="randomStory1"></li>
                           <li id="randomStory2"></li>
                           <li id="randomStory3"></li>
-                          <li id="randomStory4"></li>
+                          <!-- <li id="randomStory4"></li> -->
                         </ul>
                         <ul id="sortable">
                           <li id="item1" draggable="true">First story</li>
                           <li id="item2" draggable="true">Second story</li>
                           <li id="item3" draggable="true">Third story</li>
-                          <li id="item4" draggable="true">Fourth story</li>
+                          <!-- <li id="item4" draggable="true">Fourth story</li> -->
                         </ul>
                         <!-- <button  onclick="clickme()">click me</button>
                         <p id="clickmee"></p> -->
@@ -2089,8 +2162,8 @@
           document.getElementById("all-content").style.display = "none";
           document.getElementById("loading").style.display = "block";
           var xmlHttp = new XMLHttpRequest();
-          // var url = 'http://127.0.0.1:5000/submitMyStory/';
-          var url = 'https://wall-e.media.mit.edu:5192/submitMyStory/';
+          var url = 'http://127.0.0.1:5000/submitMyStory/';
+          // var url = 'https://wall-e.media.mit.edu:5192/submitMyStory/';
           var request = new XMLHttpRequest();
 
           request.open('POST', url, true);
@@ -2111,11 +2184,11 @@
                 document.getElementById("story1_formatted").innerHTML = response.story1;
                 document.getElementById("story2_formatted").innerHTML = response.story2;
                 document.getElementById("story3_formatted").innerHTML = response.story3;
-                document.getElementById("story4_formatted").innerHTML = response.story4;
+                // document.getElementById("story4_formatted").innerHTML = response.story4;
                 document.getElementById("randomStory1").innerHTML = response.story1;
                 document.getElementById("randomStory2").innerHTML = response.story2;
                 document.getElementById("randomStory3").innerHTML = response.story3;
-                document.getElementById("randomStory4").innerHTML = response.story4;
+                // document.getElementById("randomStory4").innerHTML = response.story4;
               }
               // Hide all pages
               var pages = document.getElementsByName("pages");
@@ -2161,7 +2234,11 @@
         } else if (pageId == 'page4') {
           radioButtons = document.querySelectorAll(".survey-radio2");
           checkboxes = document.querySelectorAll(".survey-checkbox2");
+        } else if (pageId == 'page6') {
+          radioButtons = document.querySelectorAll(".survey-radio3");
+          checkboxes = document.querySelectorAll(".survey-checkbox3");
         }
+        
 
         // Check if all radio buttons are answered
         let isRadioAnswered = false;
@@ -2223,7 +2300,7 @@
       var dragSrcEl = null;
       var sessionNumber = 0;
       var obj = {};
-      var originalOrder = ['First story', 'Second story', 'Third story', 'Fourth story'];
+      var originalOrder = ['First story', 'Second story', 'Third story'];
       var sortedList = [];
 
       function handleDragStart(e) {
@@ -2295,8 +2372,8 @@
 
 
         var xmlHttp = new XMLHttpRequest();
-        // var url = 'http://127.0.0.1:5000/getPrompt/';
-        var url = 'https://wall-e.media.mit.edu:5192/getPrompt/';
+        var url = 'http://127.0.0.1:5000/getPrompt/';
+        // var url = 'https://wall-e.media.mit.edu:5192/getPrompt/';
         var request = new XMLHttpRequest();
         request.open('POST', url, false);
         request.setRequestHeader("Content-Type", "application/json");
@@ -2338,6 +2415,8 @@
       function getOtherValue1() {
         const otherCheckbox1 = document.getElementById("s1q10_option4");
         const otherInput1 = document.getElementById("otherInput-1-10");
+        const otherCheckbox11 = document.getElementById("s1q11_option4");
+        const otherInput11 = document.getElementById("otherInput-1-11");
         if (otherCheckbox1.checked) {
           otherInput1.disabled = false;
           otherCheckbox1.value = otherInput1.value;
@@ -2345,8 +2424,19 @@
           otherInput1.disabled = true;
           otherCheckbox1.value = "other";
         }
+        if (otherCheckbox11.checked) {
+          otherInput11.disabled = false;
+          otherCheckbox11.value = otherInput11.value;
+        } else {
+          otherInput11.disabled = true;
+          otherCheckbox11.value = "other";
+        }
         otherInput1.addEventListener("input", function () {
           otherCheckbox1.value = this.value;
+          //document.getElementById("testButton").innerHTML = otherCheckbox1.value;
+        });
+        otherInput11.addEventListener("input", function () {
+          otherCheckbox11.value = this.value;
           //document.getElementById("testButton").innerHTML = otherCheckbox1.value;
         });
 
@@ -2356,6 +2446,8 @@
       function getOtherValue2() {
         const otherCheckbox2 = document.getElementById("s2q10_option4");
         const otherInput2 = document.getElementById("otherInput-2-10");
+        const otherCheckbox22 = document.getElementById("s2q11_option4");
+        const otherInput22 = document.getElementById("otherInput-2-11");
         if (otherCheckbox2.checked) {
           otherInput2.disabled = false;
           otherCheckbox2.value = otherInput2.value;
@@ -2363,8 +2455,19 @@
           otherInput2.disabled = true;
           otherCheckbox2.value = "other";
         }
+        if (otherCheckbox22.checked) {
+          otherInput22.disabled = false;
+          otherCheckbox22.value = otherInput22.value;
+        } else {
+          otherInput22.disabled = true;
+          otherCheckbox22.value = "other";
+        }
         otherInput2.addEventListener("input", function () {
           otherCheckbox2.value = this.value;
+          //document.getElementById("testButton").innerHTML = otherCheckbox2.value;
+        });
+        otherInput22.addEventListener("input", function () {
+          otherCheckbox22.value = this.value;
           //document.getElementById("testButton").innerHTML = otherCheckbox2.value;
         });
       }
@@ -2373,6 +2476,8 @@
       function getOtherValue3() {
         const otherCheckbox3 = document.getElementById("s3q10_option4");
         const otherInput3 = document.getElementById("otherInput-3-10");
+        const otherCheckbox33 = document.getElementById("s3q11_option4");
+        const otherInput33 = document.getElementById("otherInput-3-11");
         if (otherCheckbox3.checked) {
           otherInput3.disabled = false;
           otherCheckbox3.value = otherInput3.value;
@@ -2380,28 +2485,39 @@
           otherInput3.disabled = true;
           otherCheckbox3.value = "other";
         }
+        if (otherCheckbox33.checked) {
+          otherInput33.disabled = false;
+          otherCheckbox33.value = otherInput33.value;
+        } else {
+          otherInput33.disabled = true;
+          otherCheckbox33.value = "other";
+        }
         otherInput3.addEventListener("input", function () {
           otherCheckbox3.value = this.value;
+          //document.getElementById("testButton").innerHTML = otherCheckbox3.value;
+        });
+        otherInput33.addEventListener("input", function () {
+          otherCheckbox33.value = this.value;
           //document.getElementById("testButton").innerHTML = otherCheckbox3.value;
         });
       }
 
       //survey4
-      function getOtherValue4() {
-        const otherCheckbox4 = document.getElementById("s4q10_option4");
-        const otherInput4 = document.getElementById("otherInput-4-10");
-        if (otherCheckbox4.checked) {
-          otherInput4.disabled = false;
-          otherCheckbox4.value = otherInput4.value;
-        } else {
-          otherInput4.disabled = true;
-          otherCheckbox4.value = "other";
-        }
-        otherInput4.addEventListener("input", function () {
-          otherCheckbox4.value = this.value;
-          //document.getElementById("testButton").innerHTML = otherCheckbox4.value;
-        });
-      }
+      // function getOtherValue4() {
+      //   const otherCheckbox4 = document.getElementById("s4q10_option4");
+      //   const otherInput4 = document.getElementById("otherInput-4-10");
+      //   if (otherCheckbox4.checked) {
+      //     otherInput4.disabled = false;
+      //     otherCheckbox4.value = otherInput4.value;
+      //   } else {
+      //     otherInput4.disabled = true;
+      //     otherCheckbox4.value = "other";
+      //   }
+      //   otherInput4.addEventListener("input", function () {
+      //     otherCheckbox4.value = this.value;
+      //     //document.getElementById("testButton").innerHTML = otherCheckbox4.value;
+      //   });
+      // }
 
       ////////////////////////////////////////////////////////////////////////////////////
 
@@ -2438,6 +2554,7 @@
           }
           selectedValues1.push(selectedOption1);
         }
+        //survey 1 question 10
         const q10checkboxes1 = document.getElementsByName(`survey1-10[]`);
         let checked1;
         var checkedString1 = "[";
@@ -2448,10 +2565,21 @@
           }
         }
         checkedString1 += "]";
-        var s1q11 = document.getElementById("s1q11").value;
         survey1_answers = selectedValues1;
         survey1_answers.push(checkedString1);
-        survey1_answers.push(s1q11);
+        //survey 1 question 11
+        const q11checkboxes1 = document.getElementsByName(`survey1-11[]`);
+        let checked11;
+        var checkedString11 = "[";
+        for (const checkbox of q11checkboxes1) {
+          if (checkbox.checked) {
+            checked11 = checkbox.value;
+            checkedString11 += (checked11 + ", ");
+          }
+        }
+        checkedString11 += "]";
+        survey1_answers.push(checkedString11);
+       
         //survey1_answers = [selectedValues1, ' [' + checkedString1 + ']'];
         //document.getElementById("testButton").innerHTML = survey1_answers;
         //to test add a button with onclick and call the function
@@ -2470,6 +2598,7 @@
           }
           selectedValues2.push(selectedOption2);
         }
+        //survey 2 question 10
         const q10checkboxes2 = document.getElementsByName(`survey2-10[]`);
         let checked2;
         var checkedString2 = "[";
@@ -2480,10 +2609,20 @@
           }
         }
         checkedString2 += "]";
-        var s2q11 = document.getElementById("s2q11").value;
         survey2_answers = selectedValues2;
         survey2_answers.push(checkedString2);
-        survey2_answers.push(s2q11);
+        //survey 2 question 11
+        const q11checkboxes2 = document.getElementsByName(`survey2-11[]`);
+        let checked22;
+        var checkedString22 = "[";
+        for (const checkbox of q11checkboxes2) {
+          if (checkbox.checked) {
+            checked22 = checkbox.value;
+            checkedString22 += (checked22 + ", ");
+          }
+        }
+        checkedString22 += "]";
+        survey2_answers.push(checkedString22);
         //survey2_answers = [selectedValues2, ' [' + checkedString2 + ']'];
         //document.getElementById("testButton").innerHTML = survey2_answers;
 
@@ -2501,6 +2640,7 @@
           }
           selectedValues3.push(selectedOption3);
         }
+        //survey 3 question 10
         const q10checkboxes3 = document.getElementsByName(`survey3-10[]`);
         let checked3;
         var checkedString3 = "[";
@@ -2511,42 +2651,52 @@
           }
         }
         checkedString3 += "]";
-        var s3q11 = document.getElementById("s3q11").value;
         survey3_answers = selectedValues3;
         survey3_answers.push(checkedString3);
-        survey3_answers.push(s3q11);
+        //survey 3 question 11
+        const q11checkboxes3 = document.getElementsByName(`survey3-11[]`);
+        let checked33;
+        var checkedString33 = "[";
+        for (const checkbox of q11checkboxes3) {
+          if (checkbox.checked) {
+            checked33 = checkbox.value;
+            checkedString33 += (checked33 + ", ");
+          }
+        }
+        checkedString33 += "]";
+        survey3_answers.push(checkedString33);
         //survey3_answers = [selectedValues3, ' [' + checkedString3 + ']'];
         //document.getElementById("testButton3").innerHTML = survey3_answers;
 
         //survey4 answers
 
-        const selectedValues4 = [];
-        survey4_answers = [];
-        for (let i = 1; i <= 9; i++) {
-          const options4 = document.getElementsByName(`survey4-${i}`);
-          let selectedOption4;
-          for (const option of options4) {
-            if (option.checked) {
-              selectedOption4 = option.value;
-              break;
-            }
-          }
-          selectedValues4.push(selectedOption4);
-        }
-        const q10checkboxes4 = document.getElementsByName(`survey4-10[]`);
-        let checked4;
-        var checkedString4 = "[";
-        for (const checkbox of q10checkboxes4) {
-          if (checkbox.checked) {
-            checked4 = checkbox.value;
-            checkedString4 += (checked4 + ", ");
-          }
-        }
-        checkedString4 += "]";
-        var s4q11 = document.getElementById("s4q11").value;
-        survey4_answers = selectedValues4;
-        survey4_answers.push(checkedString4);
-        survey4_answers.push(s4q11);
+        // const selectedValues4 = [];
+        // survey4_answers = [];
+        // for (let i = 1; i <= 9; i++) {
+        //   const options4 = document.getElementsByName(`survey4-${i}`);
+        //   let selectedOption4;
+        //   for (const option of options4) {
+        //     if (option.checked) {
+        //       selectedOption4 = option.value;
+        //       break;
+        //     }
+        //   }
+        //   selectedValues4.push(selectedOption4);
+        // }
+        // const q10checkboxes4 = document.getElementsByName(`survey4-10[]`);
+        // let checked4;
+        // var checkedString4 = "[";
+        // for (const checkbox of q10checkboxes4) {
+        //   if (checkbox.checked) {
+        //     checked4 = checkbox.value;
+        //     checkedString4 += (checked4 + ", ");
+        //   }
+        // }
+        // checkedString4 += "]";
+        // var s4q11 = document.getElementById("s4q11").value;
+        // survey4_answers = selectedValues4;
+        // survey4_answers.push(checkedString4);
+        // survey4_answers.push(s4q11);
         //survey4_answers = [selectedValues4, ' [' + checkedString4 + ']'];
         //document.getElementById("testButton3").innerHTML = survey4_answers;
 
@@ -2567,7 +2717,7 @@
           survey1_answers: survey1_answers,
           survey2_answers: survey2_answers,
           survey3_answers: survey3_answers,
-          survey4_answers: survey4_answers,
+          // survey4_answers: survey4_answers,
           mostEmpathizedOrder: mostEmpathizedOrder,
           feedback: feedback
         };

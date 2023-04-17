@@ -116,11 +116,11 @@ def sessionDone():
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
     if currentSession == 1:
-        db.reference(participantIDInput + "/currentSession").set(2)
+        db.reference(id + "/currentSession").set(2)
     elif currentSession == 2:
-        db.reference(participantIDInput + "/currentSession").set(3)
+        db.reference(id + "/currentSession").set(3)
     elif currentSession == 3:
-        db.reference(participantIDInput + "/currentSession").set(4)
+        db.reference(id + "/currentSession").set(4)
     dict = {'showParticipantID': id, 'showSessionNum': currentSession}
     sem.release()
     return json.dumps(dict)
@@ -204,7 +204,7 @@ def submitSurveyQuestions():
     survey1_answers = request.json['survey1_answers']
     survey2_answers = request.json['survey2_answers']
     survey3_answers = request.json['survey3_answers']
-    survey4_answers = request.json['survey4_answers']
+    # survey4_answers = request.json['survey4_answers']
     mostEmpathizedOrder = request.json['mostEmpathizedOrder']
     
     feedback = request.json['feedback']
@@ -215,18 +215,27 @@ def submitSurveyQuestions():
         session1 = db.reference(id + '/s001')
         session1.child("feedback").set(feedback)
         # session1.child("prompt").set(dbprompt1)
+        session1.child("survey1_answers").set(survey1_answers)
+        session1.child("survey2_answers").set(survey2_answers)
+        session1.child("survey3_answers").set(survey3_answers)
         session1.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
 
     elif currentSession == 2:
         session2 = db.reference(id + '/s002')
         # session2.child("prompt").set(dbprompt2)
         session2.child("feedback").set(feedback)
+        session2.child("survey1_answers").set(survey1_answers)
+        session2.child("survey2_answers").set(survey2_answers)
+        session2.child("survey3_answers").set(survey3_answers)
         session2.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
 
     elif currentSession == 3:
         session3 = db.reference(id + '/s003')
         # session3.child("prompt").set(prompt3)
         session3.child("feedback").set(feedback)
+        session3.child("survey1_answers").set(survey1_answers)
+        session3.child("survey2_answers").set(survey2_answers)
+        session3.child("survey3_answers").set(survey3_answers)
         session3.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
     sem.release()
     return 'Data submitted successfully!'
@@ -238,5 +247,5 @@ if __name__ == '__main__':
     host = sys.argv[1]
     port = sys.argv[2]
     debug = sys.argv[3]
-    # app.run(host='0.0.0.0', port=5000, debug=True)
-    app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))
+    app.run(host='0.0.0.0', port=5000, debug=True)
+    # app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))
