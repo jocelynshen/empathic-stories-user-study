@@ -31,7 +31,16 @@ from numpy.linalg import norm
 # model_SBERT = SentenceTransformer('all-mpnet-base-v2')
 df_clean = pd.read_csv("STORIES (user study).csv")
 
-df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(eval)
+# <<<<<<< HEAD
+# def f(x):
+#     try:
+#         return eval(x)
+#     except:
+#         return x
+# # df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(f)
+# =======
+# df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(eval)
+# >>>>>>> 44150e1f237c95db55f1d357103ea99be911bc8d
 
 lock = Lock()
 app = Flask(__name__)
@@ -107,11 +116,11 @@ def sessionDone():
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
     if currentSession == 1:
-        db.reference(participantIDInput + "/currentSession").set(2)
+        db.reference(id + "/currentSession").set(2)
     elif currentSession == 2:
-        db.reference(participantIDInput + "/currentSession").set(3)
+        db.reference(id + "/currentSession").set(3)
     elif currentSession == 3:
-        db.reference(participantIDInput + "/currentSession").set(4)
+        db.reference(id + "/currentSession").set(4)
     dict = {'showParticipantID': id, 'showSessionNum': currentSession}
     sem.release()
     return json.dumps(dict)
@@ -135,11 +144,19 @@ def submitMyStory():
     """Save their story in firebase"""
     sem.acquire()
     id = request.json['participantIDInput']
+    currentSession = db.reference(id + "/currentSession").get()
+    if currentSession == 1:
+        gender = request.json['gender']
+        age = request.json['age']
+        race = request.json['race']
+        empathyLevel = request.json['empathyLevel']
+        demographic = {"gender": gender, "age": age,
+                        "race": race, "empathyLevel": empathyLevel}
+
 
     valence = request.json['valence']
     arousal = request.json['arousal']
     reflection = {"valence": valence, "arousal": arousal}
-
     mystory = request.json['mystory']
     fullDate = request.json['fullDate']
     mystoryTopic = request.json['mystoryTopic']
@@ -149,26 +166,16 @@ def submitMyStory():
 
     mystoryQuestions = {"mainEvent": mainEvent,
                     "narratorEmotions": narratorEmotions, "moral": moral, "fullDate": fullDate}
-
-    gender = request.json['gender']
-    age = request.json['age']
-    race = request.json['race']
-    empathyLevel = request.json['empathyLevel']
-    demographic = {"gender": gender, "age": age,
-                    "race": race, "empathyLevel": empathyLevel}
-        
-
     ref = db.reference(id)
-    currentSession = db.reference(id + "/currentSession").get()
     session = db.reference(id + '/s00' + str(currentSession))
-
     session_values = session.get()
     if not session_values or "mystory" not in session_values:
         session.child("mystory").set(mystory)
         session.child("mystoryTopic").set(mystoryTopic)
         session.child("mystoryQuestions").set(mystoryQuestions)
         session.child("reflection").set(reflection)
-        session.child("demographic").set(demographic)
+        if currentSession == 1:
+            session.child("demographic").set(demographic)
         
 
     ## make call to model and save firebase mapping
@@ -178,10 +185,12 @@ def submitMyStory():
     # TODO: remove duplicates and randomize, save to firebase with what model it came from, send the 1-4 stories back to frontend to display
 
     dict = {
+        'mystory': mystory
     }
     # check for duplicates
     unique_stories = list(set(stories.values()))
     random.shuffle(unique_stories)
+    dict['numOfStories'] = len(unique_stories)
     for i in range(len(unique_stories)):
         dict["story" + str(i + 1)] = unique_stories[i]
     sem.release()
@@ -195,7 +204,7 @@ def submitSurveyQuestions():
     survey1_answers = request.json['survey1_answers']
     survey2_answers = request.json['survey2_answers']
     survey3_answers = request.json['survey3_answers']
-    survey4_answers = request.json['survey4_answers']
+    # survey4_answers = request.json['survey4_answers']
     mostEmpathizedOrder = request.json['mostEmpathizedOrder']
     
     feedback = request.json['feedback']
@@ -206,18 +215,27 @@ def submitSurveyQuestions():
         session1 = db.reference(id + '/s001')
         session1.child("feedback").set(feedback)
         # session1.child("prompt").set(dbprompt1)
+        session1.child("survey1_answers").set(survey1_answers)
+        session1.child("survey2_answers").set(survey2_answers)
+        session1.child("survey3_answers").set(survey3_answers)
         session1.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
 
     elif currentSession == 2:
         session2 = db.reference(id + '/s002')
         # session2.child("prompt").set(dbprompt2)
         session2.child("feedback").set(feedback)
+        session2.child("survey1_answers").set(survey1_answers)
+        session2.child("survey2_answers").set(survey2_answers)
+        session2.child("survey3_answers").set(survey3_answers)
         session2.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
 
     elif currentSession == 3:
         session3 = db.reference(id + '/s003')
         # session3.child("prompt").set(prompt3)
         session3.child("feedback").set(feedback)
+        session3.child("survey1_answers").set(survey1_answers)
+        session3.child("survey2_answers").set(survey2_answers)
+        session3.child("survey3_answers").set(survey3_answers)
         session3.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
     sem.release()
     return 'Data submitted successfully!'
