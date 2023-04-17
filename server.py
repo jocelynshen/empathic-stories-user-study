@@ -108,7 +108,7 @@ def get_stories_from_model(mystory):
     )
     r3 = response["choices"][0]["message"]["content"].replace("\n\n", "\n")
     return {"condition1": "story about apples", "condition2": "story about bananas", "condition3": r3}
-
+ 
 @app.route('/sessionDone/', methods=["GET", "POST"])
 def sessionDone():
     sem.acquire()
@@ -144,11 +144,19 @@ def submitMyStory():
     """Save their story in firebase"""
     sem.acquire()
     id = request.json['participantIDInput']
+    currentSession = db.reference(id + "/currentSession").get()
+    if currentSession == 1:
+        gender = request.json['gender']
+        age = request.json['age']
+        race = request.json['race']
+        empathyLevel = request.json['empathyLevel']
+        demographic = {"gender": gender, "age": age,
+                        "race": race, "empathyLevel": empathyLevel}
+
 
     valence = request.json['valence']
     arousal = request.json['arousal']
     reflection = {"valence": valence, "arousal": arousal}
-
     mystory = request.json['mystory']
     fullDate = request.json['fullDate']
     mystoryTopic = request.json['mystoryTopic']
@@ -158,26 +166,16 @@ def submitMyStory():
 
     mystoryQuestions = {"mainEvent": mainEvent,
                     "narratorEmotions": narratorEmotions, "moral": moral, "fullDate": fullDate}
-
-    gender = request.json['gender']
-    age = request.json['age']
-    race = request.json['race']
-    empathyLevel = request.json['empathyLevel']
-    demographic = {"gender": gender, "age": age,
-                    "race": race, "empathyLevel": empathyLevel}
-        
-
     ref = db.reference(id)
-    currentSession = db.reference(id + "/currentSession").get()
     session = db.reference(id + '/s00' + str(currentSession))
-
     session_values = session.get()
     if not session_values or "mystory" not in session_values:
         session.child("mystory").set(mystory)
         session.child("mystoryTopic").set(mystoryTopic)
         session.child("mystoryQuestions").set(mystoryQuestions)
         session.child("reflection").set(reflection)
-        session.child("demographic").set(demographic)
+        if currentSession == 1:
+            session.child("demographic").set(demographic)
         
 
     ## make call to model and save firebase mapping
@@ -187,10 +185,12 @@ def submitMyStory():
     # TODO: remove duplicates and randomize, save to firebase with what model it came from, send the 1-4 stories back to frontend to display
 
     dict = {
+        'mystory': mystory
     }
     # check for duplicates
     unique_stories = list(set(stories.values()))
     random.shuffle(unique_stories)
+    dict['numOfStories'] = len(unique_stories)
     for i in range(len(unique_stories)):
         dict["story" + str(i + 1)] = unique_stories[i]
     sem.release()
@@ -247,5 +247,5 @@ if __name__ == '__main__':
     host = sys.argv[1]
     port = sys.argv[2]
     debug = sys.argv[3]
-    app.run(host='0.0.0.0', port=5000, debug=True)
-    # app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))
+    # app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))
