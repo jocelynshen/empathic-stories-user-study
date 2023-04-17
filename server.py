@@ -45,7 +45,7 @@ default_app = firebase_admin.initialize_app(c, {
 })
 
 
-ALLOWED_USERS = ["p001", "p002", "p000", "p003", "p004", "p005", 'p006', 'p009', 'p010', 'p011', 'p012']
+ALLOWED_USERS = {'p001', 'p002', 'p000', 'p003', 'p004', 'p005', 'p006', 'p007', 'p008'}
 
 
 def get_cosine_similarity(a, b):
@@ -66,7 +66,9 @@ def get_participant_id():
     # print('test')
     participantIDInput = request.json['participantIDInput']
     print(f'The value of my id is {participantIDInput}')
+    print(type(participantIDInput))
     if participantIDInput not in ALLOWED_USERS:
+        print("NOT IN SET")
         sem.release()
         abort(404)
     ref = db.reference(participantIDInput)
