@@ -47,6 +47,8 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
         request.send(JSON.stringify({participantIDInput : participantIDInput}));
         if (request.status == 200) {
             window.location.href = "participantID.html?id=" + participantIDInput;
+        } else {
+            window.location.href = "stop.html?id=" + participantIDInput;
         }
     });
 </script>
