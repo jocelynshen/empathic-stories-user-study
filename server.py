@@ -4,6 +4,8 @@ import random
 from flask import Flask, make_response, redirect, url_for, session
 from flask import abort, request, jsonify
 import json
+from datetime import datetime
+
 # import tensorflow as tf
 # gpus = tf.config.experimental.list_physical_devices('GPU')
 # for gpu in gpus:
@@ -76,8 +78,7 @@ def get_participant_id():
         db.reference(participantIDInput + "/currentSession").set(1)
     elif currentSession not in [1, 2, 3]:
         sem.release()
-        abort(404)        
-    
+        abort(404)   
     sem.release()
     return "success"
 
@@ -114,12 +115,13 @@ def sessionDone():
 @app.route('/getPrompt/', methods=["GET", "POST"])
 def getPrompt():
     # """Get initial writing prompt for user + retrieve 3 stories from 3 models + save to firebase"""
-    # randomly select story FROM stories that haven't been seen before (store it in firebase)
     sem.acquire()
     id = request.json['participantIDInput']
     ##########################################################################
     currentSession = db.reference(id + "/currentSession").get()
     dict = {'showParticipantID': id, 'showSessionNum': currentSession}
+    session = db.reference(id + '/s00' + str(currentSession))
+    session.child("startTime").set(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
     sem.release()
     return json.dumps(dict)
 
@@ -158,6 +160,7 @@ def submitMyStory():
     session.child("mystoryTopic").set(mystoryTopic)
     session.child("mystoryQuestions").set(mystoryQuestions)
     session.child("reflection").set(reflection)
+    session.child("submitStoryTime").set(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
     if currentSession == 1:
         session.child("demographic").set(demographic)
         
@@ -196,6 +199,8 @@ def submitSurveyQuestions():
 
     ref = db.reference(id)
     currentSession = db.reference(id + "/currentSession").get()
+    session = db.reference(id + '/s00' + str(currentSession))
+    session.child("endTime").set(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
     if currentSession == 1:
         session1 = db.reference(id + '/s001')
         session1.child("feedback").set(feedback)
