@@ -177,6 +177,7 @@ def submitMyStory():
     dict['numOfStories'] = len(unique_stories)
     for i in range(len(unique_stories)):
         dict["story" + str(i + 1)] = unique_stories[i]
+    session.child("randomizedStories").set(dict)
     sem.release()
     return json.dumps(dict)
 
