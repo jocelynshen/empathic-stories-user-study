@@ -2278,6 +2278,42 @@
                     </div>
                   </p>
                 </div>
+                <!--new question only in session 3-->
+                <div id="part6Div" style="display:none;">
+                  <h5 class="mt-4">Part 6: if the stories you read were written by an AI, would you empathize: *</h5>
+
+                  <div class="form-check lickert">
+                    <input class="form-check-input right survey-radio" type="radio" name="part6" autocomplete="off"
+                      id="part6_option1" value="1" required> <label class="form-check-label"
+                      for="s1q8_option1">&nbsp; A lot less
+                    </label>
+                  </div>
+                  <div class="form-check lickert">
+                    <input class="form-check-input right survey-radio" type="radio" name="part6" autocomplete="off"
+                      id="part6_option2" value="2" required>
+                    <label class="form-check-label" for="s1q8_option2">&nbsp; A little less</label>
+
+                  </div>
+                  <div class="form-check lickert">
+                    <input class="form-check-input right survey-radio" type="radio" name="part6" autocomplete="off"
+                      id="part6_option3" value="3" required>
+                    <label class="form-check-label" for="s1q8_option3">&nbsp; The same</label>
+
+                  </div>
+                  <div class="form-check lickert">
+                    <input class="form-check-input right survey-radio" type="radio" name="part6" autocomplete="off"
+                      id="part6_option4" value="4" required>
+                    <label class="form-check-label" for="s1q8_option4">&nbsp; A little more</label>
+
+                  </div>
+                  <div class="form-check lickert">
+                    <input class="form-check-input survey-radio" type="radio" name="part6" id="part6_option5" autocomplete="off"
+                      value="5" required>
+                    <label class="form-check-label" for="s1q8_option5">&nbsp; A lot more</label>
+                  </div>
+                  <p id="fillEmpathyWithAI" style="color:red;"></p>
+                </div>
+                <!--new question only in session 3-->
               </div>
 
               <div class="row justify-content-center mb-4">
@@ -2305,15 +2341,16 @@
     </div>
     </div>
     <script>
-      // $(document).ready(function() {
-      //    $('body').bind('cut copy paste', function(event) {
-      //    event.preventDefault();
-      //    });
-      //  });
+      $(document).ready(function() {
+         $('body').bind('cut copy paste', function(event) {
+         event.preventDefault();
+         });
+       });
+      var flag = false;
       var id = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length).substring(4);
       var xmlHttp = new XMLHttpRequest();
-      var url = 'http://127.0.0.1:5000/participantIDInput/';
-      // var url = 'https://wall-e.media.mit.edu:5192/participantIDInput/';
+      // var url = 'http://127.0.0.1:5000/participantIDInput/';
+      var url = 'https://wall-e.media.mit.edu:5192/participantIDInput/';
       var request = new XMLHttpRequest();
       request.open('POST', url, false);
       request.setRequestHeader("Content-Type", "application/json");
@@ -2397,11 +2434,11 @@
             ok = ok && false;
           }
         } else {
-          if (valence && arousal && storyDate && dateDropDown && mystoryTopic) {
-            ok = ok && true;
-          } else {
-            ok = ok && false;
-          }
+            if (valence && arousal && storyDate && dateDropDown && mystoryTopic) {
+              ok = ok && true;
+            } else {
+              ok = ok && false;
+            }
         }
 
         console.log("All fields valid? " + ok);
@@ -2417,8 +2454,8 @@
           document.getElementById("all-content").style.display = "none";
           document.getElementById("loading").style.display = "block";
           var xmlHttp = new XMLHttpRequest();
-          var url = 'http://127.0.0.1:5000/submitMyStory/';
-          // var url = 'https://wall-e.media.mit.edu:5192/submitMyStory/';
+          // var url = 'http://127.0.0.1:5000/submitMyStory/';
+          var url = 'https://wall-e.media.mit.edu:5192/submitMyStory/';
           var request = new XMLHttpRequest();
 
           request.open('POST', url, true);
@@ -2976,8 +3013,8 @@
 
 
         var xmlHttp = new XMLHttpRequest();
-        var url = 'http://127.0.0.1:5000/getPrompt/';
-        // var url = 'https://wall-e.media.mit.edu:5192/getPrompt/';
+        // var url = 'http://127.0.0.1:5000/getPrompt/';
+        var url = 'https://wall-e.media.mit.edu:5192/getPrompt/';
         var request = new XMLHttpRequest();
         request.open('POST', url, false);
         request.setRequestHeader("Content-Type", "application/json");
@@ -2996,6 +3033,10 @@
             document.getElementById("showSessionNum").innerHTML = sessionNumber;
             if (sessionNumber == 1) {
               document.getElementById("demographic").style.display = "block";
+            }
+            if (sessionNumber == 3){
+              document.getElementById("part6Div").style.display = "block";
+              flag = true;
             }
             document.getElementById("storywriting-section" + sessionNumber).style.display = "block"
             // document.getElementById("promptPlace").innerHTML = response.prompt;
@@ -3111,6 +3152,7 @@
       var submit = document.getElementById("submitButton");
       submit.addEventListener("click", function (event) {
         event.preventDefault();
+        console.log("I will try to submit")
 
         //get participantID
         //already done above 
@@ -3263,20 +3305,62 @@
         console.log(mostEmpathizedOrder)
         //feedback
         var feedback = document.getElementById("commentbox").value;
-        var obj = {
-          participantIDInput: id,
-          survey1_answers: survey1_answers,
-          survey2_answers: survey2_answers,
-          survey3_answers: survey3_answers,
-          // survey4_answers: survey4_answers,
-          mostEmpathizedOrder: mostEmpathizedOrder,
-          feedback: feedback
-        };
+        
+        //Part6 --> if the stories you read were written by an AI, would you empathize...
+        var empathyWithAI = 0;
+        var hasValue = false;
+        if(flag){
+          console.log("I will now get the value");
+          var empathyWithAILevels = document.getElementsByName('part6');
+          for (i = 0; i < empathyWithAILevels.length; i++) {
+            if (empathyWithAILevels[i].checked){
+              empathyWithAI = empathyWithAILevels[i].value;
+              hasValue = true;
+            }
+            else {
+              hasValue = false;
+            }
+              
+          }
+        }
+        console.log(flag);
+        console.log(empathyWithAI);
+
+        if (flag) {
+          if (hasValue) {
+            var obj = {
+            participantIDInput: id,
+            survey1_answers: survey1_answers,
+            survey2_answers: survey2_answers,
+            survey3_answers: survey3_answers,
+            // survey4_answers: survey4_answers,
+            mostEmpathizedOrder: mostEmpathizedOrder,
+            feedback: feedback,
+            empathyWithAI: empathyWithAI
+          };
+          console.log(obj);
+          } else {
+            document.getElementById('fillEmpathyWithAI').innerHTML = "Please select one of the options above."
+          }
+          
+        }
+        else {
+          var obj = {
+            participantIDInput: id,
+            survey1_answers: survey1_answers,
+            survey2_answers: survey2_answers,
+            survey3_answers: survey3_answers,
+            // survey4_answers: survey4_answers,
+            mostEmpathizedOrder: mostEmpathizedOrder,
+            feedback: feedback
+          };
+          console.log(obj);
+        } 
 
         //send POST request
         var xmlHttp = new XMLHttpRequest();
-        var url = 'http://127.0.0.1:5000/submitSurveyQuestions/';
-        // var url = 'https://wall-e.media.mit.edu:5192/submitSurveyQuestions/';
+        // var url = 'http://127.0.0.1:5000/submitSurveyQuestions/';
+        var url = 'https://wall-e.media.mit.edu:5192/submitSurveyQuestions/';
         var request = new XMLHttpRequest();
         request.open('POST', url, true);
         request.setRequestHeader("Content-Type", "application/json");

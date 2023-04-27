@@ -140,7 +140,6 @@ def submitMyStory():
         demographic = {"gender": gender, "age": age,
                         "race": race, "empathyLevel": empathyLevel}
 
-
     valence = request.json['valence']
     arousal = request.json['arousal']
     reflection = {"valence": valence, "arousal": arousal}
@@ -162,8 +161,8 @@ def submitMyStory():
     session.child("reflection").set(reflection)
     session.child("submitStoryTime").set(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
     if currentSession == 1:
-        session.child("demographic").set(demographic)
-        
+        session.child("demographic").set(demographic) 
+
 
     ## make call to model and save firebase mapping
     stories = get_stories_from_model(mystory)
@@ -188,6 +187,12 @@ def submitMyStory():
 def submitSurveyQuestions():
     sem.acquire()
     id = request.json['participantIDInput']
+    ref = db.reference(id)
+    currentSession = db.reference(id + "/currentSession").get()
+    print(currentSession)
+    if currentSession == 3:
+        print("i will take the new value of part 6 now")
+        empathyWithAI = request.json['empathyWithAI']
 
     survey1_answers = request.json['survey1_answers']
     survey2_answers = request.json['survey2_answers']
@@ -197,8 +202,8 @@ def submitSurveyQuestions():
     
     feedback = request.json['feedback']
 
-    ref = db.reference(id)
-    currentSession = db.reference(id + "/currentSession").get()
+    # ref = db.reference(id)
+    # currentSession = db.reference(id + "/currentSession").get()
     session = db.reference(id + '/s00' + str(currentSession))
     session.child("endTime").set(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
     if currentSession == 1:
@@ -222,6 +227,7 @@ def submitSurveyQuestions():
         db.reference(id + "/currentSession").set(3)
 
     elif currentSession == 3:
+        print("i will submit everything now")
         session3 = db.reference(id + '/s003')
         # session3.child("prompt").set(prompt3)
         session3.child("feedback").set(feedback)
@@ -229,6 +235,7 @@ def submitSurveyQuestions():
         session3.child("survey2_answers").set(survey2_answers)
         session3.child("survey3_answers").set(survey3_answers)
         session3.child("mostEmpathizedOrder").set(mostEmpathizedOrder)
+        session3.child("empathyWithAI").set(empathyWithAI)
         db.reference(id + "/currentSession").set(4)
     sem.release()
     return 'Data submitted successfully!'
@@ -240,5 +247,5 @@ if __name__ == '__main__':
     host = sys.argv[1]
     port = sys.argv[2]
     debug = sys.argv[3]
-    app.run(host='0.0.0.0', port=5000, debug=True)
-    # app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))
+    # app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host=host, port=port, debug=debug, ssl_context=("/etc/letsencrypt/live/wall-e.media.mit.edu/fullchain.pem", "/etc/letsencrypt/live/wall-e.media.mit.edu/privkey.pem"))

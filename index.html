@@ -43,8 +43,8 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
         var participantIDInput = document.getElementById("participantIDInput").value;
         
         var xmlHttp = new XMLHttpRequest();
-        var url = 'http://127.0.0.1:5000/participantIDInput/';
-        // var url = 'https://wall-e.media.mit.edu:5192/participantIDInput/';
+        // var url = 'http://127.0.0.1:5000/participantIDInput/';
+        var url = 'https://wall-e.media.mit.edu:5192/participantIDInput/';
         var request = new XMLHttpRequest();
         request.open('POST', url, false);
         request.setRequestHeader("Content-Type", "application/json");
