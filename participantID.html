@@ -965,6 +965,11 @@
 
                         </div>
 
+                        <div class="form-group lickert">
+                          <h5 class="mt-4">10. Please describe more about why you did or did not empathize well with the story? *</h5>
+                          <textarea class="form-control" name="describeMore" id="describeMore" autocomplete="off" rows="3" required style="width:600px;"></textarea>
+                        </div>
+
                         <!--End-->
                       </div>
                     </div>
@@ -1408,6 +1413,11 @@
                           <p id = 'fillOther22' style="color:red;"></p>
 
 
+                        </div>
+
+                        <div class="form-group lickert">
+                          <h5 class="mt-4">10. Please describe more about why you did or did not empathize well with the story? *</h5>
+                          <textarea class="form-control" name="describeMore2" id="describeMore2" autocomplete="off" rows="3" required style="width:600px;"></textarea>
                         </div>
 
 
@@ -1854,6 +1864,11 @@
 
                         </div>
 
+                        <div class="form-group lickert">
+                          <h5 class="mt-4">10. Please describe more about why you did or did not empathize well with the story? *</h5>
+                          <textarea class="form-control" name="describeMore3" id="describeMore3" autocomplete="off" rows="3" required style="width:600px;"></textarea>
+                        </div>
+
 
                       </div>
 
@@ -2290,11 +2305,11 @@
     </div>
     </div>
     <script>
-      $(document).ready(function() {
-         $('body').bind('cut copy paste', function(event) {
-         event.preventDefault();
-         });
-       });
+      // $(document).ready(function() {
+      //    $('body').bind('cut copy paste', function(event) {
+      //    event.preventDefault();
+      //    });
+      //  });
       var id = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length).substring(4);
       var xmlHttp = new XMLHttpRequest();
       var url = 'http://127.0.0.1:5000/participantIDInput/';
@@ -2541,7 +2556,9 @@
         var atLeastOne111 = false;
         var atLeastOne110 = false;
 
-        //suvey 1 radio questions 1 till 9
+        var survey1textBoxAnswered = false;
+
+        //suvey 1 radio questions 1 till 7
         for (var i = 1 ; i <= 7 ; i++){
           var survey1RadioSet = document.getElementsByName(`survey1-${i}`);
           let checkedOption1;
@@ -2609,8 +2626,19 @@
             survey1isCheckboxAnswered11 = false;
           }
 
+          //survey 1 question 10 textarea
+          var textareaBox = document.getElementById("describeMore").value;
+          if (textareaBox == ""){
+            survey1textBoxAnswered = false;
+            $("#describeMore").attr("data-state", "invalid");
+          }
+          else {
+            survey1textBoxAnswered = true;
+            $("#describeMore").attr("data-state", "open");
+          }
+
           //////////////////////////////////////////////
-          if (survey1IsRadioAnswered && survey1isCheckboxAnswered10 && survey1isCheckboxAnswered11){
+          if (survey1IsRadioAnswered && survey1isCheckboxAnswered10 && survey1isCheckboxAnswered11 && survey1textBoxAnswered){
             return true;
           }
           else {
@@ -2632,7 +2660,9 @@
         var atLeastOne211 = false;
         var atLeastOne210 = false;
 
-        //suvey 1 radio questions 1 till 7
+        var survey2textBoxAnswered = false;
+
+        //suvey 2 radio questions 1 till 7
         for (var i = 1 ; i <= 7 ; i++){
           var survey2RadioSet = document.getElementsByName(`survey2-${i}`);
           let checkedOption2;
@@ -2645,7 +2675,7 @@
             }
           }
         }
-        //survey 1 checkbox question 8
+        //survey 2 checkbox question 8
         var survey2checkbox10 = document.getElementsByName(`survey2-10[]`);
           let checkedOption210;
           for (checkedOption210 of survey2checkbox10) {
@@ -2673,7 +2703,7 @@
             console.log('bad');
             survey2isCheckboxAnswered10 = false;
           }
-        //survey 1 checkbox question 9
+        //survey 2 checkbox question 9
         var survey2checkbox11 = document.getElementsByName(`survey2-11[]`);
           let checkedOption211;
           for (checkedOption211 of survey2checkbox11) {
@@ -2700,8 +2730,19 @@
             survey2isCheckboxAnswered11 = false;
           }
 
+          //survey 2 question 10
+          var textareaBox2 = document.getElementById("describeMore2").value;
+          if (textareaBox2 == ""){
+            survey2textBoxAnswered = false;
+            $("#describeMore2").attr("data-state", "invalid");
+          }
+          else {
+            survey2textBoxAnswered = true;
+            $("#describeMore2").attr("data-state", "open");
+          }
+
           //////////////////////////////////////////////
-          if (survey2IsRadioAnswered && survey2isCheckboxAnswered10 && survey2isCheckboxAnswered11){
+          if (survey2IsRadioAnswered && survey2isCheckboxAnswered10 && survey2isCheckboxAnswered11 && survey2textBoxAnswered){
             return true;
           }
           else {
@@ -2722,6 +2763,8 @@
 
         var atLeastOne311 = false;
         var atLeastOne310 = false;
+
+        var survey3textBoxAnswered = false;
 
         //suvey 3 radio questions 1 till 7
         for (var i = 1 ; i <= 7 ; i++){
@@ -2791,8 +2834,19 @@
             survey3isCheckboxAnswered11 = false;
           }
 
+          //survey 3 question 10
+          var textareaBox3 = document.getElementById("describeMore3").value;
+          if (textareaBox3 == ""){
+            survey3textBoxAnswered = false;
+            $("#describeMore3").attr("data-state", "invalid");
+          }
+          else {
+            survey3textBoxAnswered = true;
+            $("#describeMore3").attr("data-state", "open");
+          }
+
           //////////////////////////////////////////////
-          if (survey3IsRadioAnswered && survey3isCheckboxAnswered10 && survey3isCheckboxAnswered11){
+          if (survey3IsRadioAnswered && survey3isCheckboxAnswered10 && survey3isCheckboxAnswered11 && survey3textBoxAnswered){
             return true;
           }
           else {
@@ -3075,7 +3129,7 @@
           }
           selectedValues1.push(selectedOption1);
         }
-        //survey 1 question 10
+        //survey 1 question 8
         const q10checkboxes1 = document.getElementsByName(`survey1-10[]`);
         let checked1;
         var checkedString1 = "[";
@@ -3088,7 +3142,7 @@
         checkedString1 += "]";
         survey1_answers = selectedValues1;
         survey1_answers.push(checkedString1);
-        //survey 1 question 11
+        //survey 1 question 9
         const q11checkboxes1 = document.getElementsByName(`survey1-11[]`);
         let checked11;
         var checkedString11 = "[";
@@ -3100,6 +3154,9 @@
         }
         checkedString11 += "]";
         survey1_answers.push(checkedString11);
+        //survey 1 question 10 textbox
+        var describeMoreTextBoxValue = document.getElementById("describeMore").value;
+        survey1_answers.push(describeMoreTextBoxValue);
 
         //survey1_answers = [selectedValues1, ' [' + checkedString1 + ']'];
         //document.getElementById("testButton").innerHTML = survey1_answers;
@@ -3147,6 +3204,10 @@
         //survey2_answers = [selectedValues2, ' [' + checkedString2 + ']'];
         //document.getElementById("testButton").innerHTML = survey2_answers;
 
+        //survey 2 question 10 textbox
+        var describeMoreTextBoxValue2 = document.getElementById("describeMore2").value;
+        survey2_answers.push(describeMoreTextBoxValue2);
+
         //survey3 answers
         const selectedValues3 = [];
         survey3_answers = [];
@@ -3186,6 +3247,9 @@
         }
         checkedString33 += "]";
         survey3_answers.push(checkedString33);
+        //survey 3 question 10 textbox
+        var describeMoreTextBoxValue3 = document.getElementById("describeMore3").value;
+        survey3_answers.push(describeMoreTextBoxValue3);
 
         var mostEmpathizedOrder = [];
         // if (sortedList.length == 0) {
