@@ -5,6 +5,7 @@ from flask import Flask, make_response, redirect, url_for, session
 from flask import abort, request, jsonify
 import json
 from datetime import datetime
+import faiss 
 
 # import tensorflow as tf
 # gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -29,10 +30,17 @@ openai.api_key = open_ai_api_key
 
 from numpy import dot
 from numpy.linalg import norm
+import numpy as np
 
 model_SBERT = SentenceTransformer('all-mpnet-base-v2')
 df_clean = pd.read_csv("STORIES (user study).csv")
-df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(eval)
+# df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(eval)
+
+embeddings = np.array([list(eval(_)) for _ in df_clean["embeddings_SBERT"]], dtype=np.float32)
+index = faiss.index_factory(d, "Flat", faiss.METRIC_INNER_PRODUCT)
+faiss.normalize_L2(embeddings)
+index.add(embeddings)
+
 
 lock = Lock()
 app = Flask(__name__)
@@ -47,6 +55,7 @@ default_app = firebase_admin.initialize_app(c, {
 })
 
 
+
 ALLOWED_USERS = {'p001', 'p002', 'p000', 'p003', 'p004', 'p005', 'p006', 'p007', 'p008', 'p009', 'p010', 'p011', 'p012', 'p013', 'p014'}
 
 
@@ -54,6 +63,12 @@ def get_cosine_similarity(a, b):
     cos_sim = dot(a, b)/(norm(a)*norm(b))
     return cos_sim
 
+def retrieve_top(embedding, k=1): # embedding must be (1, 768)
+    #Using FAISS
+    embedding = embedding.reshape(1, 768)
+    d = len(embeddings[0])
+    D, I = index.search(embedding, k) 
+    return D, I
 
 @app.route('/')
 def hello_world():
@@ -88,9 +103,8 @@ def get_stories_from_model(mystory):
 
     Write a story from your own life that the narrator would empathize with. Do not refer to the narrator explicitly.
     """
-    embeddings = model_SBERT.encode(mystory)
-    best_match_SBERT = df_clean["embeddings_SBERT"].apply(lambda x: get_cosine_similarity(embeddings, x)).idxmax()
-    r2 = df_clean["story_formatted"].iloc[best_match_SBERT]
+    embedding = model_SBERT.encode(mystory)
+    r2 = df_clean["story_formatted"].iloc[retrieve_top(embedding)[1][0][0]]
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
