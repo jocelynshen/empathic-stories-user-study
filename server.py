@@ -37,6 +37,7 @@ df_clean = pd.read_csv("STORIES (user study).csv")
 # df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(eval)
 
 embeddings = np.array([list(eval(_)) for _ in df_clean["embeddings_SBERT"]], dtype=np.float32)
+d = len(embeddings[0])
 index = faiss.index_factory(d, "Flat", faiss.METRIC_INNER_PRODUCT)
 faiss.normalize_L2(embeddings)
 index.add(embeddings)
@@ -66,7 +67,6 @@ def get_cosine_similarity(a, b):
 def retrieve_top(embedding, k=1): # embedding must be (1, 768)
     #Using FAISS
     embedding = embedding.reshape(1, 768)
-    d = len(embeddings[0])
     D, I = index.search(embedding, k) 
     return D, I
 
