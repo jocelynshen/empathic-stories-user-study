@@ -2346,6 +2346,7 @@
       //    event.preventDefault();
       //    });
       //  });
+      var PILOT_STUDY = true;
       var flag = false;
       var id = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length).substring(4);
       var xmlHttp = new XMLHttpRequest();
@@ -2397,7 +2398,7 @@
         //get user story
         var mystory = document.getElementById("userstory").value;
         
-        if(sessionNumber == 3){ // TODO revert to 1
+        if((sessionNumber == 3 && PILOT_STUDY) || sessionNumber == 1){ 
           var gender = document.getElementById("annotatorGender").value;
           var age = document.getElementById("age").value;
           var race = document.getElementById("annotatorRace").value;
@@ -2425,7 +2426,7 @@
         console.log("moral", ok)
 
         // ok = ($(":invalid").length == 0) && ok;
-        if (sessionNumber == 3) { // TODO: revert to 1
+        if ((sessionNumber == 3 && PILOT_STUDY) || sessionNumber == 1) { 
           if (valence && arousal && storyDate && dateDropDown && mystoryTopic && gender && age && race &&
             empathyLevel &&
             certify) {
@@ -2472,7 +2473,6 @@
               if (sessionNumber > 3) {
                 window.location.replace("stop.html?id=" + id);
               } else {
-                // TODO: only display the number of surveys as there are number of stories returned by the server
                 numOfStories = response.numOfStories;
                 const displayUserStories = document.querySelectorAll(".displayUserStory");
                 displayUserStories.forEach((paragraph) => {
@@ -2516,7 +2516,7 @@
 
             }
           }
-          if (sessionNumber == 3) { // TODO: revert to1
+          if ((sessionNumber == 3 && PILOT_STUDY) || sessionNumber == 1)  { 
             request.send(JSON.stringify({
               participantIDInput: id,
               mainEvent: mainEvent,
@@ -2892,7 +2892,7 @@
       }
 
       function showPage(pageId) {
-        var ok = checkSurvey(pageId); // TODO: check that likert values are valid before continuing to the next page
+        var ok = checkSurvey(pageId);
         console.log("All fields valid? " + ok);
         $(":valid").removeClass("invalid");
         $(".lickert>input:valid").parents().removeClass("invalid");
@@ -2934,7 +2934,11 @@
       var ipAddress = "";
 
       //my new script 
-      var sessionNumber = 3; // TODO: revert to 0
+      if (PILOT_STUDY) {
+        var sessionNumber = 3;
+      } else {
+        var sessionNumber = 0;
+      }
       var numOfStories = 0;
 
       // draggables
@@ -3031,7 +3035,7 @@
           } else {
             document.getElementById("showParticipantID").innerHTML = response.showParticipantID;
             document.getElementById("showSessionNum").innerHTML = sessionNumber;
-            if (sessionNumber == 3) { // TODO: revert to 1
+            if ((sessionNumber == 3 && PILOT_STUDY) || sessionNumber == 1)  {
               document.getElementById("demographic").style.display = "block";
             }
             if (sessionNumber == 3){
