@@ -2341,11 +2341,11 @@
     </div>
     </div>
     <script>
-      $(document).ready(function() {
-         $('body').bind('cut copy paste', function(event) {
-         event.preventDefault();
-         });
-       });
+      // $(document).ready(function() {
+      //    $('body').bind('cut copy paste', function(event) {
+      //    event.preventDefault();
+      //    });
+      //  });
       var flag = false;
       var id = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length).substring(4);
       var xmlHttp = new XMLHttpRequest();
@@ -2934,7 +2934,7 @@
       var ipAddress = "";
 
       //my new script 
-      var sessionNumber = 0;
+      var sessionNumber = 3; // TODO: revert to 0
       var numOfStories = 0;
 
       // draggables
@@ -3031,7 +3031,7 @@
           } else {
             document.getElementById("showParticipantID").innerHTML = response.showParticipantID;
             document.getElementById("showSessionNum").innerHTML = sessionNumber;
-            if (sessionNumber == 1) {
+            if (sessionNumber == 3) { // TODO: revert to 1
               document.getElementById("demographic").style.display = "block";
             }
             if (sessionNumber == 3){
@@ -3431,7 +3431,7 @@
       function checkUserStory() {
         var summary = $("#userstory").prop("value");
         var nSents = countSentences(summary);
-        if (summary.length > 1000 && summary.length < 10000 && nSents >= 10) {
+        if (summary.length > 500 && summary.length < 10000 && nSents >= 5) {
           $("#userstory").attr("data-state", "open");
           $("#userstory-length-warning").hide();
           return true;
