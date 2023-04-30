@@ -32,16 +32,41 @@ from numpy import dot
 from numpy.linalg import norm
 import numpy as np
 
-model_SBERT = SentenceTransformer('all-mpnet-base-v2')
+import torch
+from model.EmpathicSimilarityModel import EmpathicSimilarityModel
+from model.EmpathicSummaryModel import EmpathicSummaryModel
+from model.EmpathicMultitaskModel import EmpathicMultitaskModel
+from omegaconf import OmegaConf
+
+hp_BART = OmegaConf.load("../config/BART_joint_avg_pretraining.yaml")
+hp_SBERT_finetuned = OmegaConf.load("../config/SBERT_similarity_avg_mse.yaml")
+
+df_clean = pd.read_csv("./STORIES (user study).csv")
+df_clean =  df_clean.loc[:, ~df_clean.columns.str.contains('^Unnamed')]
+
+model_BART = EmpathicMultitaskModel.load_from_checkpoint("../lightning_logs/BART_joint_avg_encoder/checkpoints/epoch=12-step=650.ckpt", hp=hp_BART)
+modeL_SBERT_finetuned = EmpathicSimilarityModel.load_from_checkpoint("../lightning_logs/SBERT_similarity_avg/checkpoints/epoch=8-step=225.ckpt", hp=hp_SBERT_finetuned)
+model_SBERT = SentenceTransformer('all-mpnet-base-v2', device='cpu')
 df_clean = pd.read_csv("STORIES (user study).csv")
 # df_clean["embeddings_SBERT"] = df_clean["embeddings_SBERT"].apply(eval)
 
-embeddings = np.array([list(eval(_)) for _ in df_clean["embeddings_SBERT"]], dtype=np.float32)
-d = len(embeddings[0])
-index = faiss.index_factory(d, "Flat", faiss.METRIC_INNER_PRODUCT)
-faiss.normalize_L2(embeddings)
-index.add(embeddings)
+embeddings_sbert = np.array([list(eval(_)) for _ in df_clean["embedding (SBERT, no finetuning)"]], dtype=np.float32)
+d = len(embeddings_sbert[0])
+index_sbert = faiss.index_factory(d, "Flat", faiss.METRIC_INNER_PRODUCT)
+faiss.normalize_L2(embeddings_sbert)
+index_sbert.add(embeddings_sbert)
 
+embeddings_bart = np.array([list(eval(_)) for _ in df_clean['embedding (BART, finetuning, joint, encoder_hidden_state, mse)']], dtype=np.float32)
+d = len(embeddings_bart[0])
+index_bart = faiss.index_factory(d, "Flat", faiss.METRIC_INNER_PRODUCT)
+faiss.normalize_L2(embeddings_bart)
+index_bart.add(embeddings_bart)
+
+embeddings_sbert_finetuned = np.array([list(eval(_)) for _ in df_clean['embedding (SBERT, finetuning, mse)']], dtype=np.float32)
+d = len(embeddings_sbert_finetuned[0])
+index_sbert_finetuned = faiss.index_factory(d, "Flat", faiss.METRIC_INNER_PRODUCT)
+faiss.normalize_L2(embeddings_sbert_finetuned)
+index_sbert_finetuned.add(embeddings_sbert_finetuned)
 
 lock = Lock()
 app = Flask(__name__)
@@ -64,10 +89,17 @@ def get_cosine_similarity(a, b):
     cos_sim = dot(a, b)/(norm(a)*norm(b))
     return cos_sim
 
-def retrieve_top(embedding, k=1): # embedding must be (1, 768)
+def retrieve_top(embedding, model = "SBERT", k=len(df_clean)): # embedding must be (1, 768)
     #Using FAISS
     embedding = embedding.reshape(1, 768)
-    D, I = index.search(embedding, k) 
+    faiss.normalize_L2(embedding)
+
+    if model == "SBERT":
+        D, I = index_sbert.search(embedding, k) 
+    elif model == "SBERT_finetuned":
+        D, I = index_sbert_finetuned.search(embedding, k)
+    else:
+        D, I = index_bart.search(embedding, k)
     return D, I
 
 @app.route('/')
@@ -97,14 +129,37 @@ def get_participant_id():
     sem.release()
     return "success"
 
-def get_stories_from_model(mystory):
+def get_tokens(x, model="BART"):
+    if model == "BART":
+        tokens = tokenizer_BART(
+            x, 
+            return_tensors = "pt",
+            truncation=True, 
+            padding="max_length",
+            return_attention_mask = True,
+            # return_special_tokens_mask = True,
+            max_length=tokenizer_BART.model_max_length
+        )
+    else:
+        tokens = tokenizer_SBERT(x)
+    return tokens
+
+def get_stories_from_model(mystory, top_k = 1):
     prompt = f"""Story: 
     {mystory}
-
     Write a story from your own life that the narrator would empathize with. Do not refer to the narrator explicitly.
     """
-    embedding = model_SBERT.encode(mystory)
-    r2 = df_clean["story_formatted"].iloc[retrieve_top(embedding)[1][0][0]]
+    mystory = mystory.replace("\n", "")
+
+    with torch.no_grad():
+        embedding_sbert = model_SBERT.encode(mystory)
+        # embedding_sbert_finetuned = modeL_SBERT_finetuned.model.encode(mystory)
+        embedding_bart, _ = model_BART.get_embedding_and_summaries(get_tokens(mystory))
+        embedding_bart = embedding_bart.detach().numpy()
+        r1 = list(df_clean["story_formatted"].iloc[retrieve_top(embedding_bart, model="BART")[1][0][0:top_k]])
+        r2 = list(df_clean["story_formatted"].iloc[retrieve_top(embedding_sbert)[1][0][0:top_k]])
+        # r4 = list(df_clean["story_formatted"].iloc[retrieve_top(embedding_sbert_finetuned)[1][0][0:top_k]])
+
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -112,7 +167,8 @@ def get_stories_from_model(mystory):
         max_tokens=500
     )
     r3 = response["choices"][0]["message"]["content"].replace("\n\n", "\n")
-    return {"condition1": "story about apples", "condition2": r2, "condition3": r3}
+    return {"condition1": r1, "condition2": r2, "condition3": r3}
+
 
 @app.route('/sessionDone/', methods=["GET", "POST"])
 def sessionDone():
