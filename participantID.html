@@ -2425,7 +2425,7 @@
         console.log("moral", ok)
 
         // ok = ($(":invalid").length == 0) && ok;
-        if (sessionNumber == 1) {
+        if (sessionNumber == 3) { // TODO: revert to 1
           if (valence && arousal && storyDate && dateDropDown && mystoryTopic && gender && age && race &&
             empathyLevel &&
             certify) {
@@ -2516,7 +2516,7 @@
 
             }
           }
-          if (sessionNumber == 1) {
+          if (sessionNumber == 3) { // TODO: revert to1
             request.send(JSON.stringify({
               participantIDInput: id,
               mainEvent: mainEvent,
