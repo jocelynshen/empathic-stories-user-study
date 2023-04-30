@@ -2341,11 +2341,11 @@
     </div>
     </div>
     <script>
-      // $(document).ready(function() {
-      //    $('body').bind('cut copy paste', function(event) {
-      //    event.preventDefault();
-      //    });
-      //  });
+      $(document).ready(function() {
+         $('body').bind('cut copy paste', function(event) {
+         event.preventDefault();
+         });
+       });
       var flag = false;
       var id = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length).substring(4);
       var xmlHttp = new XMLHttpRequest();
