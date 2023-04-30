@@ -2397,7 +2397,7 @@
         //get user story
         var mystory = document.getElementById("userstory").value;
         
-        if(sessionNumber == 1){
+        if(sessionNumber == 3){ // TODO revert to 1
           var gender = document.getElementById("annotatorGender").value;
           var age = document.getElementById("age").value;
           var race = document.getElementById("annotatorRace").value;
@@ -2413,7 +2413,7 @@
         }
 
 
-        var ok = checkUserStory(); // TODO
+        var ok = checkUserStory(); 
         console.log("story", ok)
         ok = checkEmotion1() && ok;
         console.log("emotion", ok)
