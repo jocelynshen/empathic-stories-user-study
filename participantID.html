@@ -559,6 +559,24 @@
                       questions about
                       them</label></h4>
 
+                  <h5 class="card-header" style="background: #e9ecef;">Important Instructions
+                    <a data-toggle="collapse" href="#instructionsEmpathy" role="button" aria-expanded="false"
+                      aria-controls="instructionsEmpathy">[expand/collapse]</a>
+                  </h5>
+                  <p id="instructionsEmpathy" class="card-body collapse show bg-light text-justify" style="color:green">Imagine that you shared
+                    this story you just wrote to a person you trust. Now
+                    imagine that the following story is something they wrote in response. Think about how much you would
+                    empathize with their story.
+                    <br> <br>
+                    <b>Note that empathy refers to being able to resonate with someone else’s experience, without
+                      necessarily having gone through the same experience yourself. It is our ability to put ourselves
+                      in
+                      someone else’s shoes and understand their feelings. Try to empathize with the story even if it’s
+                      not
+                      about the exact same situation or topic</b></p>
+
+                 
+
                   <!-- <p style="color:blue">${story1_formatted}</p> -->
                   <h5 class="card-header" style="background: #e9ecef;">Story 1:
                   </h5>
@@ -952,6 +970,24 @@
                       aria-controls="collapsableStory2">[expand/collapse]</a>
                   </h5>
                   <p class="displayUserStory card-body collapse show bg-light text-justify" id="collapsableStory2"></p>
+
+
+
+                  <h5 class="card-header" style="background: #e9ecef;">Important Instructions
+                    <a data-toggle="collapse" href="#instructionsEmpathy2" role="button" aria-expanded="false"
+                      aria-controls="instructionsEmpathy2">[expand/collapse]</a>
+                  </h5>
+                  <p id="instructionsEmpathy2" class="card-body collapse show bg-light text-justify" style="color:green">Imagine that you shared
+                    this story you just wrote to a person you trust. Now
+                    imagine that the following story is something they wrote in response. Think about how much you would
+                    empathize with their story.
+                    <br> <br>
+                    <b>Note that empathy refers to being able to resonate with someone else’s experience, without
+                      necessarily having gone through the same experience yourself. It is our ability to put ourselves
+                      in
+                      someone else’s shoes and understand their feelings. Try to empathize with the story even if it’s
+                      not
+                      about the exact same situation or topic</b></p>
 
                   <h5 class="card-header" style="background: #e9ecef;">Story 2:
                   </h5>
@@ -1415,6 +1451,25 @@
                   </h5>
 
                   <p class="displayUserStory card-body collapse show bg-light text-justify" id="collapsableStory3"></p>
+
+
+
+                  <h5 class="card-header" style="background: #e9ecef;">Important Instructions
+                    <a data-toggle="collapse" href="#instructionsEmpathy3" role="button" aria-expanded="false"
+                      aria-controls="instructionsEmpathy3">[expand/collapse]</a>
+                  </h5>
+                  <p id="instructionsEmpathy3" class="card-body collapse show bg-light text-justify" style="color:green">Imagine that you shared
+                    this story you just wrote to a person you trust. Now
+                    imagine that the following story is something they wrote in response. Think about how much you would
+                    empathize with their story.
+                    <br> <br>
+                    <b>Note that empathy refers to being able to resonate with someone else’s experience, without
+                      necessarily having gone through the same experience yourself. It is our ability to put ourselves
+                      in
+                      someone else’s shoes and understand their feelings. Try to empathize with the story even if it’s
+                      not
+                      about the exact same situation or topic</b></p>
+
                   <p></p>
                   <h5 class="card-header" style="background: #e9ecef;">Story 3:
                   </h5>
@@ -1973,11 +2028,11 @@
     </div>
   </div>
   <script>
-    $(document).ready(function() {
-       $('body').bind('cut copy paste', function(event) {
-       event.preventDefault();
-       });
-     });
+    $(document).ready(function () {
+      $('body').bind('cut copy paste', function (event) {
+        event.preventDefault();
+      });
+    });
     var PILOT_STUDY = false;
     var flag = false;
     var id = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length).substring(4);
