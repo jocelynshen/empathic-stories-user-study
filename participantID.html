@@ -2284,7 +2284,7 @@
     function checkSurvey1() {
       var radioButtons = '';
       var checkboxes = '';
-      var survey1IsRadioAnswered = false;
+      var survey1IsRadioAnswered = [false, false, false, false, false, false, false];
 
       var survey1isCheckboxAnswered10 = false;
       var survey1isCheckboxAnswered11 = false;
@@ -2303,9 +2303,7 @@
         let checkedOption1;
         for (checkedOption1 of survey1RadioSet) {
           if (checkedOption1.checked) {
-            if (i == 7) {
-              survey1IsRadioAnswered = true;
-            }
+            survey1IsRadioAnswered[i-1] = true;
             break;
           }
         }
@@ -2373,6 +2371,8 @@
         $("#describeMore").attr("data-state", "open");
       }
 
+      survey1IsRadioAnswered = survey1IsRadioAnswered.reduce((a, b) => a&b)
+
       //////////////////////////////////////////////
       if (survey1IsRadioAnswered && survey1isCheckboxAnswered10 && survey1isCheckboxAnswered11 &&
         survey1textBoxAnswered) {
@@ -2385,7 +2385,7 @@
     function checkSurvey2() {
       var radioButtons = '';
       var checkboxes = '';
-      var survey2IsRadioAnswered = false;
+      var survey2IsRadioAnswered = [false, false, false, false, false, false, false];
 
       var survey2isCheckboxAnswered10 = false;
       var survey2isCheckboxAnswered11 = false;
@@ -2404,9 +2404,7 @@
         let checkedOption2;
         for (checkedOption2 of survey2RadioSet) {
           if (checkedOption2.checked) {
-            if (i == 7) {
-              survey2IsRadioAnswered = true;
-            }
+            survey2IsRadioAnswered[i-1] = true;
             break;
           }
         }
@@ -2473,6 +2471,7 @@
         survey2textBoxAnswered = true;
         $("#describeMore2").attr("data-state", "open");
       }
+      survey2IsRadioAnswered = survey2IsRadioAnswered.reduce((a, b) => a&b)
 
       //////////////////////////////////////////////
       if (survey2IsRadioAnswered && survey2isCheckboxAnswered10 && survey2isCheckboxAnswered11 &&
@@ -2486,7 +2485,7 @@
     function checkSurvey3() {
       var radioButtons = '';
       var checkboxes = '';
-      var survey3IsRadioAnswered = false;
+      var survey3IsRadioAnswered = [false, false, false, false, false, false, false];
 
       var survey3isCheckboxAnswered10 = false;
       var survey3isCheckboxAnswered11 = false;
@@ -2505,9 +2504,7 @@
         let checkedOption3;
         for (checkedOption3 of survey3RadioSet) {
           if (checkedOption3.checked) {
-            if (i == 7) {
-              survey3IsRadioAnswered = true;
-            }
+            survey3IsRadioAnswered[i-1] = true;
             break;
           }
         }
@@ -2574,6 +2571,7 @@
         survey3textBoxAnswered = true;
         $("#describeMore3").attr("data-state", "open");
       }
+      survey3IsRadioAnswered = survey3IsRadioAnswered.reduce((a, b) => a&b)
 
       //////////////////////////////////////////////
       if (survey3IsRadioAnswered && survey3isCheckboxAnswered10 && survey3isCheckboxAnswered11 &&
